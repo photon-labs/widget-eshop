@@ -100,10 +100,10 @@ YUI.add("contactusWidget", function(Y) {
             var contactus = this.createElement('<div id="maincontact">');
             var selection = this.createElement('<section id="contact">');
             var divleft = this.createElement('<div id="">');
-            var h3title = this.createElement('<h3> Contact </h3>');         
+            var h3title = this.createElement('<h3> Contact Us </h3>');         
             var contactdescrip = this.createElement('<div class="contactdescrip">');
-            var h4title = this.createElement('<h4 class="descrip"> WELCOME TO PHRESCO </h4>');
-            var ptag =  this.createElement('<p>Dummy content for Contact The 11.6" MacBook Air Notebook Computer from Apple is an extremely portable, stunningly designed laptop computer.  Apple"s engineers have leveraged the lessons they learned in designing the miniaturized iPad and applied them to the design of this 2.3-pound computer. </p> <br>');
+            var h4title = this.createElement('<h4 class="descrip">Photon Infotech Pvt. Ltd.</h4>');
+            var ptag =  this.createElement('<p>DLF IT Park, Block VI,<br><br>2nd,6th,7th & 8th floor,<br><br>Chennai- 600089<br><br>Tamil Nadu, India<br><br>Phone: 91-44-30618000 EXTN:1000<br></p>');
             contactdescrip.appendChild(h4title);
             contactdescrip.appendChild(ptag);
             var cleardiv = this.createElement('<div class="clear"></div>');         

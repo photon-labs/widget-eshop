@@ -103,8 +103,8 @@ YUI.add("aboutusWidget", function(Y) {
                 var divleft = this.createElement('<div id="">');
                 var h3title = this.createElement('<h3> About Us </h3>');            
                 var contactdescrip = this.createElement('<div class="contactdescrip">');
-                var h4title = this.createElement('<h4 class="descrip"> WELCOME TO PHRESCO </h4>');
-                var ptag =  this.createElement('<p>Dummy content for Contact The 11.6" MacBook Air Notebook Computer from Apple is an extremely portable, stunningly designed laptop computer.  Apple"s engineers have leveraged the lessons they learned in designing the miniaturized iPad and applied them to the design of this 2.3-pound computer. </p> <br>');
+                var h4title = this.createElement('<h4 class="descrip"> WELCOME TO PHRESCO ESHOP</h4>');
+                var ptag =  this.createElement('<p>It is a product that builds e-commerce storefronts. The product is to provide distinguished e-Commerce solution to merchants, shop owners to create professional online shops easy, powerful and reliable. E-cart and E-Shop packages provide you with the ability to build your own online storefront quickly and easily along with the content management tool (Content Uploading). E-Shop is designed to enable clients to expand their activities through selling their products / services using an online storefront. E-Shop comes in three different editions: Standard, Professional and Advanced. E-Cart is designed to enable websites to move into the E-Commerce environment and start selling online. </p> <br>');
                 contactdescrip.appendChild(h4title);
                 contactdescrip.appendChild(ptag);
                 var cleardiv = this.createElement('<div class="clear"></div>');         
