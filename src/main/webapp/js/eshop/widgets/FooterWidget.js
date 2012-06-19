@@ -75,7 +75,7 @@ YUI.add("footerWidget", function(Y) {
           },
 
         createContent : function(targetNode) {
-            var copyRight = this.createElement('<strong> E-Shop Phresco © 2011 </strong>');
+            var copyRight = this.createElement('<strong> E-Shop Phresco © 2012 </strong>');
             var privacyPolicy = this.createElement('<a class="link" href="#">Privacy Policy</a><br />');
             var poweredBy = this.createElement('<a class="link" href="#">powered by Photon</a>');
 
