@@ -1,25 +1,6 @@
-/*
- * ###
- * PHR_HTML5YUIWidget
- * %%
- * Copyright (C) 1999 - 2012 Photon Infotech Inc.
- * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *      http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * ###
- */
 @charset "utf-8";
 /* CSS Document */
-
+@media only screen and (min-width : 1025px) {
 /* base styles */
 * {
     margin: 0;
@@ -195,7 +176,6 @@ nav ul li a:hover, nav ul li.selected a {
 #submenu li a:hover {
 	background: -moz-linear-gradient(#858585, #474247); 
 	background: -webkit-gradient(linear, 0 0, 0 100%, from(#858585), to(#474247));
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#858585', endColorstr='#474247',GradientType=0 ); /* IE6-9 */
     color: #FFF;
 }
 /* main section */
@@ -217,11 +197,6 @@ nav ul li a:hover, nav ul li.selected a {
     float: left;
     margin: 0 2%;
     width: 636px;
-}
-#norecord{
-	font-size:20px;
-	font-weight:bold;
-	height:400px;
 }
 #content #right {
     border: 1px solid #E9E9E9;
@@ -512,8 +487,6 @@ strong{
     margin-top:15px;
     padding:3px;
     float:left;
-
-
 }
 .shadow{
     left: -204px;
@@ -725,7 +698,6 @@ div.jqZoomTitle
     width:90px;
     * width:100px;
     height:43px;
-
     *height:55px;
     z-index:10;
     position:absolute;
@@ -1318,7 +1290,6 @@ footer a{
     right: 122px;
 }
 .requestnewpassword_btn{	
-
 	cursor:pointer;
 	font-family: Arial;
 	color: #ffffff;
@@ -1871,4 +1842,5 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#363234, endCol
 	color: #ffffff;
 	font-size: 13px;
 	font-weight:bold;
+}
 }
