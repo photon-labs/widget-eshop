@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.photon.phresco</groupId>
   <artifactId>HTML5Widget_WebDriver_new</artifactId>
-  <version>1.2.0.3001-SNAPSHOT</version>
+  <version>0.0.1</version>
   <packaging>jar</packaging>
   <name>HTML5Widget_new</name>
   <url>http://maven.apache.org</url>
@@ -29,8 +29,16 @@
 		 <dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-server</artifactId>
-			<version>2.21.2.0.3001-SNAPSHOT</version>
+			<version>2.21.0</version>
 		</dependency>
+		
+		 	<!--  ***************For Windows operadriver ******************-->
+		<dependency>
+<groupId>com.opera</groupId>
+<artifactId>operadriver</artifactId>
+<version>0.14</version>
+</dependency>
+		
         
     <!--  ***************For Windows chromedriver ******************-->    
         <dependency>

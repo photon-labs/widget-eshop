@@ -1,26 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  ###
-  PHR_HTML5YUIWidget
-  %%
-  Copyright (C) 1999 - 2012 Photon Infotech Inc.
-  %%
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-  
-       http://www.apache.org/licenses/LICENSE-2.0
-  
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
-  ###
-  -->
-
 <environment>
-           <Browser>googlechrome</Browser>
+           <Browser>opera</Browser>
 		   <Server>
                <context>html5widget</context>
                <protocol>http</protocol>
@@ -47,11 +27,11 @@
 	           <moretab>//a[contains(text(),'More')]</moretab>
 	       </tabs>
 	       <productPage>
-	           <prod1Details>//div[@id='left']/ul/li[1]/div[2]/div[2]/a</prod1Details>
-	           <updateCart>//input[@value='Update Cart']</updateCart>
-	           <addToCart>link=Add to cart</addToCart>
+	           <prod1Details>//div[@id='left']/ul/li/div[2]</prod1Details>
+	           <updateCart>//a[contains(text(),'Update Cart')]</updateCart>
+	           <addToCart>//div[@id='scroller']/div[2]/ul/li/div/div[2]/div[2]/a[2]/img</addToCart>
 	           <prod1DetailAddToCart>//div[@id='left']/div/div[3]/div[3]/div[3]/a/img</prod1DetailAddToCart>
-	           <prod1AudioDevices>//div[@id='left']/ul/li/div/a/img</prod1AudioDevices>
+	           <prod1AudioDevices>//div[@id='left']/ul/li/div[2]/a</prod1AudioDevices>
 	           <checkout>//input[@value='Check Out']</checkout>
 	           <reviewOrder>//input[@value='Review Order']</reviewOrder>
 	           <submitOrder>//input[@value='Submit Order']</submitOrder>
