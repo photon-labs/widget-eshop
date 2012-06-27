@@ -6,13 +6,17 @@ import junit.framework.TestCase;
 import org.junit.Test;
 import com.photon.phresco.Screens.MenuScreen;
 import com.photon.phresco.Screens.WelcomeScreen;
-import com.photon.phresco.uiconstants.PhrescoHTML5widgUiConstants;
+import com.photon.phresco.uiconstants.PhrescoUiConstants;
+import com.photon.phresco.uiconstants.UIConstants;
+import com.photon.phresco.uiconstants.YUIWidgetData;
 import com.thoughtworks.selenium.Selenium;
 
 public class CamerasAddcart extends TestCase {
 
 	
-	private PhrescoHTML5widgUiConstants phrsc;
+	private UIConstants phrsc;
+	private PhrescoUiConstants phr;
+	private YUIWidgetData yuiwidg;
 	private WelcomeScreen wel;
 	private Selenium selenium;
 	private int SELENIUM_PORT;
@@ -26,23 +30,25 @@ public class CamerasAddcart extends TestCase {
 
 		try {
 
-			phrsc = new PhrescoHTML5widgUiConstants();
-			String serverURL = phrsc.PROTOCOL + "://"
-					+ phrsc.HOST + ":"
-					+ phrsc.PORT + "/";
-			browserAppends = "*" + phrsc.BROWSER;
+			phrsc = new UIConstants();
+			yuiwidg = new YUIWidgetData();
+			String serverURL = phr.PROTOCOL + "://"
+					+ phr.HOST + ":"
+					+ phr.PORT + "/";
+			browserAppends = "*" + phr.BROWSER;
 			assertNotNull("Browser name should not be null",browserAppends);
-			SELENIUM_PORT = Integer.parseInt(phrsc.SERVER_PORT);
+			SELENIUM_PORT = Integer.parseInt(phr.SERVER_PORT);
 			assertNotNull("selenium-port number should not be null",
 					SELENIUM_PORT);
-			wel=new WelcomeScreen(phrsc.SERVER_HOST, SELENIUM_PORT,
-					browserAppends, serverURL, phrsc.SPEED,
-					phrsc.CONTEXT );
+			wel=new WelcomeScreen(phr.SERVER_HOST, SELENIUM_PORT,
+					browserAppends, serverURL, phr.SPEED,
+					phr.CONTEXT );
 			assertNotNull(wel);
 			MenuScreen menu = wel.menuScreen(phrsc);
 			methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println("methodName = " + methodName);
 			menu.Cameras(methodName);
+			menu.billingInfo(yuiwidg, methodName);
 		} catch (Exception t) {
 			t.printStackTrace();
 			System.out.println("ScreenCaptured");
@@ -52,7 +58,7 @@ public class CamerasAddcart extends TestCase {
 	}
 
 	public void setUp() throws Exception {
-		phrsc = new PhrescoHTML5widgUiConstants();
+		phr = new PhrescoUiConstants();
 	}
 
 	public void tearDown() {
