@@ -120,8 +120,8 @@ YUI.add("productsWidget", function(Y) {
                 // For shopping cart back functionality
                 apiRef.set("currentProductId", 0);
                 
-                var url = apiRef.get("wsURLWithoutContext");
-                var config = apiRef._getConfigData();
+                var url = apiRef.wsURLWithoutContext;
+				var config = apiRef._getConfigData();
                 var webImage = config.web.web;
                 var title = apiRef.get("title"); 
                 var titleh3 = (title == undefined || title == "" ) ? "Products" : title;
