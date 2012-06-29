@@ -7,6 +7,7 @@ public class UIConstants {
 	
 
 	private ReadXMLFile readXml;
+
 	
 	public String TELEVISION = "televisiontab";
 	public String COMPUTERS = "computerstab";

@@ -5,6 +5,7 @@ import java.lang.reflect.Field;
 public class YUIWidgetData {
 
 	private ReadXMLFile readXml;
+
 	
 	public String COMMENTS_VALUE="billInfoCommentsValue";
 	public String EMAIL_VALUE="billInfoEmailValue";
