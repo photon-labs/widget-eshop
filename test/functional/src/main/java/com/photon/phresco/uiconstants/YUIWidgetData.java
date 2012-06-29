@@ -21,6 +21,7 @@ public class YUIWidgetData {
 	public String COMPANY_VALUE="billInfoCompanyValue";
 	public String LASTNAME_VALUE="billInfoLastNameValue";
 	public String FIRSTNAME_VALUE="billInfoFirstNameValue";
+
 	
 	public YUIWidgetData() {
 		try {

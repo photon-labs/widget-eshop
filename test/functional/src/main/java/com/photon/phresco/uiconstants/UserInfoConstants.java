@@ -8,6 +8,7 @@ public class UserInfoConstants {
 	public String USERNAME="userName";
 	public String PASSWORD ="passWord";
 
+
 	
 
     public UserInfoConstants() {
