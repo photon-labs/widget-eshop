@@ -1,24 +1,20 @@
 package com.photon.phresco.uiconstants;
 
-
 import java.lang.reflect.Field;
 
-public class PhrescoUiConstants {
+public class UserInfoConstants {
 	private ReadXMLFile readXml;
 
-	public String CONTEXT = "context";
-	public String SERVER_HOST ="server.host";
-	public String HOST = "host";
-	public String SERVER_PORT = "server.port";
-	public String BROWSER = "Browser";
-	public String PROTOCOL = "protocol";
-	public String PORT= "port";
-	public String SPEED = "speed";
+	public String USERNAME="userName";
+	public String PASSWORD ="passWord";
+
+
 	
 
-    public PhrescoUiConstants() {
+    public UserInfoConstants() {
 		try {
 			readXml = new ReadXMLFile();
+			readXml.loadUserInfoConstants();
 			Field[] arrayOfField1 = super.getClass().getFields();
 			Field[] arrayOfField2 = arrayOfField1;
 			int i = arrayOfField2.length;
