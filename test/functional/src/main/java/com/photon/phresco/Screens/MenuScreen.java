@@ -4,7 +4,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import com.photon.phresco.uiconstants.UIConstants;
-import com.photon.phresco.uiconstants.YUIWidgetData;
+import com.photon.phresco.uiconstants.WidgetData;
 
 public class MenuScreen extends WebDriverAbstractBaseScreen {
 
@@ -16,7 +16,7 @@ public MenuScreen(UIConstants phrsc) throws Exception {
 this.phrsc = phrsc;
 }
 
-public void billingInfo(YUIWidgetData yuiwidg, String methodName) throws Exception {
+public void billingInfo(WidgetData yuiwidg, String methodName) throws Exception {
 
 if (StringUtils.isEmpty(methodName)) {
 methodName = Thread.currentThread().getStackTrace()[1].getMethodName();;
