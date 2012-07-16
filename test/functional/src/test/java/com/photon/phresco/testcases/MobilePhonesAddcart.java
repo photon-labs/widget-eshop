@@ -7,14 +7,14 @@ import com.photon.phresco.Screens.MenuScreen;
 import com.photon.phresco.Screens.WelcomeScreen;
 import com.photon.phresco.uiconstants.PhrescoUiConstants;
 import com.photon.phresco.uiconstants.UIConstants;
-import com.photon.phresco.uiconstants.YUIWidgetData;
+import com.photon.phresco.uiconstants.WidgetData;
 import com.thoughtworks.selenium.Selenium;
 
 public class MobilePhonesAddcart extends TestCase {
 
 	private UIConstants phrsc;
 	private PhrescoUiConstants phr;
-	private YUIWidgetData yuiwidg;
+	private WidgetData yuiwidg;
 	private Selenium selenium;
 	private int SELENIUM_PORT;
 	private String browserAppends;
@@ -27,7 +27,7 @@ public class MobilePhonesAddcart extends TestCase {
 		try {
 
 			phrsc = new UIConstants();
-			yuiwidg = new YUIWidgetData();
+			yuiwidg = new WidgetData();
 			String serverURL = phr.PROTOCOL + "://" + phr.HOST + ":"
 					+ phr.PORT + "/";
 			browserAppends = "*" + phr.BROWSER;
