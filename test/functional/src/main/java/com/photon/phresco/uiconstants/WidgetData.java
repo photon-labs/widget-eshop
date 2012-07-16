@@ -2,7 +2,7 @@ package com.photon.phresco.uiconstants;
 
 import java.lang.reflect.Field;
 
-public class YUIWidgetData {
+public class WidgetData {
 
 	private ReadXMLFile readXml;
 
@@ -23,7 +23,7 @@ public class YUIWidgetData {
 	public String FIRSTNAME_VALUE="billInfoFirstNameValue";
 
 	
-	public YUIWidgetData() {
+	public WidgetData() {
 		try {
 			readXml = new ReadXMLFile();
 			readXml.loadYuiWidgetData();
