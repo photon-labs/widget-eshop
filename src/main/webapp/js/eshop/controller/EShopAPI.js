@@ -47,7 +47,7 @@ YUI.add("eshopAPI", function(Y) {
 		}
     };
 
-    Y.extend(EShopAPI, Y.Base, {
+    Y.extend(EShopAPI, Y.Base {
         
         initializer: function() {},
 
@@ -121,7 +121,7 @@ YUI.add("eshopAPI", function(Y) {
                 type: 'GET',
                 url:  eshopAPI.wsURL + '/rest/api/categories/1',
                 contentType: 'application/json',
-                dataType: 'jsonp',
+                dataType: 'jsonp'
                 converters: {
                     'jsonp': jQuery.parseJSON,
                 },
@@ -145,7 +145,7 @@ YUI.add("eshopAPI", function(Y) {
                 type: 'GET',
                 url:  eshopAPI.wsURL + '/rest/api/specialproducts',
                 contentType: 'application/json',
-                dataType: 'jsonp',
+                dataType: 'jsonp'
                 converters: {
                     'jsonp': jQuery.parseJSON,
                 },
@@ -171,7 +171,7 @@ YUI.add("eshopAPI", function(Y) {
                 contentType: 'application/json',
                 dataType: 'jsonp',
                 data: callbackData,                      
-                jsonp: 'callback',
+                jsonp: 'callback'
                 converters: {
                     'jsonp': jQuery.parseJSON,
                 },
@@ -198,7 +198,7 @@ YUI.add("eshopAPI", function(Y) {
                 contentType: 'application/json',
                 dataType: 'jsonp',
                 data: callbackData,                      
-                jsonp: 'callback',
+                jsonp: 'callback'
                 converters: {
                     'jsonp': jQuery.parseJSON,
                 },
@@ -225,7 +225,7 @@ YUI.add("eshopAPI", function(Y) {
                 contentType: 'application/json',
                 dataType: 'jsonp',
                 data: callbackData,                      
-                jsonp: 'callback',
+                jsonp: 'callback'
                 converters: {
                     'jsonp': jQuery.parseJSON,
                 },
@@ -252,7 +252,7 @@ YUI.add("eshopAPI", function(Y) {
                 contentType: 'application/json',
                 dataType: 'jsonp',
                 data: callbackData,                      
-                jsonp: 'callback',
+                jsonp: 'callback'
                 converters: {
                     'jsonp': jQuery.parseJSON,
                 },
@@ -279,7 +279,7 @@ YUI.add("eshopAPI", function(Y) {
                 contentType: 'application/json',
                 dataType: 'jsonp',
                 data: callbackData,                      
-                jsonp: 'callback',
+                jsonp: 'callback'
                 converters: {
                     'jsonp': jQuery.parseJSON,
                 },
@@ -305,7 +305,7 @@ YUI.add("eshopAPI", function(Y) {
                 contentType: 'application/json',
                 dataType: 'jsonp',
                 data: callbackData,                      
-                jsonp: 'callback',
+                jsonp: 'callback'
                 converters: {
                     'jsonp': jQuery.parseJSON,
                 },
@@ -332,7 +332,7 @@ YUI.add("eshopAPI", function(Y) {
                 contentType: 'application/json',
                 dataType: 'jsonp',
                 data: callbackData,                      
-                jsonp: 'callback',
+                jsonp: 'callback'
                 converters: {
                     'jsonp': jQuery.parseJSON,
                 },

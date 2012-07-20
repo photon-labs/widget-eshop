@@ -1,3 +1,22 @@
+/*
+ * ###
+ * PHR_HTML5YUIWidget
+ * %%
+ * Copyright (C) 1999 - 2012 Photon Infotech Inc.
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License")
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ###
+ */
 Event = YUI.event,
 YUI.add("navigationWidget", function(Y) {
     function NavigationWidget(config) {
@@ -136,16 +155,14 @@ YUI.add("navigationWidget", function(Y) {
 			navUL.appendChild(navLIAHome);
             navUL.appendChild(navLIProducts);
             navUL.appendChild(navLISpecials);
-           // navUL.appendChild(navLIShipping);
             navUL.appendChild(contactUs);
 			navUL.appendChild(navLIAbout);
-			if (userId == 0 ){
+			if (userId === 0) {
 				navUL.appendChild(navLISignup);
 				navUL.appendChild(navLILogin);
-			}
-			else if(userId != 0) {
-			navUL.appendChild(navLIMyorder);
-			navUL.appendChild(navLIlogout);
+			} else {
+				navUL.appendChild(navLIMyorder);
+				navUL.appendChild(navLIlogout);
 			}
             targetNode.appendChild(navUL);
             this.bindUI();
