@@ -4,7 +4,7 @@
  * %%
  * Copyright (C) 1999 - 2012 Photon Infotech Inc.
  * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
@@ -43,11 +43,6 @@ YUI.add("productsWidget", function(Y) {
              * It does not need to invoke the superclass initializer. 
              * init() will call initializer() for all classes in the hierarchy.
              */
-             /* this.publish("myEvent", {
-                defaultFn: this._defMyEventFn,
-                bubbles:false
-             }); */
-
         },
 
         destructor : function() {
@@ -91,7 +86,6 @@ YUI.add("productsWidget", function(Y) {
              * to activate the UI.
              */
 
-            // this.after("attrAChange", this._afterAttrAChange);
         },
 
         syncUI : function() {
@@ -102,7 +96,6 @@ YUI.add("productsWidget", function(Y) {
              * will take over.
              */
 
-            // this._uiSetAttrA(this.get("attrA"));
         },
 
         captureData : function(jsonData) {
@@ -112,7 +105,7 @@ YUI.add("productsWidget", function(Y) {
         },
 
         createContent : function(targetNode, jsonData) {
-            if (jsonData != null) {
+            if (jsonData !== null) {
                 targetNode.empty();
                 var apiRef = this.get("apiReference");
                 apiRef.set("selectedMenu", "homeLI");
@@ -124,14 +117,14 @@ YUI.add("productsWidget", function(Y) {
 				var config = apiRef._getConfigData();
                 var webImage = config.web.web;
                 var title = apiRef.get("title"); 
-                var titleh3 = (title == undefined || title == "" ) ? "Products" : title;
+                var titleh3 = (title === undefined || title === "" ) ? "Products" : title;
                 var h3 = this.createElement('<h3>'+ titleh3 +'</h3>');
                 var newProductsUL = this.createElement('<ul>');
-				var norecord = jsonData.successMessage; /// for search record not found
-                if(norecord != "no item found"){
+				var norecord = jsonData.successMessage; // for search record not found
+                if(norecord !== "no item found"){
                 for (i = 0; i < jsonData.product.length; i++) {
                     var product = jsonData.product[i];
-                    if (product != undefined) {
+                    if (product !== undefined) {
                         var imageURL = url + '/' + webImage + product.image;
                         var detailImageURL = url + '/' + webImage + product.detailImage;
 
@@ -141,7 +134,6 @@ YUI.add("productsWidget", function(Y) {
                         var divInfo = this.createElement('<div class="info">');
 
                         var productA = this.createElement('<a class="title" href="#">' + product.name + '</a>');
-                        //var productDesc = this.createElement('<p>' + product.description + '</p>');
 
                         var priceDiv = this.createElement('<div class="price">');
                         var priceSpan = this.createElement('<span class="st">Our price:</span><strong>' + this.getAmountByCurrency(product.listPrice) + '</strong><br>');
@@ -166,7 +158,6 @@ YUI.add("productsWidget", function(Y) {
                         data.imageURL = imageURL;
                         data.detailImageURL = detailImageURL;
                         data.totalPrice = (data.quantity * product.sellPrice);
-                        //addToCart.data = product.id;
                         addToCart.data = data;
 
                         Y.on('click' , this.showShoppingCart , addToCart);
@@ -181,7 +172,6 @@ YUI.add("productsWidget", function(Y) {
 						
 						
                         divInfo.appendChild(productA);
-                        //divInfo.appendChild(productDesc);
                         divInfo.appendChild(priceDiv);
                         divInfo.appendChild(actionsDiv);
 
@@ -197,7 +187,7 @@ YUI.add("productsWidget", function(Y) {
 						targetNode.empty();
 						targetNode.appendChild(productsUnavailable);
 				}
-					if (jsonData.length == 0) {
+					if (jsonData.length === 0) {
 						var productsUnavailable = this.createElement('<div id="norecord"><strong>No products available</div>');
 						targetNode.empty();
 						targetNode.appendChild(productsUnavailable);
@@ -206,8 +196,6 @@ YUI.add("productsWidget", function(Y) {
 					}
 				
             } else {
-                //var loading = this.createElement('<label>Loading...</label>');
-                //targetNode.appendChild(loading);
             }
 
             this.bindUI();

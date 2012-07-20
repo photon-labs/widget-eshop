@@ -34,7 +34,7 @@ YUI.add("sliderWidget", function(Y) {
         }
     };
 
-    Y.extend(SliderWidget, Y.Phresco.PhrescoWidget, {
+    Y.extend(SliderWidget, Y.Phresco.PhrescoWidget {
         initializer: function() {
         /*
          * initializer is part of the lifecycle introduced by 
@@ -114,10 +114,10 @@ YUI.add("sliderWidget", function(Y) {
         },
         callback : function (id, data) {
             data = Y.JSON.parse(data.responseText);
-            if(data["Errors : "] != undefined){ console.info('data 1 : ');
+            if(data["Errors : "] != undefined){
                 $('#modify_reservation_alert_msg').html('We were unable to locate your reservation. Please confirm the information you entered is correct.');
             }
-            else if(data["Errors"] != undefined){ console.info('data 2 : ');
+            else if(data["Errors"] != undefined){
                 $('#modify_reservation_alert_msg').html('We were unable to connect server.');
             }
             else{ 

@@ -4,7 +4,7 @@
  * %%
  * Copyright (C) 1999 - 2012 Photon Infotech Inc.
  * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
@@ -155,16 +155,14 @@ YUI.add("navigationWidget", function(Y) {
 			navUL.appendChild(navLIAHome);
             navUL.appendChild(navLIProducts);
             navUL.appendChild(navLISpecials);
-           // navUL.appendChild(navLIShipping);
             navUL.appendChild(contactUs);
 			navUL.appendChild(navLIAbout);
-			if (userId == 0 ){
+			if (userId === 0) {
 				navUL.appendChild(navLISignup);
 				navUL.appendChild(navLILogin);
-			}
-			else if(userId != 0) {
-			navUL.appendChild(navLIMyorder);
-			navUL.appendChild(navLIlogout);
+			} else {
+				navUL.appendChild(navLIMyorder);
+				navUL.appendChild(navLIlogout);
 			}
             targetNode.appendChild(navUL);
             this.bindUI();

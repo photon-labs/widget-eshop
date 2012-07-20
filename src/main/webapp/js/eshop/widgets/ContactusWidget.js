@@ -15,7 +15,7 @@ YUI.add("contactusWidget", function(Y) {
         }
     };
 
-    Y.extend(ContactusWidget, Y.Phresco.PhrescoWidget, {
+    Y.extend(ContactusWidget, Y.Phresco.PhrescoWidget {
         initializer: function() {
             /*
              * initializer is part of the lifecycle introduced by 

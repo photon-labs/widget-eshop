@@ -34,7 +34,7 @@ YUI.add("productOrderFormWidget", function(Y) {
         }
     };
 
-    Y.extend(ProductOrderFormWidget, Y.Phresco.PhrescoWidget, {
+    Y.extend(ProductOrderFormWidget, Y.Phresco.PhrescoWidget {
         initializer: function() {
             /*
              * initializer is part of the lifecycle introduced by 
