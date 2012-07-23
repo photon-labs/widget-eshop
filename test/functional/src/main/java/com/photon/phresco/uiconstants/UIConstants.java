@@ -22,8 +22,7 @@ public class UIConstants {
 	//public String SEARCH = "search";
 	public String HOME = "hometab";
 	public String PROD1_DETAILS="prod1Details";
-	//public String PROD1_AUDIO="prod1AudioDevices";
-	
+	//public String PROD1_AUDIO="prod1AudioDevices";	
 //	public String PROD1_ACCESSORIES="prod1Accessories";
 	public String UPDATECART="updateCart";
 	public String ADDTOCART="addToCart"; 
