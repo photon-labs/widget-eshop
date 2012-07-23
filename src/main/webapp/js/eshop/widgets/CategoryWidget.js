@@ -4,7 +4,7 @@
  * %%
  * Copyright (C) 1999 - 2012 Photon Infotech Inc.
  * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
@@ -78,7 +78,6 @@ YUI.add("categoryWidget", function(Y) {
         bindUI : function() {
             var targetNode = this.getTargetNode();
             var categoryHref = targetNode.one('a');
-            //Y.on('click', this.onClickBookButton, bookButton);
 			 $(document).ready(function () {
             $('div.menu_class').click(function () {
                 $('ul.the_menu').css('z-index:9999;');
@@ -97,14 +96,13 @@ YUI.add("categoryWidget", function(Y) {
         },
 
         captureData : function(jsonData) {
-            //this.createContent(this.getTargetNode());
             this.set("navigation", jsonData);
             this.createContent(this.getTargetNode(), jsonData);
         },
 
         createContent : function(targetNode, jsonData) {
             
-            if (jsonData != null) {
+            if (jsonData !== null) {
                 var navUL = this.createElement('<ul>');
 				var totalCategories = jsonData.category.length;
 

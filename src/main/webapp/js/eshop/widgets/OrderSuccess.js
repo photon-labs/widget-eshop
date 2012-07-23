@@ -4,7 +4,7 @@
  * %%
  * Copyright (C) 1999 - 2012 Photon Infotech Inc.
  * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
@@ -46,11 +46,6 @@ YUI.add("orderSuccess", function(Y) {
              * It does not need to invoke the superclass initializer. 
              * init() will call initializer() for all classes in the hierarchy.
              */
-             /* this.publish("myEvent", {
-                defaultFn: this._defMyEventFn,
-                bubbles:false
-             }); */
-
         },
 
         destructor : function() {
@@ -93,8 +88,6 @@ YUI.add("orderSuccess", function(Y) {
              * to attribute value changes, and also attach any DOM events,
              * to activate the UI.
              */
-
-            // this.after("attrAChange", this._afterAttrAChange);
         },
 
         syncUI : function() {
@@ -105,7 +98,6 @@ YUI.add("orderSuccess", function(Y) {
              * will take over.
              */
 
-            // this._uiSetAttrA(this.get("attrA"));
         },
 
         captureData : function(jsonData) {
@@ -115,7 +107,6 @@ YUI.add("orderSuccess", function(Y) {
         },
 
         createContent : function(targetNode, jsonData) {
-           // if (jsonData != null) {
              if (true) {
                 targetNode.empty();
 				var apiRef = this.get("apiReference");
@@ -127,8 +118,8 @@ YUI.add("orderSuccess", function(Y) {
                 var divfirst = this.createElement('<div>');
                 var msgh4 = this.createElement('<h4 class="descrip"> Success Messages</h4>');
                	var message = this.createElement('<p> You have bought the product successfully, you can continue shopping. Thank you and Welcome once again.... </p>');
-                divfirst.appendChild(msgh4)
-				divfirst.appendChild(message)
+                divfirst.appendChild(msgh4);
+				divfirst.appendChild(message);
                 productContainer.appendChild(divfirst);
                 targetNode.appendChild(h3);
                 targetNode.appendChild(productContainer);

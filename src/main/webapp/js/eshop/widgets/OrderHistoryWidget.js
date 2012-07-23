@@ -34,7 +34,7 @@ YUI.add("orderHistoryWidget", function(Y) {
 		}
     };
 
-    Y.extend(OrderHistoryWidget, Y.Phresco.PhrescoWidget, {
+    Y.extend(OrderHistoryWidget, Y.Phresco.PhrescoWidget {
         initializer: function() {
             /*
              * initializer is part of the lifecycle introduced by 

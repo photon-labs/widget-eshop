@@ -4,7 +4,7 @@
  * %%
  * Copyright (C) 1999 - 2012 Photon Infotech Inc.
  * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
@@ -76,8 +76,6 @@ YUI.add("myCartWidget", function(Y) {
         },
 
         bindUI : function() {
-            //var categories = this.getCategories();
-            //console.info('categories = ' + categories);
         },
 
         syncUI : function() {
@@ -90,7 +88,6 @@ YUI.add("myCartWidget", function(Y) {
         },
 
         captureData : function(jsonData) {
-            //this.createContent(this.getTargetNode());
             this.set("navigation", jsonData);
             this.createContent(this.getTargetNode(), jsonData);
         },
@@ -100,7 +97,6 @@ YUI.add("myCartWidget", function(Y) {
 			var config = apiRef._getConfigData();
 			var addToCartData = apiRef.get("addToCartData");
 			
-			//console.info('inside my cart');	
             var cashBanner = this.createElement('<div class="cashbanner"><img src="images/eshop/cashdelivery_banner.png" width="181" height="70" alt="Cash delivery"></div>');
             var myCartBDiv = this.createElement('<div class="mycartbg">');
             var carticonDiv = this.createElement('<div class="carticon"><img src="images/eshop/mycart_icon.png" width="28" height="21" alt="My Cart icon"> </div>');

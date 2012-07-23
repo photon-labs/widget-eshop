@@ -4,7 +4,7 @@
  * %%
  * Copyright (C) 1999 - 2012 Photon Infotech Inc.
  * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
@@ -43,11 +43,6 @@ YUI.add("newProductsWidget", function(Y) {
              * It does not need to invoke the superclass initializer. 
              * init() will call initializer() for all classes in the hierarchy.
              */
-             /* this.publish("myEvent", {
-                defaultFn: this._defMyEventFn,
-                bubbles:false
-             }); */
-
         },
 
         destructor : function() {
@@ -91,7 +86,6 @@ YUI.add("newProductsWidget", function(Y) {
              * to activate the UI.
              */
 
-            // this.after("attrAChange", this._afterAttrAChange);
         },
 
         syncUI : function() {
@@ -102,18 +96,16 @@ YUI.add("newProductsWidget", function(Y) {
              * will take over.
              */
 
-            // this._uiSetAttrA(this.get("attrA"));
         },
 
         captureData : function(jsonData) {
-            //this.set("products", jsonData);
             this.createContent(this.getTargetNode(), jsonData);
             var target = this.get("targetNode");
             $(target).unmask();
         },
 
         createContent : function(targetNode, jsonData) {
-            if (jsonData != null) {
+            if (jsonData !== null) {
                 targetNode.empty();
                 var apiRef = this.get("apiReference");
                 var url = apiRef.get("wsURLWithoutContext");
@@ -123,7 +115,7 @@ YUI.add("newProductsWidget", function(Y) {
                 var newProductsUL = this.createElement('<ul>');
 
                 for (i = 1; i <= jsonData.length; i++) {
-                    if (jsonData[i] != undefined) {
+                    if (jsonData[i] !== undefined) {
                         var imageURL = url + '/' + webImage + jsonData[i].image;
                         var li = this.createElement('<li>');
 
@@ -131,7 +123,6 @@ YUI.add("newProductsWidget", function(Y) {
                         var divInfo = this.createElement('<div class="info">');
 
                         var productA = this.createElement('<a class="title" href="#">' + jsonData[i].name + '</a>');
-                        //var productDesc = this.createElement('<p>' + jsonData[i].description + '</p>');
 
                         var priceDiv = this.createElement('<div class="price">');
                         var priceSpan = this.createElement('<span class="st">Our price:</span><strong>' + this.getAmountByCurrency(jsonData[i].listPrice) + '</strong><br>');
@@ -147,7 +138,6 @@ YUI.add("newProductsWidget", function(Y) {
 
                         li.appendChild(divImg);
                         divInfo.appendChild(productA);
-                        //divInfo.appendChild(productDesc);
                         divInfo.appendChild(priceDiv);
                         divInfo.appendChild(actionsDiv);
 
@@ -159,8 +149,6 @@ YUI.add("newProductsWidget", function(Y) {
                 targetNode.appendChild(h3);
                 targetNode.appendChild(newProductsUL);
             } else {
-                //var loading = this.createElement('<label>Loading...</label>');
-                //targetNode.appendChild(loading);
             }
 
             this.bindUI();

@@ -41,7 +41,9 @@
 		$(this).each(function() {
 			if(delay !== undefined && delay > 0) {
 		        var element = $(this);
-		        element.data("_mask_timeout", setTimeout(function() { $.maskElement(element, label)}, delay));
+		        element.data("_mask_timeout", setTimeout(function() { 
+					$.maskElement(element, label)}, delay);
+				);
 			} else {
 				$.maskElement($(this), label);
 			}

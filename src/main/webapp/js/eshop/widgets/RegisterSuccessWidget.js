@@ -28,10 +28,10 @@ YUI.add("registerSuccessWidget", function(Y) {
     RegisterSuccessWidget.ATTRS = {
         targetNode : {
             value : []
-        },
+        }
     };
 
-    Y.extend(RegisterSuccessWidget, Y.Phresco.PhrescoWidget, {
+    Y.extend(RegisterSuccessWidget, Y.Phresco.PhrescoWidget {
         initializer: function() {
             /*
              * initializer is part of the lifecycle introduced by 
