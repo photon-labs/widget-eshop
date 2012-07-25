@@ -47,7 +47,7 @@ YUI.add("eshopAPI", function(Y) {
 		}
     };
 
-    Y.extend(EShopAPI, Y.Base {
+    Y.extend(EShopAPI, Y.Base, {
         
         initializer: function() {},
 
@@ -100,7 +100,6 @@ YUI.add("eshopAPI", function(Y) {
                 jsonp: 'callback',
                 url: eshopAPI.wsURL + '/rest/api/categories?callback=?',                     
                 success: function(data) {
-                    //console.log('success');
                     console.log(data);
 
                     var args = {};
@@ -109,8 +108,7 @@ YUI.add("eshopAPI", function(Y) {
                     responseHandler(data, args);               
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                    //console.log(JSON.stringify(jqXHR));
-                    //console.log(textStatus+': '+errorThrown);
+
                 }
             });
         },
@@ -121,7 +119,7 @@ YUI.add("eshopAPI", function(Y) {
                 type: 'GET',
                 url:  eshopAPI.wsURL + '/rest/api/categories/1',
                 contentType: 'application/json',
-                dataType: 'jsonp'
+                dataType: 'jsonp',
                 converters: {
                     'jsonp': jQuery.parseJSON,
                 },
@@ -145,7 +143,7 @@ YUI.add("eshopAPI", function(Y) {
                 type: 'GET',
                 url:  eshopAPI.wsURL + '/rest/api/specialproducts',
                 contentType: 'application/json',
-                dataType: 'jsonp'
+                dataType: 'jsonp',
                 converters: {
                     'jsonp': jQuery.parseJSON,
                 },
@@ -171,7 +169,7 @@ YUI.add("eshopAPI", function(Y) {
                 contentType: 'application/json',
                 dataType: 'jsonp',
                 data: callbackData,                      
-                jsonp: 'callback'
+                jsonp: 'callback',
                 converters: {
                     'jsonp': jQuery.parseJSON,
                 },
@@ -183,8 +181,7 @@ YUI.add("eshopAPI", function(Y) {
                     listeners.onUpdateListener(data);
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                    //console.log(JSON.stringify(jqXHR));
-                    //console.log(textStatus+': '+errorThrown);
+
                 }
             });            
         },
@@ -198,7 +195,7 @@ YUI.add("eshopAPI", function(Y) {
                 contentType: 'application/json',
                 dataType: 'jsonp',
                 data: callbackData,                      
-                jsonp: 'callback'
+                jsonp: 'callback',
                 converters: {
                     'jsonp': jQuery.parseJSON,
                 },
@@ -209,8 +206,7 @@ YUI.add("eshopAPI", function(Y) {
                     eshopAPI.set("products", data);
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                   // console.log(JSON.stringify(jqXHR));
-                   // console.log(textStatus+': '+errorThrown);
+
                 }
             });
         },
@@ -225,7 +221,7 @@ YUI.add("eshopAPI", function(Y) {
                 contentType: 'application/json',
                 dataType: 'jsonp',
                 data: callbackData,                      
-                jsonp: 'callback'
+                jsonp: 'callback',
                 converters: {
                     'jsonp': jQuery.parseJSON,
                 },
@@ -236,15 +232,13 @@ YUI.add("eshopAPI", function(Y) {
                     eshopAPI.set("products", data);
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                   // console.log(JSON.stringify(jqXHR));
-                   // console.log(textStatus+': '+errorThrown);
+
                 }
             });
 
         },
         getProductDetails : function (uiWidgetsToPopulate, productId, listeners) {
             var responseHandler = this.populateResponseToWidgets;
-            //var getReviews = this.getProductReviews;
            var eshopAPI = this;
             $.ajax({
                 type: 'GET',
@@ -252,7 +246,7 @@ YUI.add("eshopAPI", function(Y) {
                 contentType: 'application/json',
                 dataType: 'jsonp',
                 data: callbackData,                      
-                jsonp: 'callback'
+                jsonp: 'callback',
                 converters: {
                     'jsonp': jQuery.parseJSON,
                 },
@@ -263,14 +257,12 @@ YUI.add("eshopAPI", function(Y) {
                     eshopAPI.getProductReviews(data, uiWidgetsToPopulate, productId, listeners);
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                    //console.log(JSON.stringify(jqXHR));
-                    //console.log(textStatus+': '+errorThrown);
+
                 }
             });
        },
 		getOrderHistory : function (uiWidgetsToPopulate, userid, listeners) {
             var responseHandler = this.populateResponseToWidgets;
-            //var getReviews = this.getProductReviews;
             var eshopAPI = this;
             var wsURL = this.get("wsURL");
             $.ajax({
@@ -279,7 +271,7 @@ YUI.add("eshopAPI", function(Y) {
                 contentType: 'application/json',
                 dataType: 'jsonp',
                 data: callbackData,                      
-                jsonp: 'callback'
+                jsonp: 'callback',
                 converters: {
                     'jsonp': jQuery.parseJSON,
                 },
@@ -290,22 +282,20 @@ YUI.add("eshopAPI", function(Y) {
                     eshopAPI.set("orderhistory", data);
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                   // console.log(JSON.stringify(jqXHR));
-                   // console.log(textStatus+': '+errorThrown);
+
                 }
             });            
         },
         getProductReviews : function (productDetailsData, uiWidgetsToPopulate, productId, listeners) {
             var responseHandler = this.populateResponseToWidgets;
             var eshopAPI = this;
-            //  console.info('productDetailsData = ',productDetailsData);
              $.ajax({
                 type: 'GET',
                 url:  eshopAPI.wsURL + '/rest/api/products/' + productId +'/reviews?callback=?',
                 contentType: 'application/json',
                 dataType: 'jsonp',
                 data: callbackData,                      
-                jsonp: 'callback'
+                jsonp: 'callback',
                 converters: {
                     'jsonp': jQuery.parseJSON,
                 },
@@ -318,8 +308,7 @@ YUI.add("eshopAPI", function(Y) {
                     responseHandler(resultData, args);
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                   // console.log(JSON.stringify(jqXHR));
-                   // console.log(textStatus+': '+errorThrown);
+
                 }
             });
         },
@@ -332,7 +321,7 @@ YUI.add("eshopAPI", function(Y) {
                 contentType: 'application/json',
                 dataType: 'jsonp',
                 data: callbackData,                      
-                jsonp: 'callback'
+                jsonp: 'callback',
                 converters: {
                     'jsonp': jQuery.parseJSON,
                 },
@@ -345,69 +334,23 @@ YUI.add("eshopAPI", function(Y) {
                     listeners.onUpdateListener(data);
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                    //console.log(JSON.stringify(jqXHR));
-                    //console.log(textStatus+': '+errorThrown);
+
                 }
             });          
        },
-       /* 
-       getCategoriesJson : function(uiWidgetsToPopulate) {
-            var responseHandler = this.populateResponseToWidgets; 
-            var data = 'key=value';
-            var cfg = {
-                method: 'GET',
-                data: data,                
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                on: {
-                    success: responseHandler,
-                    failure: this.onFailure
-                },
-                arguments: { 
-                    complete : uiWidgetsToPopulate,
-                    respType : "ROOMRATERESPONSE"
-                },
-                context : this
-            };
-
-            var wsURL = this.get("wsURL");
-            var url = wsURL + '/rest/api/categories';
-            Y.io(url, cfg);
-        },
-        getCategoriesUsingYUI : function(uiWidgetsToPopulate) {        
-            function handleJSONP(response) {   
-            }
-
-            YUI().use('jsonp', 'node', function(Y) {
-                var wsURL = this.get("wsURL");
-                var url = wsURL + '/rest/api/categories?callback=';     
-                url = url + "{callback}";
-                Y.jsonp(url, handleJSONP);
-            });
-        },
-        getCategoriesUsingjQuery : function(uiWidgetsToPopulate) {
-            var data = '';
-            var responseHandler = this.populateResponseToWidgets; 
-            var wsURL = this.get("wsURL");
-            $.getJSON(wsURL + '/rest/api/categories?callback=?',
-                function (data) {     
-                }
-            );
-        },  
-        */
+       
         doLogin : function (listeners,data,reviewData) {
             var responseHandler = this.populateResponseToWidgets;
             var eshopAPI = this;
             console.info('reached login method');
            
             // Send the request
-            $.post(wsURL + '/rest/api/post/login', data, function(response) {
+            $.post(eshopAPI.wsURL + '/rest/api/post/login', data, function(response) {
                 // Do something with the request
                 var args = {};
                 args.complete = listeners;
                data.response = response;
-                if(response.message == 'success'){
+                if(response.message === 'success'){
                     reviewData.review.userId = response.userId;
                     eshopAPI.set("reviewData", reviewData);
                     eshopAPI.set("userId", response.userId);
@@ -418,37 +361,6 @@ YUI.add("eshopAPI", function(Y) {
                     
             }, 'json');
             
-        
-          /* $.ajax({
-                type: 'POST',
-                url:  wsURL + '/rest/api/post/login' + data +'?callback=?',
-                contentType: 'application/json',
-                dataType: 'jsonp',
-                data: callbackData,                      
-                jsonp: 'callback',
-                converters: {
-                    'jsonp': jQuery.parseJSON,
-                },
-                success: function(data) {
-                // Do something with the request
-                    var args = {};
-                    args.complete = listeners;
-                    data.response = response;
-                    if(response.message == 'success'){
-                        reviewData.review.userId = response.userId;
-                        api.set("reviewData", reviewData);
-                        api.set("userId", response.userId);
-                        console.info('userid = ',response.userId);
-                        api.set("userData", data);
-                    }   
-                    responseHandler(data, args);
-                 },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    console.log(JSON.stringify(jqXHR));
-                    console.log(textStatus+': '+errorThrown);
-                }
-            });  
-        */ 
         },
 		
 		logoutUser : function (listeners,data) {
@@ -456,17 +368,13 @@ YUI.add("eshopAPI", function(Y) {
 			var eshopAPI = this;
             var args = {};
             args.complete = listeners;
-			//console.info('data = ', data);
-			var userId = api.get("userId");
-			//console.info('userId = ', userId);
-			//console.info('args = ', args);
+			eshopAPI.set("userId", 0);
+			eshopAPI.set("userData", "");
             responseHandler(data, args);
        },		
        postReview : function (uiWidgetsToPopulate, data, listeners) {
             var responseHandler = this.populateResponseToWidgets;
            var eshopAPI = this;
-            // Send the request
-           // var data = "{\"J\":5,\"0\":\"N\"}";
 
             $.post(eshopAPI.wsURL + '/rest/api/product/post/review', data, function(response) {
                 // Do something with the request
@@ -477,11 +385,10 @@ YUI.add("eshopAPI", function(Y) {
             var eshopAPI = this;
             var args = {};
             args.complete = uiWidgetsToPopulate;
-            $.post(wsURL + '/rest/api/post/register', data, function(response) {
+            $.post(eshopAPI.wsURL + '/rest/api/post/register', data, function(response) {
                 // Do something with the request
                 data.response = response;
                 if(response.userId > 0){
-                   // api.set("userId", response.userId);
                     eshopAPI.set("userData", data);
                 }
                 responseHandler(data, args);
@@ -504,13 +411,13 @@ YUI.add("eshopAPI", function(Y) {
             data.comments = comments;
 			data.userId = userId;
 			
-			var productQty = api.get("productQty");
+			var productQty = eshopAPI.get("productQty");
 			console.info('productQty' , productQty);
 			eshopAPI.set("productQty",null);
-			var productQty1 = api.get("productQty");
+			var productQty1 = eshopAPI.get("productQty");
 			console.info('productQty1' , productQty1);
 			
-            $.post(wsURL + '/rest/api/product/post/orderdetail', data, function(response) {
+            $.post(eshopAPI.wsURL + '/rest/api/product/post/orderdetail', data, function(response) {
 			     // Do something with the request
 				 console.info('order success response' , response);
             }, 'json');
@@ -524,14 +431,14 @@ YUI.add("eshopAPI", function(Y) {
             var responseText = data.responseText;
 
             for (var i = 0; i < widgetsToPopulate.length; i++) {
-                var responseData = Y.JSON.parse(responseText)
+                var responseData = Y.JSON.parse(responseText);
                 widgetsToPopulate[i].partialRefresh(this._responseValidator(responseData));
             }
         },
         populateResponseToWidgets : function (responseData, callbackArgs) {
             widgetsToPopulate = callbackArgs.complete;
             for (var i = 0; i < widgetsToPopulate.length; i++) {
-                if (responseData != null) {
+                if (responseData !== null) {
                     widgetsToPopulate[i].captureData(responseData);
                 } else {
                     widgetsToPopulate[i].captureData("");
@@ -553,46 +460,10 @@ YUI.add("eshopAPI", function(Y) {
         jspWSConfig : function(id, data, callbackArgs) {
             var currentEnv = data.responseText;      
             this.set("currentEnv", currentEnv.environment);
-            //this.setWSConfig();
             
         },
         
-		/* setWSConfig : function() {
-			if (window.XMLHttpRequest)
-			  {// code for IE7+, Firefox, Chrome, Opera, Safari
-			  xmlhttp=new XMLHttpRequest();
-			  }
-			else
-			  {// code for IE6, IE5
-			  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-			  }
-            var currentEnv = this.get("currentEnv");
-            //var currentEnv = "Dev";
-            			
-			xmlhttp.open("GET","resources/phresco-env-config.xml", false);
-			xmlhttp.send();
-			xmlDoc = xmlhttp.responseXML;	
-			
-            var type = "WebService";
-            var name = "";
-            var configdata = this.getConfigByName(currentEnv, type, name);
-            console.info("configdata", configdata);    
-              
-			var host = configdata.host;
-            var port = configdata.port;
-            var protocol = configdata.protocol;
-            var context = configdata.context;
-            var username = configdata.username;
-            var password = configdata.password;
-
-            //this.set("wsConfig", wsConfig);
-            var urlWithoutContext = protocol + '://' + host + ':' + port;
-            var url = protocol + '://' + host + ':' + port + '/' + context;            
-            this.set("wsURL", url);
-            this.set("wsURLWithoutContext", urlWithoutContext); 
-        }, */
-
-       
+		
 
         // three param for envtype, configtype, configname. for example currentEnv = "development", type ="server",name ="myserver"
         getConfigByName : function (currentEnv, type, name) {
@@ -602,11 +473,11 @@ YUI.add("eshopAPI", function(Y) {
                 var env = envNode.getAttribute("name");
                 var envDefault = envNode.getAttribute("default");
 
-                if (currentEnv != undefined && currentEnv != "") {
-                    if (currentEnv == env) {
+                if (currentEnv !== undefined && currentEnv !== "") {
+                    if (currentEnv === env) {
                         return this.getConfigJson(envNode, type, name);
                     }
-                } else if (envDefault == "true") {
+                } else if (envDefault === "true") {
                     return this.getConfigJson(envNode, type, name);
                 }
             }
@@ -619,19 +490,16 @@ YUI.add("eshopAPI", function(Y) {
                 var configNode = nodes[i];
                 var configNodeName = configNode.nodeName;
 
-                if (configNodeName == type && name != undefined && configNodeName != "#text") {
+                if (configNodeName === type && name !== undefined && configNodeName !== "#text") {
                     var configName = configNode.getAttribute("name");
-                    if (configName == name) {
-                        //var xmlString = (new XMLSerializer()).serializeToString(configNode);
+                    if (configName === name) {
                         json = $.xml2json(configNode);
                         return json;
-                    } else if (name == "") {
-                       //var xmlString = (new XMLSerializer()).serializeToString(configNode);
+                    } else if (name === "") {
                         json = $.xml2json(configNode);
                         return json;
                     }
-                } else if (configNodeName == type && configNodeName != "#text") {
-                   // var xmlString = (new XMLSerializer()).serializeToString(configNode);
+                } else if (configNodeName === type && configNodeName !== "#text") {
                     json = $.xml2json(configNode);
                     return json;
                 }
@@ -645,8 +513,7 @@ YUI.add("eshopAPI", function(Y) {
             }
         },
         _responseValidator : function(responseData) {
-            if (responseData.Success != undefined
-                    && responseData.Success.toUpperCase() == "FALSE") {
+            if (responseData.Success !== undefined && responseData.Success.toUpperCase() === "FALSE") {
             }
             return responseData;
         },
@@ -657,15 +524,15 @@ YUI.add("eshopAPI", function(Y) {
             return this.get("config").web;
         },
         getFieldset : function (f) {
-           var fieldset = {"email":{"fieldId":"#email","type":"EMAIL","mandatory":"TRUE"},"firstName":{"fieldId":"#firstName","type":"TEXT","mandatory":"TRUE"},"lastName":{"fieldId":"#lastName","type":"TEXT","mandatory":"TRUE"},"company":{"fieldId":"#company","type":"TEXT","mandatory":"TRUE"},"address1":{"fieldId":"#address1","type":"STRING","mandatory":"TRUE"},"address2":{"fieldId":"#address2","type":"STRING","mandatory":"TRUE"},"city":{"fieldId":"#city","type":"TEXT","mandatory":"TRUE"},"state":{"fieldId":"#state","type":"TEXT","mandatory":"TRUE"},"country":{"fieldId":"#country","type":"TEXT","mandatory":"TRUE"},"postCode":{"fieldId":"#postCode","type":"STRING","mandatory":"TRUE"},"phoneNumber":{"fieldId":"#phoneNumber","type":"NUMBER","mandatory":"TRUE"},"paymentmethod":{"fieldId":"#paymentmethod_0","type":"OPTION","mandatory":"TRUE"},"cardNumber":{"fieldId":"#cardNumber","type":"NUMBER","mandatory":"TRUE"},"securityNumber":{"fieldId":"#securityNumber","type":"PASSWORD","mandatory":"TRUE"},"nameOnCard":{"fieldId":"#nameOnCard","type":"TEXT","mandatory":"TRUE"}}
+           var fieldset = {"email":{"fieldId":"#email","type":"EMAIL","mandatory":"TRUE"},"firstName":{"fieldId":"#firstName","type":"TEXT","mandatory":"TRUE"},"lastName":{"fieldId":"#lastName","type":"TEXT","mandatory":"TRUE"},"company":{"fieldId":"#company","type":"TEXT","mandatory":"TRUE"},"address1":{"fieldId":"#address1","type":"STRING","mandatory":"TRUE"},"address2":{"fieldId":"#address2","type":"STRING","mandatory":"TRUE"},"city":{"fieldId":"#city","type":"TEXT","mandatory":"TRUE"},"state":{"fieldId":"#state","type":"TEXT","mandatory":"TRUE"},"country":{"fieldId":"#country","type":"TEXT","mandatory":"TRUE"},"postCode":{"fieldId":"#postCode","type":"STRING","mandatory":"TRUE"},"phoneNumber":{"fieldId":"#phoneNumber","type":"NUMBER","mandatory":"TRUE"},"paymentmethod":{"fieldId":"#paymentmethod_0","type":"OPTION","mandatory":"TRUE"},"cardNumber":{"fieldId":"#cardNumber","type":"NUMBER","mandatory":"TRUE"},"securityNumber":{"fieldId":"#securityNumber","type":"PASSWORD","mandatory":"TRUE"},"nameOnCard":{"fieldId":"#nameOnCard","type":"TEXT","mandatory":"TRUE"}};  
            return fieldset;
         },
         getregFieldset : function (f) {
-            var registerfieldset = {"regemail":{"fieldId":"#regemail","type":"EMAIL","mandatory":"TRUE"},"regfirstname":{"fieldId":"#regfirstname","type":"TEXT","mandatory":"TRUE"},"reglastname":{"fieldId":"#reglastname","type":"TEXT","mandatory":"TRUE"},"regpassword":{"fieldId":"#regpassword","type":"PASSWORD","mandatory":"TRUE"},"regphonenumber":{"fieldId":"#regphonenumber","type":"NUMBER","mandatory":"TRUE"}}
+            var registerfieldset = {"regemail":{"fieldId":"#regemail","type":"EMAIL","mandatory":"TRUE"},"regfirstname":{"fieldId":"#regfirstname","type":"TEXT","mandatory":"TRUE"},"reglastname":{"fieldId":"#reglastname","type":"TEXT","mandatory":"TRUE"},"regpassword":{"fieldId":"#regpassword","type":"PASSWORD","mandatory":"TRUE"},"regphonenumber":{"fieldId":"#regphonenumber","type":"NUMBER","mandatory":"TRUE"}}; 
             return registerfieldset;
         },
         getLoginFieldset : function (f) {
-            var loginfieldset = {"logEmail":{"fieldId":"#logEmail","type":"EMAIL","mandatory":"TRUE"},"logpassword":{"fieldId":"#logpassword","type":"PASSWORD","mandatory":"TRUE"}}
+            var loginfieldset = {"logEmail":{"fieldId":"#logEmail","type":"EMAIL","mandatory":"TRUE"},"logpassword":{"fieldId":"#logpassword","type":"PASSWORD","mandatory":"TRUE"}}; 
             return loginfieldset;
         },
     });

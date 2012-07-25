@@ -108,7 +108,7 @@ YUI.add("newProductsWidget", function(Y) {
             if (jsonData !== null) {
                 targetNode.empty();
                 var apiRef = this.get("apiReference");
-                var url = apiRef.get("wsURLWithoutContext");
+                var url = apiRef.wsURLWithoutContext;
                 var config = apiRef._getConfigData();
                 var webImage = config.web.web;
                 var h3 = this.createElement('<h3>Products</h3>');

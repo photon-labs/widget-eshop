@@ -25,7 +25,7 @@ YUI.add("phrescoWidget", function(Y) {
         PhrescoWidget.superclass.constructor.apply(this, arguments);
     }
     var productQty = {};
-    var productArray;
+    var productArray = new Array();
     var totalItem = 0;
     var cartTotal = 0;  
 
@@ -493,7 +493,7 @@ YUI.add("phrescoWidget", function(Y) {
         showProductOrder : function() {
 
             var widgetObj = this.obj;
-			if($("#totalItem").html() > 0 ){
+			//if($("#totalItem").html() > 0 ){
             var hideWidgets = widgetObj.get("hideWidgets");
             for (var i = 0; i < hideWidgets.length; i++) {
                 $(hideWidgets[i]).hide();
@@ -506,7 +506,7 @@ YUI.add("phrescoWidget", function(Y) {
                 widgetObj.loading(target);
                 listeners[i].captureData(this.data);
             }
-			}
+			//}
         },
 		
         showSubmitOrder : function() {

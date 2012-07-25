@@ -181,7 +181,7 @@ YUI.add("productDetailsWidget", function(Y) {
                 targetNode.empty();
 
                 var apiRef = this.get("apiReference");
-                var url = apiRef.get("wsURLWithoutContext");
+                var url = apiRef.wsURLWithoutContext;
                 var config = apiRef._getConfigData();
 				
                 var webImage = config.web.web;
