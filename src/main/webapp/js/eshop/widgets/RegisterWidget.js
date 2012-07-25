@@ -4,7 +4,7 @@
  * %%
  * Copyright (C) 1999 - 2012 Photon Infotech Inc.
  * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
@@ -31,7 +31,7 @@ YUI.add("registerWidget", function(Y) {
         }
     };
 
-    Y.extend(RegisterWidget, Y.Phresco.PhrescoWidget {
+    Y.extend(RegisterWidget, Y.Phresco.PhrescoWidget, {
         initializer: function() {
             /*
              * initializer is part of the lifecycle introduced by 
@@ -43,10 +43,6 @@ YUI.add("registerWidget", function(Y) {
              * It does not need to invoke the superclass initializer. 
              * init() will call initializer() for all classes in the hierarchy.
              */
-             /* this.publish("myEvent", {
-                defaultFn: this._defMyEventFn,
-                bubbles:false
-             }); */
 
         },
 
@@ -90,7 +86,6 @@ YUI.add("registerWidget", function(Y) {
              * to activate the UI.
              */
 
-            // this.after("attrAChange", this._afterAttrAChange);
         },
 
         syncUI : function() {
@@ -101,7 +96,6 @@ YUI.add("registerWidget", function(Y) {
              * will take over.
              */
 
-            // this._uiSetAttrA(this.get("attrA"));
         },
 
         captureData : function(jsonData) {
@@ -179,9 +173,7 @@ YUI.add("registerWidget", function(Y) {
                 selection.appendChild(divleft);
                 contactus.appendChild(selection);
                 targetNode.appendChild(contactus);  
-               //targetNode.appendChild(emailfieldset);
-                
-                //targetNode.appendChild(footer);
+
                 
               } else {
                 var loading = this.createElement('<label>Loading...</label>');

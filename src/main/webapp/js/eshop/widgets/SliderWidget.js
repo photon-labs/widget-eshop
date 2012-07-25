@@ -4,7 +4,7 @@
  * %%
  * Copyright (C) 1999 - 2012 Photon Infotech Inc.
  * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
@@ -34,7 +34,7 @@ YUI.add("sliderWidget", function(Y) {
         }
     };
 
-    Y.extend(SliderWidget, Y.Phresco.PhrescoWidget {
+    Y.extend(SliderWidget, Y.Phresco.PhrescoWidget, {
         initializer: function() {
         /*
          * initializer is part of the lifecycle introduced by 
@@ -114,10 +114,10 @@ YUI.add("sliderWidget", function(Y) {
         },
         callback : function (id, data) {
             data = Y.JSON.parse(data.responseText);
-            if(data["Errors : "] != undefined){
+            if(data["Errors : "] !== undefined){
                 $('#modify_reservation_alert_msg').html('We were unable to locate your reservation. Please confirm the information you entered is correct.');
             }
-            else if(data["Errors"] != undefined){
+            else if(data["Errors"] !== undefined){
                 $('#modify_reservation_alert_msg').html('We were unable to connect server.');
             }
             else{ 

@@ -109,7 +109,7 @@ YUI.add("topSellsWidget", function(Y) {
             var topSellsUL = this.createElement('<ul>');
 			if( jsonData !== undefined ){
 				var apiRef = this.get("apiReference");
-				var url = apiRef.get("wsURLWithoutContext");
+				var url = apiRef.wsURLWithoutContext;
 				var config = apiRef._getConfigData();
                 var webImage = config.web.web;
 				for (i = 1; i <= jsonData.product.length; i++) {
