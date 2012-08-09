@@ -117,16 +117,18 @@ import com.thoughtworks.selenium.DefaultSelenium;
  * 
  */
 public class ScreenshottingSelenium extends DefaultSelenium {
-
+	private static final  int VALUE6 =20;
+	private static final  int VALUE7 =3;
+	private static final  int sleep_time =500;
 	public Reporter reporter;
 
 	private Robot robot = null;
 
 	public String BROWSER = null;
 
-	private long WAIT_FOR_OPEN = 120000;
+//	private long WAIT_FOR_OPEN = 120000;
 
-	private long SMALL_SLEEP = 1000;
+	private static final int SMALL_SLEEP = 1000;
 
 	private Log log = LogFactory.getLog(getClass());
 
@@ -176,10 +178,10 @@ public class ScreenshottingSelenium extends DefaultSelenium {
 		log.info("Entering: getText");
 		try {
 			return super.getText(locator);
-		} catch (Throwable t) {
+		} catch (Exception t) {
 			try {
 				waitForElementToBeVisible(locator, Constants.DEFAULT_TIMEOUT);
-			} catch (Throwable e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			return super.getText(locator);
@@ -195,16 +197,16 @@ public class ScreenshottingSelenium extends DefaultSelenium {
 		if (this.BROWSER.equalsIgnoreCase(Constants.BROWSER_IE)) {
 			command = new String[] { "cmd", "/c", "taskkill", "/F", "/IM",
 					"iexplore.exe" };
-			System.out.println("Killed All IE browser instances");
+			//System.out.println("Killed All IE browser instances");
 		} else if (this.BROWSER.equalsIgnoreCase(Constants.BROWSER_FIREFOX)) {
 			command = new String[] { "cmd", "/c", "taskkill", "/F", "/IM",
 					"firefox.exe" };
-			System.out.println("Killed All Firefox browser instances");
+		//	System.out.println("Killed All Firefox browser instances");
 		}
 
 		try {
 			Runtime.getRuntime().exec(command, null, null);
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -250,10 +252,10 @@ public class ScreenshottingSelenium extends DefaultSelenium {
 			try {
 				ExtractExeToLocalMachine.extractFileToFolder("chooseFile.exe",
 						"C:/Windows/system32");
-			} catch (Throwable t) {
+			} catch (Exception t) {
 			}
 
-			System.out.println("File to choose is : " + filePath);
+			//System.out.println("File to choose is : " + filePath);
 			if (this.BROWSER.equalsIgnoreCase(Constants.BROWSER_IE)) {
 				command = new String[] { "cmd", "/c", "start",
 						"chooseFile.exe", "Choose file", filePath };
@@ -263,7 +265,7 @@ public class ScreenshottingSelenium extends DefaultSelenium {
 			// reporter.reportStep("Clicked on the browse button for uploading file");
 
 			try {
-				System.out.println("Waiting for the process to end");
+			//	System.out.println("Waiting for the process to end");
 				exec.waitFor();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -292,8 +294,7 @@ public class ScreenshottingSelenium extends DefaultSelenium {
 	 * @throws IOException
 	 *             If anything goes wrong
 	 */
-	public void handleFileDownloadDialog(String filePath) throws ZipException,
-			URISyntaxException, IOException {
+	public void handleFileDownloadDialog(String filePath) throws ZipException,URISyntaxException, IOException {
 		log.info("Entering: handleFileDownloadDialog");
 
 		// use autoit for IE.
@@ -316,24 +317,21 @@ public class ScreenshottingSelenium extends DefaultSelenium {
 			ExtractExeToLocalMachine.extractFileToFolder(
 					"handleFileDownloadDialog.exe", "C:/Windows/system32");
 
-			System.out.println("File to download is : " + filePath);
+		//	System.out.println("File to download is : " + filePath);
 			command = new String[] { "cmd", "/c",
 					"handleFileDownloadDialog.exe", "File Download", filePath };
 			exec = Runtime.getRuntime().exec(command);
 
 			try {
-				System.out.println("Waiting for the process to end");
+		//		System.out.println("Waiting for the process to end");
 				exec.waitFor();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 
-			System.out.println("Exiting the handle File Download method");
+			//System.out.println("Exiting the handle File Download method");
 		} else if (this.BROWSER.equalsIgnoreCase(Constants.BROWSER_FIREFOX)) {
-			// dont do anything for firefox as the profile is set to save
-			// automatically, just check if the file is downloaded or not.
-			// Download location is set in prefs.js in firefox profile
-
+			System.out.println("+----------");
 		}
 	}
 
@@ -346,8 +344,7 @@ public class ScreenshottingSelenium extends DefaultSelenium {
 		File downloadsDir = new File(downloadsFolder);
 		File[] listFiles = downloadsDir.listFiles();
 		for (int i = 0; i < listFiles.length; i++) {
-			System.out.println("Deleting file "
-					+ listFiles[i].getAbsolutePath());
+		//	System.out.println("Deleting file "+ listFiles[i].getAbsolutePath());
 			listFiles[i].delete();
 		}
 	}
@@ -400,7 +397,7 @@ public class ScreenshottingSelenium extends DefaultSelenium {
 		log.info("Entering: stop");
 		try {
 			super.stop();
-		} catch (Throwable t) {
+		} catch (Exception t) {
 		}
 		log.info("killBrowserOnStop is " + killBrowserOnStop);
 		if (killBrowserOnStop) {
@@ -420,10 +417,10 @@ public class ScreenshottingSelenium extends DefaultSelenium {
 		log.info("Entering: focus");
 		try {
 			super.focus(locator);
-		} catch (Throwable t) {
+		} catch (Exception t) {
 			try {
 				waitForElementToBeVisible(locator, Constants.DEFAULT_TIMEOUT);
-			} catch (Throwable e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			super.focus(locator);
@@ -451,11 +448,11 @@ public class ScreenshottingSelenium extends DefaultSelenium {
 
 	public void selectFrame(String locator) {
 		log.info("Entering: selectFrame");
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < VALUE6; i++) {
 			try {
 				super.selectFrame(locator);
 				return;
-			} catch (Throwable t) {
+			} catch (Exception t) {
 			}
 		}
 	}
@@ -477,7 +474,7 @@ public class ScreenshottingSelenium extends DefaultSelenium {
 
 		try {
 			result = super.isVisible(locator);
-		} catch (Throwable t) {
+		} catch (Exception t) {
 		}
 		return result;
 	}
@@ -495,7 +492,7 @@ public class ScreenshottingSelenium extends DefaultSelenium {
 
 		try {
 			result = super.isElementPresent(locator);
-		} catch (Throwable t) {
+		} catch (Exception t) {
 		}
 		return result;
 	}
@@ -513,10 +510,10 @@ public class ScreenshottingSelenium extends DefaultSelenium {
 		log.info("Entering: click");
 		try {
 			super.click(locator);
-		} catch (Throwable t) {
+		} catch (Exception t) {
 			try {
 				waitForElementToBeVisible(locator, Constants.DEFAULT_TIMEOUT);
-			} catch (Throwable e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			super.click(locator);
@@ -545,15 +542,15 @@ public class ScreenshottingSelenium extends DefaultSelenium {
 			String waitLocator, String retryInterval)
 			throws ScreenActionFailedException {
 		log.info("Entering: selectAndWait");
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < VALUE7; i++) {
 			try {
 				select(selectLocator, optionLocator);
-			} catch (Throwable t) {
+			} catch (Exception t) {
 			}
 			try {
 				waitForElementToBeVisible(waitLocator, retryInterval);
 				return;
-			} catch (Throwable t) {
+			} catch (Exception t) {
 				t.printStackTrace();
 			}
 		}
@@ -580,15 +577,15 @@ public class ScreenshottingSelenium extends DefaultSelenium {
 	public void clickAndWait(String clickLocator, String waitLocator,
 			String retryInterval) throws ScreenActionFailedException {
 		log.info("Entering: clickAndWait");
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < VALUE7; i++) {
 			try {
 				click(clickLocator);
-			} catch (Throwable t) {
+			} catch (Exception t) {
 			}
 			try {
 				waitForElementToBeVisible(waitLocator, retryInterval);
 				return;
-			} catch (Throwable t) {
+			} catch (Exception t) {
 			}
 		}
 		if (!isVisible(waitLocator)) {
@@ -607,7 +604,7 @@ public class ScreenshottingSelenium extends DefaultSelenium {
 		log.info("Entering: clickWithoutRetry");
 		try {
 			super.click(locator);
-		} catch (Throwable t) {
+		} catch (Exception t) {
 			t.printStackTrace();
 		}
 		// reporter.reportStep("Clicked on " + locator);
@@ -751,10 +748,10 @@ public class ScreenshottingSelenium extends DefaultSelenium {
 
 		try {
 			super.type(locator, value);
-		} catch (Throwable t) {
+		} catch (Exception t) {
 			try {
 				waitForElementToBeVisible(locator, Constants.DEFAULT_TIMEOUT);
-			} catch (Throwable e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			super.type(locator, value);
@@ -825,11 +822,11 @@ public class ScreenshottingSelenium extends DefaultSelenium {
 
 		try {
 			super.select(selectLocator, optionLocator);
-		} catch (Throwable t) {
+		} catch (Exception t) {
 			try {
 				waitForElementToBeVisible(selectLocator,
 						Constants.DEFAULT_TIMEOUT);
-			} catch (Throwable e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			super.select(selectLocator, optionLocator);
@@ -863,7 +860,7 @@ public class ScreenshottingSelenium extends DefaultSelenium {
 		log.info("Entering: waitForPageToLoad");
 		try {
 			super.waitForPageToLoad(timeout);
-		} catch (Throwable t) {
+		} catch (Exception t) {
 			t.printStackTrace();
 		}
 		// reporter.reportStep("Page loaded");
@@ -891,7 +888,7 @@ public class ScreenshottingSelenium extends DefaultSelenium {
 				if (isVisible(locator)) {
 					return;
 				}
-			} catch (Throwable t) {
+			} catch (Exception t) {
 			}
 			sleep(SMALL_SLEEP);
 		}
@@ -930,7 +927,7 @@ public class ScreenshottingSelenium extends DefaultSelenium {
 				if (!isElementPresent(locator)) {
 					return;
 				}
-			} catch (Throwable t) {
+			} catch (Exception t) {
 			}
 			sleep(SMALL_SLEEP);
 		}
@@ -964,7 +961,7 @@ public class ScreenshottingSelenium extends DefaultSelenium {
 				if (!super.isVisible(locator)) {
 					return;
 				}
-			} catch (Throwable t) {
+			} catch (Exception t) {
 			}
 			sleep(SMALL_SLEEP);
 		}
@@ -999,7 +996,7 @@ public class ScreenshottingSelenium extends DefaultSelenium {
 				if (isElementPresent(locator)) {
 					return;
 				}
-			} catch (Throwable t) {
+			} catch (Exception t) {
 			}
 			sleep(SMALL_SLEEP);
 		}
@@ -1046,10 +1043,10 @@ public class ScreenshottingSelenium extends DefaultSelenium {
 		log.info("Entering: check");
 		try {
 			super.check(locator);
-		} catch (Throwable t) {
+		} catch (Exception t) {
 			try {
 				waitForElementToBeVisible(locator, Constants.DEFAULT_TIMEOUT);
-			} catch (Throwable e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			super.check(locator);
@@ -1067,10 +1064,10 @@ public class ScreenshottingSelenium extends DefaultSelenium {
 		log.info("Entering: uncheck");
 		try {
 			super.uncheck(locator);
-		} catch (Throwable t) {
+		} catch (Exception t) {
 			try {
 				waitForElementToBeVisible(locator, Constants.DEFAULT_TIMEOUT);
-			} catch (Throwable e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			super.uncheck(locator);
@@ -1509,7 +1506,7 @@ public class ScreenshottingSelenium extends DefaultSelenium {
 		click(locator);
 		for (int i = 0; i < value.length(); i++) {
 			typeCharNative(value.charAt(i));
-			sleep(500);
+			sleep(sleep_time);
 		}
 	}
 

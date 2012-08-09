@@ -18,7 +18,7 @@ public class WebDriverBaseScreen extends WebDriverAbstractBaseScreen {
 		log.info("Entering:********click operation start********");
 	try{
 		element.click();
-	}catch(Throwable t){
+	}catch(Exception t){
 		t.printStackTrace();
 	}
 		log.info("Entering:********click operation end********");
@@ -28,7 +28,7 @@ public class WebDriverBaseScreen extends WebDriverAbstractBaseScreen {
 		log.info("Entering:********clear operation start********");
 		try{
 		element.clear();
-		}catch(Throwable t){
+		}catch(Exception t){
 			t.printStackTrace();
 		}
 		log.info("Entering:********clear operation end********");
@@ -40,7 +40,7 @@ public class WebDriverBaseScreen extends WebDriverAbstractBaseScreen {
 			clear();
 			element.sendKeys(text);
 			
-		}catch(Throwable t){
+		}catch(Exception t){
 			t.printStackTrace();
 		}
 		log.info("Entering:********enterText operation end********");
@@ -49,7 +49,7 @@ public class WebDriverBaseScreen extends WebDriverAbstractBaseScreen {
 		log.info("Entering:********submit operation start********");
 		try{
 			element.submit();
-		}catch(Throwable t){
+		}catch(Exception t){
 			t.printStackTrace();
 		}
 		log.info("Entering:********submit operation end********");

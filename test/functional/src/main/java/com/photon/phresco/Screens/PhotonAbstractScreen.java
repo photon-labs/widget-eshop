@@ -11,8 +11,7 @@ public class PhotonAbstractScreen extends AbstractBaseScreen {
 	}
 
 	protected PhotonAbstractScreen(String host, int port, String browser,
-			String url, String speed, String context) throws IOException,
-			Exception {
+			String url, String speed, String context) throws IOException,Exception {
 		super(host, port, browser, url, speed, context);
 	}
 

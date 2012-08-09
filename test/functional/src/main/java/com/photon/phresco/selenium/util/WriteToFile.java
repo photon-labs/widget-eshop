@@ -11,7 +11,7 @@ public class WriteToFile {
 			writer = new PrintWriter(new File("./PgSrc.txt"));
 			writer.println(content);
 		} catch (FileNotFoundException e) {
-			System.out.println("Unable to write output to file");
+		//	System.out.println("Unable to write output to file");
 		}
 
 	}

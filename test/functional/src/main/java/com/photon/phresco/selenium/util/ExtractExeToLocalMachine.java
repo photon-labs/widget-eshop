@@ -17,6 +17,8 @@ import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 
 public class ExtractExeToLocalMachine {
+	
+	private static final  int VALUE8 =1024;
 
 	public static void main(String[] args) throws Exception {
 		extractFileToFolder("chooseFile.exe", "C:/Windows/system32");
@@ -33,16 +35,14 @@ public class ExtractExeToLocalMachine {
 		}
 		try {
 			extractFileToFolder(filename, tmpDir);
-		} catch (Throwable t) {
+		} catch (Exception t) {
 			throw new RuntimeException("Failed to extract " + filename + " to "
 					+ tmpDir, t);
 		}
 		return file;
 	}
 
-	public static void extractFileToFolder(String fileToExtract,
-			String targetFolder) throws URISyntaxException, ZipException,
-			IOException {
+	public static void extractFileToFolder(String fileToExtract,String targetFolder) throws URISyntaxException, ZipException,IOException {
 		final URI jarURI;
 		final URI exe;
 		
@@ -65,7 +65,7 @@ public class ExtractExeToLocalMachine {
 	}
 
 	private static URI getFile(final URI jarURI, final String fileName,
-			final String targetFolder) throws ZipException, IOException {
+		final String targetFolder) throws ZipException, IOException {
 		final File location;
 		final URI fileURI;
 
@@ -111,7 +111,7 @@ public class ExtractExeToLocalMachine {
 			int i;
 
 			fileStream = new FileOutputStream(tempFile);
-			buf = new byte[1024];
+			buf = new byte[VALUE8];
 			i = 0;
 
 			while ((i = zipStream.read(buf)) != -1) {
