@@ -2,17 +2,19 @@ package com.photon.phresco.Screens;
 
 import java.io.IOException;
 
-import org.openqa.selenium.By;
+
 
 import com.photon.phresco.selenium.util.GetCurrentDir;
 import com.photon.phresco.selenium.util.ScreenActionFailedException;
 
 public abstract class AbstractBaseScreen extends BaseScreen {
 
-	protected long THREAD_SLEEP_MIL_SEC = 5000;
-	protected long SLEEP_FOR_WAIT_ELEM_MIL_SEC = 2000;
-	protected long WAIT_FOR_REFRESH_MIL_SEC = 2000;
-	protected long WAIT_FOR_ELEM_SEC = 120;
+	//protected long THREAD_SLEEP_MIL_SEC = 5000;
+	private static final  long SLEEP_FOR_WAIT_ELEM_MIL_SEC =2000;
+	private static final  long WAIT_FOR_REFRESH_MIL_SEC =2000;
+	private static final  long WAIT_FOR_ELEM_SEC =120;
+	private static final  long VALUE =10;
+	private static final  long VALUE2 =10;
 
 	protected AbstractBaseScreen() {
 		if (driver == null) {
@@ -245,7 +247,7 @@ public abstract class AbstractBaseScreen extends BaseScreen {
 
 	protected boolean isElementPresent(String elem) throws InterruptedException {
 		msg("AbstractBaseScreen.isElementPresent " + elem);
-		for (int second = 0; second < 10; second++) {
+		for (int second = 0; second < VALUE; second++) {
 			try {
 				if (selenium.isElementPresent(elem))
 					return true;
@@ -303,7 +305,7 @@ public abstract class AbstractBaseScreen extends BaseScreen {
 	
 	protected boolean waitForTextPresentConsole(String text) throws Exception {
 		msg("AbstractBaseScreen.waitForTextPresent " + text);
-		for (int second = 0; second < 20; second++) {
+		for (int second = 0; second < VALUE2; second++) {
 			if (second >= WAIT_FOR_ELEM_SEC) {
 				selenium.captureScreenshot(GetCurrentDir.getCurrentDirectory()+"\\Failure.png");
 				throw new Exception("timeout: Text " + text + " is not present");
@@ -357,7 +359,7 @@ public abstract class AbstractBaseScreen extends BaseScreen {
 	}
 
 	protected void msg(String message) {
-		System.out.println(message);
+	//	System.out.println(message);
 	}
 
 	/**

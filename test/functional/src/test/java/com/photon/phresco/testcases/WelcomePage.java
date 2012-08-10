@@ -6,13 +6,11 @@ import junit.framework.TestCase;
 import org.junit.Test;
 import com.photon.phresco.Screens.WelcomeScreen;
 import com.photon.phresco.uiconstants.PhrescoUiConstants;
-import com.photon.phresco.uiconstants.UIConstants;
 import com.thoughtworks.selenium.Selenium;
 
 public class WelcomePage extends TestCase {
 
-	
-	private UIConstants phrsc;
+	//private UIConstants phrsc;
 	private PhrescoUiConstants phr;
 	private WelcomeScreen wel;
 	private Selenium selenium;
@@ -26,7 +24,7 @@ public class WelcomePage extends TestCase {
 
 		try {
 
-			phrsc = new UIConstants();
+		//	phrsc = new UIConstants();
 			String serverURL = phr.PROTOCOL + "://"
 					+ phr.HOST + ":"
 					+ phr.PORT + "/";
@@ -45,7 +43,7 @@ public class WelcomePage extends TestCase {
 			selenium.captureEntirePageScreenshot("\\WelPageFails.png",
 					"background=#CCFFDD");
 		}
-	}
+	}	
 
 	public void setUp() throws Exception {
 		phr = new PhrescoUiConstants();

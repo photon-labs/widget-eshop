@@ -19,14 +19,14 @@ this.phrsc = phrsc;
 public void billingInfo(WidgetData yuiwidg, String methodName) throws Exception {
 
 if (StringUtils.isEmpty(methodName)) {
-methodName = Thread.currentThread().getStackTrace()[1].getMethodName();;
+methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 }
 waitForElementPresent(phrsc.EMAIL, methodName);
 element = getXpathWebElement(phrsc.EMAIL);
-System.out.println("----element ---------->1" + element);
+//System.out.println("----element ---------->1" + element);
 element.type(yuiwidg.EMAIL_VALUE);
 element = getIdWebElement(phrsc.FIRSTNAME);
-System.out.println("----element-------------> 2" + element);
+//System.out.println("----element-------------> 2" + element);
 element.type(yuiwidg.FIRSTNAME_VALUE);
 element = getIdWebElement(phrsc.LASTNAME);
 element.type(yuiwidg.LASTNAME_VALUE);
@@ -62,7 +62,7 @@ element.click();
 public void Television(String methodName) throws Exception {
 
 if (StringUtils.isEmpty(methodName)) {
-methodName = Thread.currentThread().getStackTrace()[1].getMethodName();;
+methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 }
 log.info("Entering :***************Television()***********Start:");
 waitForElementPresent(phrsc.TELEVISION, methodName);
@@ -82,7 +82,7 @@ element.click();
 public void Computers(String methodName) throws Exception {
 
 if (StringUtils.isEmpty(methodName)) {
-methodName = Thread.currentThread().getStackTrace()[1].getMethodName();;
+methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 }
 waitForElementPresent(phrsc.COMPUTERS, methodName);
 element = getXpathWebElement(phrsc.COMPUTERS);
@@ -102,7 +102,7 @@ element.click();
 public void MobilePhones(String methodName) throws Exception {
 
 if (StringUtils.isEmpty(methodName)) {
-methodName = Thread.currentThread().getStackTrace()[1].getMethodName();;
+methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 }
 waitForElementPresent(phrsc.MOBILE, methodName);
 element = getXpathWebElement(phrsc.MOBILE);
@@ -122,7 +122,7 @@ element.click();
 public void AudioDevices(String methodName) throws Exception {
 
 if (StringUtils.isEmpty(methodName)) {
-methodName = Thread.currentThread().getStackTrace()[1].getMethodName();;
+methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 }
 waitForElementPresent(phrsc.AUDIO_DEVICES, methodName);
 element = getXpathWebElement(phrsc.AUDIO_DEVICES);
@@ -142,7 +142,7 @@ element.click();
 public void Cameras(String methodName) throws Exception {
 
 if (StringUtils.isEmpty(methodName)) {
-methodName = Thread.currentThread().getStackTrace()[1].getMethodName();;
+methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 }
 waitForElementPresent(phrsc.CAMERAS, methodName);
 element = getXpathWebElement(phrsc.CAMERAS);
@@ -162,7 +162,7 @@ element.click();
 public void Tablets(String methodName) throws Exception {
 
 if (StringUtils.isEmpty(methodName)) {
-methodName = Thread.currentThread().getStackTrace()[1].getMethodName();;
+methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 }
 waitForElementPresent(phrsc.TABLETS, methodName);
 element = getXpathWebElement(phrsc.TABLETS);
@@ -182,13 +182,13 @@ element.click();
 public void MoviesnMusic(String methodName) throws Exception {
 
 if (StringUtils.isEmpty(methodName)) {
-methodName = Thread.currentThread().getStackTrace()[1].getMethodName();;
+methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 }
 waitForElementPresent(phrsc.MOVIESnMUSIC,methodName);
 element = getXpathWebElement(phrsc.MOVIESnMUSIC);
 element.click();
-waitForElementPresent(phrsc.PROD1_DETAILS,methodName);
-element = getXpathWebElement(phrsc.PROD1_DETAILS);
+waitForElementPresent(phrsc.DET_ADDTOCART,methodName);
+element = getXpathWebElement(phrsc.DET_ADDTOCART);
 element.click();
 waitForElementPresent(phrsc.DET_ADDTOCART,methodName);
 element = getXpathWebElement(phrsc.DET_ADDTOCART);
@@ -202,7 +202,7 @@ element.click();
 public void VideoGames(String methodName) throws Exception {
 
 if (StringUtils.isEmpty(methodName)) {
-methodName = Thread.currentThread().getStackTrace()[1].getMethodName();;
+methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 }
 waitForElementPresent(phrsc.VIDEOGAMES, methodName);
 element = getXpathWebElement(phrsc.VIDEOGAMES);
@@ -221,7 +221,7 @@ element.click();
 public void MP3Players(String methodName) throws Exception {
 
 if (StringUtils.isEmpty(methodName)) {
-methodName = Thread.currentThread().getStackTrace()[1].getMethodName();;
+methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 }
 waitForElementPresent(phrsc.MP3PLAYERS, methodName);
 element = getXpathWebElement(phrsc.MP3PLAYERS);
@@ -240,13 +240,13 @@ element.click();
 public void Accessories(String methodName) throws Exception {
 
 if (StringUtils.isEmpty(methodName)) {
-methodName = Thread.currentThread().getStackTrace()[1].getMethodName();;
+methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 }
 waitForElementPresent(phrsc.MORE, methodName);
 element = getXpathWebElement(phrsc.MORE);
 element.click();
 waitForElementPresent(phrsc.ACCESSORIES, methodName);
-element = getXpathWebElement(phrsc.ACCESSORIES);
+element = getXpathWebElement(phrsc.ADDRESS1);
 element.click();
 waitForElementPresent(phrsc.PROD1_DETAILS, methodName);
 element = getXpathWebElement(phrsc.PROD1_DETAILS);

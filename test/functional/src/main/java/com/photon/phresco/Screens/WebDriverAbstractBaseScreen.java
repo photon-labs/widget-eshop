@@ -1,7 +1,7 @@
 package com.photon.phresco.Screens;
 
 import java.io.File;
-import java.io.IOException;
+
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.Log;
@@ -9,8 +9,6 @@ import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -22,7 +20,8 @@ import com.photon.phresco.selenium.util.ScreenException;
 
 public class WebDriverAbstractBaseScreen extends BaseScreen {
 	
-	public static WebElement element;	
+	private static final  int VALUE5 =10;
+		public static WebElement element;	
 	private Log log = LogFactory.getLog(getClass());
 	
 	protected WebDriverAbstractBaseScreen(){
@@ -34,9 +33,9 @@ public class WebDriverAbstractBaseScreen extends BaseScreen {
 		try{
 			
 			element=driver.findElement(By.xpath(xpath));
-			System.out.println("------------------->"+element);
+		//	System.out.println("------------------->"+element);
 			
-		}catch(Throwable t){
+		}catch(Exception t){
 			log.info("Entering:*********Exception in getXpathWebElement()******");
 			t.printStackTrace();
 			
@@ -47,9 +46,9 @@ public class WebDriverAbstractBaseScreen extends BaseScreen {
 		log.info("Entering:****getIdWebElement**********");
 		try{
 		element=driver.findElement(By.id(id));
-		System.out.println("------------------->"+element);
+	//	System.out.println("------------------->"+element);
 		
-		}catch(Throwable t){
+		}catch(Exception t){
 			log.info("Entering:*********Exception in getIdWebElement()******");
 			t.printStackTrace();
 			
@@ -63,7 +62,7 @@ public class WebDriverAbstractBaseScreen extends BaseScreen {
 		
 		
 		
-		}catch(Throwable t){
+		}catch(Exception t){
 			log.info("Entering:*********Exception in getIdWebElement()******");
 			
 			t.printStackTrace();
@@ -72,11 +71,11 @@ public class WebDriverAbstractBaseScreen extends BaseScreen {
 		return new WebDriverBaseScreen();
 	}
 	
-	public void waitForElementPresent(String locator, String methodName) throws IOException, Exception{
+	public void waitForElementPresent(String locator, String methodName) throws Exception{
 		try{
 		log.info("Entering:*********waitForElementPresent()******");
 	    By by= By.xpath(locator);
-		WebDriverWait wait=new WebDriverWait(driver, 10);
+		WebDriverWait wait=new WebDriverWait(driver, VALUE5);
 		log.info("Waiting:*************One second***********");
 		wait.until(presenceOfElementLocated(by));
 		}
