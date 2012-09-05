@@ -1,3 +1,22 @@
+/*
+ * ###
+ * PHR_HTML5YUIWidget
+ * %%
+ * Copyright (C) 1999 - 2012 Photon Infotech Inc.
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License")
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ###
+ */
 Event = YUI.event,
 YUI.add("headerWidget", function(Y) {
     function HeaderWidget(config) {
@@ -99,27 +118,18 @@ YUI.add("headerWidget", function(Y) {
             formElement.appendChild('<input type="text" id="searchText" placeholder="Search" name="q">');
 			
 			
-           // var search = Y.Node.create('<a href="#"><img src="images/eshop/searchicon.png" width="20" height="20" alt="searchicon" class="searchbtn"></a>');
 			var search = Y.Node.create('<input type="image" src="images/eshop/searchicon.png" width="20" height="20"  alt="searchicon" class="searchbtn"></a>');
             search.obj = this;
             Y.on('click' , this.searchProducts , search);
             formElement.appendChild(search);
 
-/*            var ulElement = this.createElement('<ul id="social"><!-- Social profiles links -->');
-            ulElement.appendChild('<li><a href="#" title="facebook" rel="external nofollow"><img alt="" src="images/eshop/facebook.png"></a></li>');
-            ulElement.appendChild('<li><a href="#" title="twitter" rel="external nofollow"><img alt="" src="images/eshop/twitter.png"></a></li>');
-            ulElement.appendChild('<li><a href="#" title="linkedin" rel="external nofollow"><img alt="" src="images/eshop/linkedin.png"></a></li>');
-            ulElement.appendChild('<li><a href="#" title="rss" rel="external nofollow"><img alt="" src="images/eshop/rss.png"></a></li>');*/
 
             searchSection.appendChild(formElement);
-            //searchSection.appendChild(ulElement);
 			
 			if(userId > 0){
 				var userData = apiRef.get("userData");
 				console.info('user data = ', userData);
-				//var registrationStatus = this.createElement('<div class="log_txt"></div>');
 					var statusMsg = this.createElement('<div class="login_txt">Welcome : '+userData.response.userName+' </div>');
-					//registrationStatus.appendChild(statusMsg);
 					searchSection.appendChild(statusMsg);
 			}
 			
@@ -129,11 +139,11 @@ YUI.add("headerWidget", function(Y) {
         },
         callback : function (id, data) {
             data = Y.JSON.parse(data.responseText);
-            if(data["Errors : "] != undefined){ console.info('data 1 : ');
+            if(data["Errors : "] !== undefined){
                 $('#modify_reservation_alert_msg').html('We were unable to locate your reservation. Please confirm the information you entered is correct.');
             }
-            else if(data["Errors"] != undefined){ console.info('data 2 : ');
-                $('#modify_reservation_alert_msg').html('We were unable to connect server.');
+            else if(data["Errors"] !== undefined){
+				$('#modify_reservation_alert_msg').html('We were unable to connect server.');
             }
             else{ 
                 window.location = "index.html";

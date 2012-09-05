@@ -27,10 +27,7 @@ YUI.add("contactusWidget", function(Y) {
              * It does not need to invoke the superclass initializer. 
              * init() will call initializer() for all classes in the hierarchy.
              */
-             /* this.publish("myEvent", {
-                defaultFn: this._defMyEventFn,
-                bubbles:false
-             }); */
+
 
         },
 
@@ -75,7 +72,6 @@ YUI.add("contactusWidget", function(Y) {
              * to activate the UI.
              */
 
-            // this.after("attrAChange", this._afterAttrAChange);
         },
 
         syncUI : function() {
@@ -86,7 +82,6 @@ YUI.add("contactusWidget", function(Y) {
              * will take over.
              */
 
-            // this._uiSetAttrA(this.get("attrA"));
         },
 
         captureData : function(jsonData) {

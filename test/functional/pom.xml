@@ -8,6 +8,7 @@
   <name>HTML5Widget_Eshop</name>
   <url>http://maven.apache.org</url>
   
+
 <repositories>
     <repository>      
       <id>seleniumserver</id>
@@ -16,6 +17,9 @@
     </repository>
   </repositories>
   
+
+
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>

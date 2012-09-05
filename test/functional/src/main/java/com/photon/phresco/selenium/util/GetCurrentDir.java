@@ -18,7 +18,7 @@ public class GetCurrentDir {
 			System.out.println("folder structure "+fileName+"exists");	
 			}else{
 				fileName.mkdir();
-				System.out.println("folder structure "+fileName+"created");
+			//	System.out.println("folder structure "+fileName+"created");
 			}
 		targetPath = fileName.getAbsolutePath();
 		return targetPath;

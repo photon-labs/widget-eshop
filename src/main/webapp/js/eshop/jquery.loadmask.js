@@ -1,3 +1,22 @@
+/*
+ * ###
+ * PHR_HTML5YUIWidget
+ * %%
+ * Copyright (C) 1999 - 2012 Photon Infotech Inc.
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License")
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ###
+ */
 /**
  * Copyright (c) 2009 Sergiy Kovalchuk (serg472@gmail.com)
  * 
@@ -22,7 +41,8 @@
 		$(this).each(function() {
 			if(delay !== undefined && delay > 0) {
 		        var element = $(this);
-		        element.data("_mask_timeout", setTimeout(function() { $.maskElement(element, label)}, delay));
+				element.data("_mask_timeout", setTimeout(function() { 
+				$.maskElement(element, label);}, delay));
 			} else {
 				$.maskElement($(this), label);
 			}
@@ -57,7 +77,7 @@
 			$.unmaskElement(element);
 		}
 		
-		if(element.css("position") == "static") {
+		if(element.css("position") === "static") {
 			element.addClass("masked-relative");
 		}
 		

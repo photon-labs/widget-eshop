@@ -1,3 +1,22 @@
+/*
+ * ###
+ * PHR_HTML5YUIWidget
+ * %%
+ * Copyright (C) 1999 - 2012 Photon Infotech Inc.
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License")
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ###
+ */
 Event = YUI.event,
 YUI.add("orderHistoryWidget", function(Y) {
     function OrderHistoryWidget(config) {
@@ -27,10 +46,6 @@ YUI.add("orderHistoryWidget", function(Y) {
              * It does not need to invoke the superclass initializer. 
              * init() will call initializer() for all classes in the hierarchy.
              */
-             /* this.publish("myEvent", {
-                defaultFn: this._defMyEventFn,
-                bubbles:false
-             }); */
 
         },
 
@@ -77,7 +92,8 @@ YUI.add("orderHistoryWidget", function(Y) {
              */
             $(document).ready(function(){
                 var myScroll = new iScroll('scroller');
-                document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+                document.addEventListener('touchmove', function (e) { 
+					e.preventDefault(); }, false);
                 document.addEventListener('DOMContentLoaded', myScroll, false);
             });
         },
@@ -90,7 +106,6 @@ YUI.add("orderHistoryWidget", function(Y) {
              * will take over.
              */
 
-            // this._uiSetAttrA(this.get("attrA"));
         },
 
         captureData : function(jsonData) {
@@ -108,9 +123,6 @@ YUI.add("orderHistoryWidget", function(Y) {
             var webImage = config.web.web;
             
 			var orderhistory = jsonData;
-			/*var oh = this.createElement('<div class="order_history"> ');
-			var h3 = this.createElement('<h3> Order History </h3>');
-			oh.appendChild(h3);*/
 			var contactus = this.createElement('<div id="maincontact">');
             var selection = this.createElement('<section id="contact">');
             var divleft = this.createElement('<div id="">');

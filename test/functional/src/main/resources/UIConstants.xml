@@ -18,6 +18,7 @@
 	       </tabs>
 	       <productPage>
 	           <prod1Details>//div[@id='left']/ul/li/div[2]</prod1Details>
+	           <prod1Accessories>//a[contains(text(),'Details')]</prod1Accessories>
 	           <updateCart>//a[contains(text(),'Update Cart')]</updateCart>
 	           <addToCart>//div[@id='scroller']/div[2]/ul/li/div/div[2]/div[2]/a[2]/img</addToCart>
 	           <prod1DetailAddToCart>//div[@id='left']/div/div[3]/div[3]/div[3]/a/img</prod1DetailAddToCart>

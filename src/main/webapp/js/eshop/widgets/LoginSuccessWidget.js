@@ -1,3 +1,22 @@
+/*
+ * ###
+ * PHR_HTML5YUIWidget
+ * %%
+ * Copyright (C) 1999 - 2012 Photon Infotech Inc.
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License")
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ###
+ */
 Event = YUI.event,
 YUI.add("loginSuccessWidget", function(Y) {
     function LoginSuccessWidget(config) {
@@ -24,10 +43,7 @@ YUI.add("loginSuccessWidget", function(Y) {
              * It does not need to invoke the superclass initializer. 
              * init() will call initializer() for all classes in the hierarchy.
              */
-             /* this.publish("myEvent", {
-                defaultFn: this._defMyEventFn,
-                bubbles:false
-             }); */
+
 
         },
 
@@ -74,7 +90,8 @@ YUI.add("loginSuccessWidget", function(Y) {
              */
             $(document).ready(function(){
                 var myScroll = new iScroll('scroller');
-                document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+                document.addEventListener('touchmove', function (e) { 
+					e.preventDefault(); }, false);
                 document.addEventListener('DOMContentLoaded', myScroll, false);
             });
         },
@@ -87,7 +104,6 @@ YUI.add("loginSuccessWidget", function(Y) {
              * will take over.
              */
 
-            // this._uiSetAttrA(this.get("attrA"));
         },
 
         captureData : function(jsonData) {
@@ -127,9 +143,7 @@ YUI.add("loginSuccessWidget", function(Y) {
                               
                                 var log_txtEmail = this.createElement('<div class="log_txt">');
                                     var log_txt_lftEmail = this.createElement('<div class="log_txt_lft">Email : '+jsonData.login.loginEmail+'</div>');
-                                    //var log_txt_rhtEmail = this.createElement('<div class="log_txt_lft">'+jsonData.login.loginEmail+' name : '+jsonData.response.userName+'</div>');
                                 log_txtEmail.appendChild(log_txt_lftEmail);
-                                //log_txtEmail.appendChild(log_txt_rhtEmail);
   
 								var log_txtuserName_txt = this.createElement('<div class="log_txt"></div>');
                                     var log_txtuserName = this.createElement('<div class="log_txt_lft">Name : '+jsonData.response.userName+'</div>');

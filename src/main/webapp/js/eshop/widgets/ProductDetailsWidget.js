@@ -1,3 +1,22 @@
+/*
+ * ###
+ * PHR_HTML5YUIWidget
+ * %%
+ * Copyright (C) 1999 - 2012 Photon Infotech Inc.
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License")
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ###
+ */
 Event = YUI.event,
 YUI.add("productDetailsWidget", function(Y) {
     function ProductDetailsWidget(config) {
@@ -25,11 +44,6 @@ YUI.add("productDetailsWidget", function(Y) {
              * It does not need to invoke the superclass initializer. 
              * init() will call initializer() for all classes in the hierarchy.
              */
-             /* this.publish("myEvent", {
-                defaultFn: this._defMyEventFn,
-                bubbles:false
-             }); */
-
         },
 
         destructor : function() {
@@ -140,10 +154,9 @@ YUI.add("productDetailsWidget", function(Y) {
                       showPreload: true,
                       preloadText : 'Loading zoom',
                       preloadPosition : 'center'
-                      }
+                      };
                       $(".myvalue").jqzoom(options);
             });
-            // this.after("attrAChange", this._afterAttrAChange);
         },
 
         syncUI : function() {
@@ -154,7 +167,6 @@ YUI.add("productDetailsWidget", function(Y) {
              * will take over.
              */
 
-            // this._uiSetAttrA(this.get("attrA"));
         },
 
         captureData : function(jsonData) {
@@ -165,11 +177,11 @@ YUI.add("productDetailsWidget", function(Y) {
         },
 
         createContent : function(targetNode, jsonData) {
-            if (jsonData != null) {
+            if (jsonData !== null) {
                 targetNode.empty();
 
                 var apiRef = this.get("apiReference");
-                var url = apiRef.get("wsURLWithoutContext");
+                var url = apiRef.wsURLWithoutContext;
                 var config = apiRef._getConfigData();
 				
                 var webImage = config.web.web;
@@ -177,9 +189,9 @@ YUI.add("productDetailsWidget", function(Y) {
 				var productReviewData = jsonData.reviewData;
 				var productReviews = productReviewData.review.comments;
 				
-				if(apiRef.get("userId"))
+				if(apiRef.get("userId")){
 					var userId = apiRef.get("userId");
-					
+				}	
 				
 				apiRef.set("currentProductId", productDetails.id);
 				
@@ -192,7 +204,6 @@ YUI.add("productDetailsWidget", function(Y) {
                 var backHref = Y.Node.create('<span style="float:right;text-decoration:none;"><a href="#" class="back_buttonstyle">Back</a></span>');
                 backHref.obj = this;
                 backHref.data = productDetails.category;
-				//console.info("Category id:", backHref.data)
                 Y.on('click' , this.showProductsFromCache , backHref);
                 h3.appendChild(backHref);
                 // Product Container holds all the elements
@@ -212,15 +223,14 @@ YUI.add("productDetailsWidget", function(Y) {
 
 
                 var productDetailInfo = this.createElement('<div class="productdetail_info">');
-                //var productName = this.createElement('<h4>'+productDetails.name+'</h4>');
-                var review = this.createElement('<div class="review">')
+                var review = this.createElement('<div class="review">');
                 var ratingDone = false;
                 for (var i = 0; i < 5; i++) {
                     var starImage = 'red_star.png';
-                    if (productDetails.rating == i) {
+                    if (productDetails.rating === i) {
                         ratingDone = true;
                     }
-                    if (ratingDone == true) {
+                    if (ratingDone === true) {
                         starImage = 'white_star.png';
                     }
                     var star = this.createElement('<span ><img src="images/eshop/' + starImage + ' " width="16" height="16" alt="Red star"></span>');
@@ -260,7 +270,6 @@ YUI.add("productDetailsWidget", function(Y) {
                 stockAvailablity.appendChild(quantity);
                 stockAvailablity.appendChild(addToCart);
                 
-                //productDetailInfo.appendChild(productName);
                 productDetailInfo.appendChild(review);
                 productDetailInfo.appendChild(productDetailPrice);
                 productDetailInfo.appendChild(stockAvailablity);
@@ -320,7 +329,6 @@ YUI.add("productDetailsWidget", function(Y) {
 					reviewRating.appendChild(productId);
 					reviewRating.appendChild(ratingStarSpan);
 					reviewRating.appendChild(starValueBox);
-					//reviewRating.appendChild(reviewRatingStar);
 					
                     var reviewComment = this.createElement('<label for="comments"><span>Comments</span><textarea name="comments" id="comments" placeholder="Your comments"cols="5" rows="6" scale="no"></textarea></label>');
                     reviewFieldset.appendChild(reviewRating);
@@ -330,11 +338,12 @@ YUI.add("productDetailsWidget", function(Y) {
 					var reviewSubmitButton = Y.Node.create('<input type="button" value="Submit" class="buttonstyle"/>');
                     reviewSubmitButton.obj = this;
 					reviewSubmitButton.data = productDetails.id;
-					if(userId)
+					if(userId){
 						Y.on('click' , this.reviewSubmitFn , reviewSubmitButton);
-					else
+					} else {
 						Y.on('click' , this.loginPop , reviewSubmitButton);
-			
+					}
+					
 					reviewSubmit.appendChild(reviewSubmitButton);
 					
                     reviewForm.appendChild(reviewFieldset);
@@ -363,8 +372,6 @@ YUI.add("productDetailsWidget", function(Y) {
                 targetNode.appendChild(pName);
                 targetNode.appendChild(productContainer);
             } else {
-                //var loading = this.createElement('<label>Loading...</label>');
-                //targetNode.appendChild(loading);
             }
 
             this.bindUI();
@@ -383,9 +390,6 @@ YUI.add("productDetailsWidget", function(Y) {
             this.set("onReviewListener", listeners);
         },
         openTab : function(){
-            //console.info('openTabId' ,this.data.openTabId);
-            //console.info('closeTabId' ,this.data.closeTabId);
-            //console.info('=============');
             $('#' + this.data.openTabId).show();
             $('#' + this.data.closeTabId).hide();
 
@@ -398,7 +402,6 @@ YUI.add("productDetailsWidget", function(Y) {
         },
 		 addRating:function(){
            var starId = this.data;
-		   //alert(starId);
 		  $("#starValue").val(starId);
 		   for(var i=1; i<= starId; i++){
 			$("#starImage_"+i).html('<img src="images/eshop/red_star.png" width="16" height="16" title="' + i + '">');
@@ -411,7 +414,6 @@ YUI.add("productDetailsWidget", function(Y) {
 		loginPop:function(){
 			$('#popup').css("display", "block");
 			$('.wel_come').css("display", "block");
-			//$('body').css('overflow','hidden');
 		}
     });
 

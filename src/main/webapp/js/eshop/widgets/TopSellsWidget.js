@@ -1,3 +1,22 @@
+/*
+ * ###
+ * PHR_HTML5YUIWidget
+ * %%
+ * Copyright (C) 1999 - 2012 Photon Infotech Inc.
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License")
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ###
+ */
 Event = YUI.event,
 YUI.add("topSellsWidget", function(Y) {
     function TopSellsWidget(config) {
@@ -24,10 +43,6 @@ YUI.add("topSellsWidget", function(Y) {
              * It does not need to invoke the superclass initializer. 
              * init() will call initializer() for all classes in the hierarchy.
              */
-             /* this.publish("myEvent", {
-                defaultFn: this._defMyEventFn,
-                bubbles:false
-             }); */
 
         },
 
@@ -72,7 +87,6 @@ YUI.add("topSellsWidget", function(Y) {
              * to activate the UI.
              */
 
-            // this.after("attrAChange", this._afterAttrAChange);
         },
 
         syncUI : function() {
@@ -83,7 +97,6 @@ YUI.add("topSellsWidget", function(Y) {
              * will take over.
              */
 
-            // this._uiSetAttrA(this.get("attrA"));
         },
 
         captureData : function(jsonData) {
@@ -94,14 +107,14 @@ YUI.add("topSellsWidget", function(Y) {
         createContent : function(targetNode, jsonData) {
             var h3 = this.createElement('<h3>New Products</h3>');
             var topSellsUL = this.createElement('<ul>');
-			if( jsonData != undefined ){
+			if( jsonData !== undefined ){
 				var apiRef = this.get("apiReference");
-				var url = apiRef.get("wsURLWithoutContext");
+				var url = apiRef.wsURLWithoutContext;
 				var config = apiRef._getConfigData();
                 var webImage = config.web.web;
 				for (i = 1; i <= jsonData.product.length; i++) {
 					 var product = jsonData.product[i];
-					 if (product != undefined) {
+					 if (product !== undefined) {
 						 
 						var imageURL = url + '/' + webImage + product.image;
 						var detailImageURL = url + '/' + webImage + product.detailImage;
@@ -112,14 +125,12 @@ YUI.add("topSellsWidget", function(Y) {
 						var divInfo = this.createElement('<div class="info">');
 		
 						var productA = Y.Node.create('<a class="title2" href="#">' + product.name + '</a>');
-						//var details = Y.Node.create('<a href="#">Details</a>');
                         productA.obj = this;
                         productA.data = product.id;
                         Y.on('click' , this.showProductDetails , productA);
 
 						var priceDiv = this.createElement('<div class="price">');
 						var sellAtSpan = this.createElement('<span class="special">Sell at:</span>');
-						//var priceSpecialSpan = this.createElement('<span class="special">' + this.getAmountByCurrency(((i * 150) - 100), false) + '</span>');
 						var priceSpecialSpan = this.createElement('<span class="special">$' + product.sellPrice + '</span>');
 						priceDiv.appendChild(sellAtSpan);
 						priceDiv.appendChild(priceSpecialSpan);
@@ -136,7 +147,6 @@ YUI.add("topSellsWidget", function(Y) {
                         data.imageURL = imageURL;
                         data.detailImageURL = detailImageURL;
                         data.totalPrice = (data.quantity * product.sellPrice);
-                        //addToCart.data = product.id;
                         addToCart.data = data;
 						console.info('data = ', data);
 						Y.on('click' , this.addToShoppingCart , addToCart);
@@ -151,7 +161,7 @@ YUI.add("topSellsWidget", function(Y) {
 						topSellsUL.appendChild(li);
 					 }
 					 
-					 if (i==8){
+					 if (i===8){
 						break;
 					}
 				}            

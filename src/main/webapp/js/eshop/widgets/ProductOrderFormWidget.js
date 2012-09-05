@@ -1,3 +1,22 @@
+/*
+ * ###
+ * PHR_HTML5YUIWidget
+ * %%
+ * Copyright (C) 1999 - 2012 Photon Infotech Inc.
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License")
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ###
+ */
 Event = YUI.event,
 YUI.add("productOrderFormWidget", function(Y) {
     function ProductOrderFormWidget(config) {
@@ -27,10 +46,7 @@ YUI.add("productOrderFormWidget", function(Y) {
              * It does not need to invoke the superclass initializer. 
              * init() will call initializer() for all classes in the hierarchy.
              */
-             /* this.publish("myEvent", {
-                defaultFn: this._defMyEventFn,
-                bubbles:false
-             }); */
+
 
         },
 
@@ -75,7 +91,6 @@ YUI.add("productOrderFormWidget", function(Y) {
              * to activate the UI.
              */
 
-            // this.after("attrAChange", this._afterAttrAChange);
         },
 
         syncUI : function() {
@@ -86,7 +101,6 @@ YUI.add("productOrderFormWidget", function(Y) {
              * will take over.
              */
 
-            // this._uiSetAttrA(this.get("attrA"));
         },
 
         captureData : function(jsonData) {
@@ -96,19 +110,17 @@ YUI.add("productOrderFormWidget", function(Y) {
         },
 
         createContent : function(targetNode, jsonData) {
-           // if (jsonData != null) {
 			 if (true) {
                 targetNode.empty();
 				var selfRef=this;
                 var apiRef = this.get("apiReference");
                 var url = apiRef.get("wsURLWithoutContext");
                 var config = apiRef._getConfigData();
-                //var h3 = this.createElement('<h3>Computers</h3> ');
                 // Product Container holds all the elements
                var productContainer = this.createElement('<div class="productcontainer">');
-				var formdiv = this.createElement('<form id="contact" method="post" action="#">')
+				var formdiv = this.createElement('<form id="contact" method="post" action="#">');
 				var orderDetailback = apiRef.get("orderDetailback"); 
-				if(orderDetailback != undefined){
+				if(orderDetailback !== undefined){
 					var emailbk = orderDetailback.email;
 					var firstNamebk = orderDetailback.firstName;
 					var lastNamebk  =  orderDetailback.lastName;
@@ -125,78 +137,33 @@ YUI.add("productOrderFormWidget", function(Y) {
 					var nameoncardbk =  orderDetailback.nameoncard;
 					var commentsbk =  orderDetailback.comments;
 				}
-				var emailbk = (emailbk != undefined)?orderDetailback.email : "";
-				var firstNamebk = (firstNamebk != undefined)?orderDetailback.firstName : "";
-				var lastNamebk = (lastNamebk != undefined)?orderDetailback.lastName : "";
-				var companybk = (companybk != undefined)?orderDetailback.company : "";
-				var address1bk = (address1bk != undefined)?orderDetailback.address1 : "";
-				var address2bk = (address2bk != undefined)?orderDetailback.address2 : "";
-				var citybk = (citybk != undefined)?orderDetailback.city : "";
-				var statebk = (statebk != undefined)?orderDetailback.state : "";
-				var countrybk = (countrybk != undefined)?orderDetailback.country : "";
-				var postcodebk = (postcodebk != undefined)?orderDetailback.postcode : "";
-				var phonenumberbk = (phonenumberbk != undefined)?orderDetailback.phonenumber : "";
-				var cardnumberbk = (cardnumberbk != undefined)?orderDetailback.cardnumber : "";
-				var securitynumberbk = (securitynumberbk != undefined)?orderDetailback.securitynumber : "";
-				var nameoncardbk = (nameoncardbk != undefined)?orderDetailback.nameoncard : "";
-				var commentsbk = (commentsbk != undefined)?orderDetailback.comments : "";
-				/*var cartContenth5 = this.createElement('<h5> My Cart Contents</h5>');
+				var emailbk = (emailbk !== undefined)?orderDetailback.email : "";
+				var firstNamebk = (firstNamebk !== undefined)?orderDetailback.firstName : "";
+				var lastNamebk = (lastNamebk !== undefined)?orderDetailback.lastName : "";
+				var companybk = (companybk !== undefined)?orderDetailback.company : "";
+				var address1bk = (address1bk !== undefined)?orderDetailback.address1 : "";
+				var address2bk = (address2bk !== undefined)?orderDetailback.address2 : "";
+				var citybk = (citybk !== undefined)?orderDetailback.city : "";
+				var statebk = (statebk !== undefined)?orderDetailback.state : "";
+				var countrybk = (countrybk !== undefined)?orderDetailback.country : "";
+				var postcodebk = (postcodebk !== undefined)?orderDetailback.postcode : "";
+				var phonenumberbk = (phonenumberbk !== undefined)?orderDetailback.phonenumber : "";
+				var cardnumberbk = (cardnumberbk !== undefined)?orderDetailback.cardnumber : "";
+				var securitynumberbk = (securitynumberbk !== undefined)?orderDetailback.securitynumber : "";
+				var nameoncardbk = (nameoncardbk !== undefined)?orderDetailback.nameoncard : "";
+				var commentsbk = (commentsbk !== undefined)?orderDetailback.comments : "";
 				
-				
-				var checkout1 = this.createElement('<div class="mcc_checkoutcol1">');
-				var product1 = this.createElement(' <div class="mcc_co_col1position1">Products</div>');
-				checkout1.appendChild(product1);
-				
-				var checkout2 = this.createElement('<div class="mcc_checkoutcol2">');
-				var product2 = this.createElement(' <div class="mcc_co_col1position2">Quantity</div>');
-				checkout2.appendChild(product2);
-				
-				var checkout3 = this.createElement('<div class="mcc_checkoutcol3">');
-				var product3 = this.createElement(' <div class="mcc_co_col1position3">Total Amount</div>');
-				checkout3.appendChild(product3);
-				
-				var checkoutrow2 = this.createElement('<div class="chectoutrow2">')
-				var checkoutvalue1 = this.createElement('<div class="mcc_checkoutvaluecol1">')
-				
-				var checkout4 = this.createElement('<div class="mcc_co_col1position1">')
-				var productImage = this.createElement('<div class="co_product_image"><img src="images/eshop/apple_comp_13.png" width="120" height="120" alt="Apple Mac Laptop"></div>')
-				var description = this.createElement('<div class="co_product_description">Apple - 11.6" MacBook Air Notebook Computer</div>')
-				checkout4.appendChild(productImage);
-				checkout4.appendChild(description);
-				checkoutvalue1.appendChild(checkout4);
-				
-				var checkoutvalue2 = this.createElement('<div class="mcc_checkoutvaluecol2">')
-				var checkout5 = this.createElement('<div class="mcc_co_col1position2">')
-				var number1 = this.createElement('<div class="co_input">1</div>')
-				checkout5.appendChild(number1);
-				checkoutvalue2.appendChild(checkout5);
-				
-				var checkoutvalue3 = this.createElement('<div class="mcc_checkoutvaluecol3">')
-				var checkout6 = this.createElement('<div class="mcc_co_col1position2">')
-				var number2 = this.createElement('<div class="co_input">2500</div>')
-				checkout6.appendChild(number2);
-				checkoutvalue3.appendChild(checkout6);
-				
-				checkoutrow2.appendChild(checkoutvalue1);
-				checkoutrow2.appendChild(checkoutvalue2);
-				checkoutrow2.appendChild(checkoutvalue3);
-				
-				var cleardiv = this.createElement('<div class="clear"></div>');
-				var subtotaldiv = this.createElement('<div class="subtotal_pos">SubTotal: $2500</div>')
-*/            
-				//var backHref = Y.Node.create('<span style="float:right;text-decoration:none;"><a href="#" class="back_buttonstyle">Back</a></span>');
-
 				var informationH5 = this.createElement('<h5> Customer Information</h5>');
 				var backHref = Y.Node.create('<div class="backtocart"><a href="#" class="back_buttonstyle">BACK</a></div>');
 				backHref.obj = this;
 				Y.on('click' , this.showMyShoppingCart , backHref);
-				var holderDiv1 = this.createElement('<div class="fieldholder1">')
+				var holderDiv1 = this.createElement('<div class="fieldholder1">');
 				var emailfieldset = this.createElement('<fieldset>');
 				
 				var emailvalue = this.createElement('<div id="email_err_div" class="clearfix"><label for="Email"><span>Email *</span><input type="text" name="email" id="email" placeholder="Email" class="required email" value="'+ emailbk +'" /></label><span class="help-inline" id="email_err"></span></div>');
 				
-				emailfieldset.appendChild(emailvalue)
-				holderDiv1.appendChild(emailfieldset)
+				emailfieldset.appendChild(emailvalue);
+				holderDiv1.appendChild(emailfieldset);
 				
 				var billinginfoH5 = this.createElement('<h5> Billing / Delivery Informations</h5>');
 				
@@ -210,19 +177,7 @@ YUI.add("productOrderFormWidget", function(Y) {
 				var address2value = this.createElement('<div id="address2_err_div" class="clearfix"><label for="Address2"> <span>Address2 *</span><input type="text" name="address2" id="address2" placeholder="Address2" class="required address2" value="'+ address2bk +'" /></label><span class="help-inline" id="address2_err"></span></div>');
 				var cityvalue = this.createElement('<div id="city_err_div" class="clearfix"><label for="City"> <span>City *</span><input type="text" name="City" id="city" placeholder="city" class="required city" value="'+ citybk +'"/></label><span class="help-inline" id="city_err"></span></div>');
 				
-/*				var statelabel = this.createElement('<label for="State"> <span >State/Province *</span>');
-				var selecttag = this.createElement('<select size="1" id="state" >');
-				var selectvalue1 = this.createElement('<option value="states1">states 1</option>');
-				var selectvalue2 = this.createElement('<option value="states2">states 2</option>');
-				var selectvalue3 = this.createElement('<option value="states3">states 3</option>');
-				var selectvalue4 = this.createElement('<option value="states4">states 4</option>');
-				var selectvalue5 = this.createElement('<option value="states5">states 5</option>');
-				selecttag.appendChild(selectvalue1)
-				selecttag.appendChild(selectvalue2)
-				selecttag.appendChild(selectvalue3)
-				selecttag.appendChild(selectvalue4)
-				selecttag.appendChild(selectvalue5)
-				statelabel.appendChild(selecttag)*/
+
 				
 				var statelabel = this.createElement('<div id="state_err_div" class="clearfix"><label for="State"> <span>State *</span><input type="text" name="State" id="state" placeholder="state" class="required state" value="'+ statebk +'"/></label><span class="help-inline" id="state_err"></span></div>');
 				
@@ -230,21 +185,13 @@ YUI.add("productOrderFormWidget", function(Y) {
 				var countryArray = new Array("USA","India","Australia","Canada","Bangladesh");				
 				var countryselect = this.createElement('<select size="1" id="country" >');
 				for(var i= 0; i < countryArray.length; i++) {
-				var selected = (countrybk == countryArray[i])?"selected='selected'": "";
+				var selected = (countrybk === countryArray[i])?"selected='selected'": "";
 				var countryvalue1 = this.createElement('<option value="'+ countryArray[i] +'" '+selected+'>'+ countryArray[i] +'</option>');
-				countryselect.appendChild(countryvalue1)
+				countryselect.appendChild(countryvalue1);
 				}
 				
-			/*	var countryvalue2 = this.createElement('<option value="India">India</option>');
-				var countryvalue3 = this.createElement('<option value="Australia">Australia</option>');
-				var countryvalue4 = this.createElement('<option value="Canada">Canada</option>');
-				var countryvalue5 = this.createElement('<option value="Bangladesh">Bangladesh</option>');*/
-				
-/*				countryselect.appendChild(countryvalue2)
-				countryselect.appendChild(countryvalue3)
-				countryselect.appendChild(countryvalue4)
-				countryselect.appendChild(countryvalue5)*/
-				countryabel.appendChild(countryselect)
+			
+				countryabel.appendChild(countryselect);
 				var postvalue = this.createElement('<div id="postCode_err_div" class="clearfix"><label for="Postcode"><span>Postcode *</span><input type="text" name="postCode" id="postCode" placeholder="postcode" class="required postcode" value="'+ postcodebk +'"  /></label><span class="help-inline" id="postCode_err"></span></div>');
 				var phonevalue = this.createElement('<div id="phoneNumber_err_div" class="clearfix"><label for="Phonenumber"> <span>Phonenumber *</span><input type="text" name="phoneNumber" id="phoneNumber" placeholder="Phonenumber" class="required phonenumber" value="'+ phonenumberbk +'" /></label><span class="help-inline" id="phoneNumber_err"></span></div>');
 			
@@ -270,50 +217,50 @@ YUI.add("productOrderFormWidget", function(Y) {
 				
 					var div1 = this.createElement('<div>');
 					var paymentvalue1 = this.createElement('<label class="paymentmethod" ><input type="radio" name="payment method" value="radio" id="paymentmethod_0" class="radiomethod" checked="checked">VISA CARD</label>');
-					div1.appendChild(paymentvalue1)
+					div1.appendChild(paymentvalue1);
 					
 					var div2 = this.createElement('<div>');
 					var paymentvalue2 = this.createElement('<label class="paymentmethod" ><input type="radio" name="payment method" value="radio" id="paymentmethod_0" class="radiomethod">AMX CARD</label>');
-					div2.appendChild(paymentvalue2)
+					div2.appendChild(paymentvalue2);
 					
 					var div3 = this.createElement('<div>');
 					var paymentvalue3 = this.createElement('<label class="paymentmethod" ><input type="radio" name="payment method" value="radio" id="paymentmethod_0" class="radiomethod">MASTER CARD</label>');
-					div3.appendChild(paymentvalue3)
+					div3.appendChild(paymentvalue3);
 				
-				paymentType.appendChild(div1)
-				paymentType.appendChild(div2)
-				paymentType.appendChild(div3)
-				paymentfieldset.appendChild(paymentSelect)
-				paymentfieldset.appendChild(paymentType)
+				paymentType.appendChild(div1);
+				paymentType.appendChild(div2);
+				paymentType.appendChild(div3);
+				paymentfieldset.appendChild(paymentSelect);
+				paymentfieldset.appendChild(paymentType);
 				
 				var cardfieldset = this.createElement('<fieldset>');
 				var carddetails = this.createElement('<div class="carddetails">');
 				var cardnumber = this.createElement('<div id="cardNumber_err_div" class="clearfix"><label for="Card Number"> <span>Card Number *</span><input type="text" name="cardNumber" id="cardNumber" placeholder="Card Number" class="required cardnumber" value="'+ cardnumberbk +'" /></label><span class="help-inline" id="cardNumber_err"></span></div>');
 				var securitynumber = this.createElement('<div id="securityNumber_err_div" class="clearfix"><label for="Security Number"> <span>Security Code  *</span><input type="password" name="securityNumber" id="securityNumber" placeholder="Security Number" value="'+ securitynumberbk +'" class="required securitynumber"  /></label><span class="help-inline" id="securityNumber_err"></span></div>');
 				var cardname = this.createElement('<div id="nameOnCard_err_div" class="clearfix"><label for="Name on card"> <span>Name on card *</span><input type="text" name="nameOnCard" id="nameOnCard" placeholder="Name On Card" class="required nameoncard" value="'+ nameoncardbk +'" /></label><span class="help-inline" id="nameOnCard_err"></span></div>');
-				carddetails.appendChild(cardnumber)
-				carddetails.appendChild(securitynumber)
-				carddetails.appendChild(cardname)
+				carddetails.appendChild(cardnumber);
+				carddetails.appendChild(securitynumber);
+				carddetails.appendChild(cardname);
 				
 				
 				var pricetag = this.createElement('<div align="center" class="pricetag">');
 				var priceblock = this.createElement('<div class="priceblock">');
 				var totalprice = this.createElement('<div class="subtotal"> <span>Sub Total:</span> <span>$3750</span> </div>');
 				var ordertotal = this.createElement('<div class="ordertotal"> <span>Order Total:</span> <span>$3750</span> </div>');
-				priceblock.appendChild(totalprice)
-				priceblock.appendChild(ordertotal)
-				pricetag.appendChild(priceblock)
-				cardfieldset.appendChild(carddetails)
-				cardfieldset.appendChild(pricetag)
+				priceblock.appendChild(totalprice);
+				priceblock.appendChild(ordertotal);
+				pricetag.appendChild(priceblock);
+				cardfieldset.appendChild(carddetails);
+				cardfieldset.appendChild(pricetag);
 				var hint = this.createElement('<p class="hint">Cheque should be made to Phresco</p>');
-				holderDiv3.appendChild(paymentfieldset)
-				holderDiv3.appendChild(cardfieldset)
-				holderDiv3.appendChild(hint)
+				holderDiv3.appendChild(paymentfieldset);
+				holderDiv3.appendChild(cardfieldset);
+				holderDiv3.appendChild(hint);
 				
 				var comment = this.createElement('<h5> Order Comments</h5>');
 				var holderDiv4 = this.createElement('<div class="fieldholder4">');
-				var commentdesc = this.createElement('<fieldset><textarea name="comments" value="'+ commentsbk +'"  id="comment" cols="6" rows="5" placeholder="Your suggestion and comments"></textarea></fieldset>')
-				holderDiv4.appendChild(commentdesc)
+				var commentdesc = this.createElement('<fieldset><textarea name="comments" value="'+ commentsbk +'"  id="comment" cols="6" rows="5" placeholder="Your suggestion and comments"></textarea></fieldset>');
+				holderDiv4.appendChild(commentdesc);
 				
 				var buttonDiv = this.createElement(' <div class="buttonposition">');
 				
@@ -336,14 +283,7 @@ YUI.add("productOrderFormWidget", function(Y) {
 				
 				buttonDiv.appendChild(reviewOrder);
 				buttonDiv.appendChild(submitButton);
-				
-				//formdiv.appendChild(cartContenth5);
-				//formdiv.appendChild(checkout1);
-				//formdiv.appendChild(checkout2);
-				//formdiv.appendChild(checkout3);
-				//formdiv.appendChild(checkoutrow2);
-				//formdiv.appendChild(cleardiv);
-				//formdiv.appendChild(subtotaldiv);
+
 				formdiv.appendChild(informationH5);
 				formdiv.appendChild(backHref);
 				formdiv.appendChild(holderDiv1);
@@ -356,7 +296,6 @@ YUI.add("productOrderFormWidget", function(Y) {
 				formdiv.appendChild(buttonDiv);
 				productContainer.appendChild(formdiv);
 				
-				//targetNode.appendChild(backHref);
                 targetNode.appendChild(productContainer);
 				
 			  } else {

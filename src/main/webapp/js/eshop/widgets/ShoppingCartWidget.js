@@ -1,3 +1,22 @@
+/*
+ * ###
+ * PHR_HTML5YUIWidget
+ * %%
+ * Copyright (C) 1999 - 2012 Photon Infotech Inc.
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License")
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ###
+ */
 Event = YUI.event,
 YUI.add("shoppingCartWidget", function(Y) {
     function ShoppingCartWidget(config) {
@@ -24,11 +43,6 @@ YUI.add("shoppingCartWidget", function(Y) {
              * It does not need to invoke the superclass initializer. 
              * init() will call initializer() for all classes in the hierarchy.
              */
-             /* this.publish("myEvent", {
-                defaultFn: this._defMyEventFn,
-                bubbles:false
-             }); */
-
         },
 
         destructor : function() {
@@ -83,7 +97,6 @@ YUI.add("shoppingCartWidget", function(Y) {
              * will take over.
              */
 
-            // this._uiSetAttrA(this.get("attrA"));
         },
 
         captureData : function(jsonData) {
@@ -107,11 +120,12 @@ YUI.add("shoppingCartWidget", function(Y) {
 			var h3 = this.createElement('<h3> product Checkout</h3> ');
 			 var backHref = Y.Node.create('<span style="float:right;text-decoration:none;"><a href="#" class="back_buttonstyle">Back</a></span>');
                 backHref.obj = this;
-				if(currentProductId != 0) {
+				if(currentProductId !== 0) {
                	 backHref.data = currentProductId;
 				 Y.on('click' , this.showPreviousProduct , backHref);
-				}else
+				}else{
 	                Y.on('click' , this.showProductsFromCache , backHref);
+				}
 				
                 h3.appendChild(backHref);
 			var productContainer = this.createElement('<div class="productcontainer">');
@@ -150,7 +164,7 @@ YUI.add("shoppingCartWidget", function(Y) {
 			
 			var totalItem = productQty.totalItem;
 			var currentProductId = 0;
-			if(apiRef.get("currentProductId") != 0 ){
+			if(apiRef.get("currentProductId") !== 0 ){
 				var currentProductId = apiRef.get("currentProductId");
 			}
 		
@@ -183,7 +197,6 @@ YUI.add("shoppingCartWidget", function(Y) {
 								co_inputBox.pid = productDetails[j].productId;
 								
 								Y.on('blur' , this.addTotal , co_inputBox);
-								//Y.on('Keydown',this.checkZeroFn, productDetails[j].productId);
 								
 							co_inputDiv.appendChild(co_inputBox);
 							productQuantityDiv.appendChild(co_inputDiv);
@@ -235,9 +248,9 @@ YUI.add("shoppingCartWidget", function(Y) {
 			checkOutButton.pid = productDetails.id;
 			Y.on('click' , this.showProductOrder , checkOutButton);
 			cartButtons.appendChild(updateCartButton);
-			if(totalItem > 0)
+			if(totalItem > 0){
 				cartButtons.appendChild(checkOutButton);
-			
+			}
 			productContainer.appendChild(clearDiv);
 			productContainer.appendChild(subTotalHeightDiv);
 			productContainer.appendChild(subTotalDiv);
@@ -258,23 +271,20 @@ YUI.add("shoppingCartWidget", function(Y) {
 		 var apiRef = widgetObj.get("apiReference");
          var productQty = apiRef.get("productQty");
 		 var productArray = productQty.productDetail;
-		 //var productArray = productQty.productDetail.productArray;
 		 var totalItem = 0;
 		 var cartTotal = 0;
 	
 			for(var j=0; j<productArray.length;j++){
 				product = productArray[j];
-				//console.info('product.id ',product.productId);
 				var quantity = $("#productQuantity_"+product.productId).val();
-				//console.info('text box quantity ',quantity);
 				var totalAmount = $("#totalAmount_"+product.productId).html();
-				//console.info('product.quantity ',product.quantity);
 				
-				if(quantity != product.quantity)
+				if(quantity !== product.quantity){
 					product.quantity =  quantity;
-				if(totalAmount != product.totalPrice)
+				}	
+				if(totalAmount !== product.totalPrice){
 					product.totalPrice = totalAmount;
-				//console.info('product.quantity after ',product.quantity);
+				}	
 			}
 			
 
@@ -314,27 +324,10 @@ YUI.add("shoppingCartWidget", function(Y) {
 			var widgetObj = this.obj;
 			var apiRef = widgetObj.get("apiReference");
 			var productQty = apiRef.get("productQty");
-			//console.info(productQty.productDetail.length);
 			var productArray = productQty.productDetail;
-			//var totalItem = 0;
-            //alert(this.pid);
             var productId = this.pid;
-            //alert($("#productQuantity").val());
-            //$("#totalAmount").hide();
-                //var productQty = $("#productQuantity").val();
-                //var totalAmt = $("#totalAmount").val();
             var total = this.data * $("#productQuantity_"+productId).val();
-            //alert(total);
             $("#totalAmount_"+productId).html(total.toFixed(2));
-            //$("#subToal").html(total);
-			
-			/*for(var i=0; i<productArray.length;i++){
-				product = productArray[i];
-				
-				totalItem = Number(totalItem) + $("#productQuantity_"+product.productId).val();
-				console.info('productId = ',product.productId,$("#productQuantity_"+product.productId).val());
-			}
-			console.info('Total Item value = ',totalItem); */
         },
         onUpdateListener: function(jsonData) {
             this.captureData(jsonData);
@@ -342,16 +335,6 @@ YUI.add("shoppingCartWidget", function(Y) {
         hideWidgets : function (hideWidgets) {
             this.set("hideWidgets", hideWidgets);
         }
-		
-		/*checkZeroFn:function(pid){
-				alert(pid);
-		
-			$('input:text').keydown(function(e){
-				if(e.shiftKey && (e.keyCode == 48)){
-				return false;
-				}
-			})
-		}*/
     });
 
     Y.namespace("Phresco").ShoppingCartWidget = ShoppingCartWidget;

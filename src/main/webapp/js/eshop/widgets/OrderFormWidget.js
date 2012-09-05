@@ -1,3 +1,22 @@
+/*
+ * ###
+ * PHR_HTML5YUIWidget
+ * %%
+ * Copyright (C) 1999 - 2012 Photon Infotech Inc.
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License")
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ###
+ */
 Event = YUI.event,
 YUI.add("orderFormWidget", function(Y) {
     function OrderFormWidget(config) {
@@ -27,11 +46,6 @@ YUI.add("orderFormWidget", function(Y) {
              * It does not need to invoke the superclass initializer. 
              * init() will call initializer() for all classes in the hierarchy.
              */
-             /* this.publish("myEvent", {
-                defaultFn: this._defMyEventFn,
-                bubbles:false
-             }); */
-
         },
 
         destructor : function() {
@@ -75,7 +89,6 @@ YUI.add("orderFormWidget", function(Y) {
              * to activate the UI.
              */
 
-            // this.after("attrAChange", this._afterAttrAChange);
         },
 
         syncUI : function() {
@@ -86,7 +99,6 @@ YUI.add("orderFormWidget", function(Y) {
              * will take over.
              */
 
-            // this._uiSetAttrA(this.get("attrA"));
         },
 
         captureData : function(jsonData) {
@@ -96,7 +108,6 @@ YUI.add("orderFormWidget", function(Y) {
         },
 
         createContent : function(targetNode, jsonData) {
-           // if (jsonData != null) {
              if (true) {
                 targetNode.empty();
 				
@@ -110,15 +121,6 @@ YUI.add("orderFormWidget", function(Y) {
 
 			
 				var productName;
-/*				var productName = new Array();
-				for (var i = 0; i < productDetails.length; i++) {
-					productName.push(this.createElement('<div>'+ productDetails[i].name +'</div>'));
-					console.info(productDetails[i].name);
-
-				}
-				var cartTotal = this.createElement('<div>'+ cartTotal +'</div>')
-				var totalItem = this.createElement('<div>'+ totalItem +'</div>')*/
-				
 				var orderDetailback = apiRef.get("orderDetail"); 
 				apiRef.set("orderDetailback", orderDetailback);
 				
@@ -141,8 +143,6 @@ YUI.add("orderFormWidget", function(Y) {
 				var totalItemget = apiRef.set("totalItem", totalItem);// for inserting purpose
 				var customerEmail = apiRef.set("customerEmail", orderDetail.email);
 				var comment = apiRef.set("comments", orderDetail.comments);
-               // var h3 = this.createElement('<h3>Computers</h3> ');
-                // Product Container holds all the elements
                 var productContainer = this.createElement('<div class="productcontainer">');
 
                 var productFieldeHolder = this.createElement('<div class="fieldholder">');
@@ -383,12 +383,6 @@ YUI.add("orderFormWidget", function(Y) {
                 productFieldeHolder.appendChild(buttonDiv);
                 
                 productContainer.appendChild(productFieldeHolder);
-				/*for (var i = 0; i < productName.length; i++) {
-					targetNode.appendChild(productName[i]);
-				}*/
-                
-/*				targetNode.appendChild(totalItem);
-				targetNode.appendChild(cartTotal);*/
                 targetNode.appendChild(productContainer);
               } else {
                 var loading = this.createElement('<label>Loading...</label>');
