@@ -7,13 +7,13 @@ public class PhrescoUiConstants {
 	private ReadXMLFile readXml;
 
 	public String CONTEXT = "context";
-	public String SERVER_HOST ="server.host";
+//	public String SERVER_HOST ="server.host";
 	public String HOST = "host";
-	public String SERVER_PORT = "server.port";
+//	public String SERVER_PORT = "server.port";
 	public String BROWSER = "Browser";
 	public String PROTOCOL = "protocol";
 	public String PORT= "port";
-	public String SPEED = "speed";
+//	public String SPEED = "speed";
 	
 
     public PhrescoUiConstants() {

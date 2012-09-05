@@ -41,7 +41,7 @@ public class ReadXMLFile {
 			/*System.out.println("Root element :"
 					+ doc.getDocumentElement().getNodeName());*/
 			NodeList nList = doc.getElementsByTagName("environment");
-			System.out.println("-----------------------");
+			
 
 			for (int temp = 0; temp < nList.getLength(); temp++) {
 

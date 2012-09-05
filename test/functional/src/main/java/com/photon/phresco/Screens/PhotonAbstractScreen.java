@@ -2,18 +2,20 @@ package com.photon.phresco.Screens;
 
 import java.io.IOException;
 
-public class PhotonAbstractScreen extends AbstractBaseScreen {
+import com.photon.phresco.uiconstants.UIConstants;
+import com.photon.phresco.uiconstants.YUIWidgetData;
 
-	// public PhrescoUiConstantsXml phrescoXml;
+public class PhotonAbstractScreen extends BaseScreen {
 
-	protected PhotonAbstractScreen() {
 
+	public PhotonAbstractScreen(){
+	
 	}
+	
 
-	protected PhotonAbstractScreen(String host, int port, String browser,
-			String url, String speed, String context) throws IOException,
+	protected PhotonAbstractScreen(String selectedBrowser,String applicationURL,String applicationContext,YUIWidgetData yuiWidgetConstants,UIConstants uiConstants) throws IOException,
 			Exception {
-		super(host, port, browser, url, speed, context);
+		super(selectedBrowser, applicationURL,applicationContext,yuiWidgetConstants,uiConstants);
 	}
 
 }

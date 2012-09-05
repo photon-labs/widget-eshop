@@ -2,61 +2,223 @@ package com.photon.phresco.testcases;
 
 import java.io.IOException;
 
-import junit.framework.TestCase;
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
+
 import com.photon.phresco.Screens.WelcomeScreen;
 import com.photon.phresco.uiconstants.PhrescoUiConstants;
 import com.photon.phresco.uiconstants.UIConstants;
-import com.thoughtworks.selenium.Selenium;
+import com.photon.phresco.uiconstants.YUIWidgetData;
 
-public class WelcomePage extends TestCase {
+public class WelcomePage {
 
-	
-	private UIConstants phrsc;
-	private PhrescoUiConstants phr;
-	private WelcomeScreen wel;
-	private Selenium selenium;
-	private int SELENIUM_PORT;
-	private String browserAppends;
-	//private LoginScreen loginObject;
-	
+	private static UIConstants uiConstants;
+	private static PhrescoUiConstants phrescoUIConstants;
+	private static WelcomeScreen welcomeScreen;
+	private static String methodName;
+	private static String selectedBrowser;
+	private static YUIWidgetData yuiWidgetConstants;
 
-	@Test
-	public void testWel() throws InterruptedException, IOException, Exception {
+	// private Log log = LogFactory.getLog(getClass());
 
+	@BeforeClass
+	public static void setUp() throws Exception {
 		try {
-
-			phrsc = new UIConstants();
-			String serverURL = phr.PROTOCOL + "://"
-					+ phr.HOST + ":"
-					+ phr.PORT + "/";
-			browserAppends = "*" + phr.BROWSER;
-			assertNotNull("Browser name should not be null",browserAppends);
-			SELENIUM_PORT = Integer.parseInt(phr.SERVER_PORT);
-			assertNotNull("selenium-port number should not be null",
-					SELENIUM_PORT);
-			wel=new WelcomeScreen(phr.SERVER_HOST, SELENIUM_PORT,
-					browserAppends, serverURL, phr.SPEED,
-					phr.CONTEXT );
-			assertNotNull(wel);
-		} catch (Exception t) {
-			t.printStackTrace();
-			System.out.println("ScreenCaptured");
-			selenium.captureEntirePageScreenshot("\\WelPageFails.png",
-					"background=#CCFFDD");
+			phrescoUIConstants = new PhrescoUiConstants();
+			uiConstants = new UIConstants();
+			// assertNotNull(uiConstants);
+			yuiWidgetConstants = new YUIWidgetData();
+			launchingBrowser();
+			// menuScreen = welcomeScreen.menuScreen(uiConstants);
+			methodName = Thread.currentThread().getStackTrace()[1]
+					.getMethodName();
+		} catch (Exception exception) {
+			exception.printStackTrace();
 		}
 	}
 
-	public void setUp() throws Exception {
-		phr = new PhrescoUiConstants();
+	public static void launchingBrowser() throws Exception {
+		try {
+			String applicationURL = phrescoUIConstants.PROTOCOL + "://"
+					+ phrescoUIConstants.HOST + ":" + phrescoUIConstants.PORT
+					+ "/";
+			selectedBrowser = phrescoUIConstants.BROWSER;
+			welcomeScreen = new WelcomeScreen(selectedBrowser, applicationURL,
+					phrescoUIConstants.CONTEXT, yuiWidgetConstants, uiConstants);
+		} catch (Exception exception) {
+			exception.printStackTrace();
+
+		}
+
 	}
 
-	public void tearDown() {
-		clean();
+	@Test
+	public void testWelcomePageScreen() throws InterruptedException,
+			IOException, Exception {
+		try {
+			Assert.assertNotNull(welcomeScreen);
+	//		welcomeScreen.isElementPresent(this.uiConstants.COMPUTERS);
+		} catch (Exception t) {
+			t.printStackTrace();
+
+		}
 	}
 
-	private void clean() {
-		wel.closeBrowser();
+	@Test
+	public void testToVerifyTheAudioDevicesAddToCart()
+			throws InterruptedException, IOException, Exception {
+		try {
+
+			System.out
+					.println("---------testToVerifyTheAudioDevicesAddToCart()-------------");
+			welcomeScreen.AudioDevices(methodName);
+			welcomeScreen.billingInfo(methodName);
+		} catch (Exception t) {
+			t.printStackTrace();
+
+		}
 	}
 
+	@Test
+	public void testToVerifyTheCamerasAddToCart() throws InterruptedException,
+			IOException, Exception {
+		try {
+
+			System.out
+					.println("---------testToVerifyTheCamerasAddToCart()-------------");
+			welcomeScreen.Cameras(methodName);
+			welcomeScreen.billingInfo(methodName);
+		} catch (Exception t) {
+			t.printStackTrace();
+
+		}
+	}
+
+	@Test
+	public void testToVerifyTheVideoGamesAddToCart()
+			throws InterruptedException, IOException, Exception {
+		try {
+
+			System.out
+					.println("---------testToVerifyTheVideoGamesAddToCart()-------------");
+			welcomeScreen.VideoGames(methodName);
+			welcomeScreen.billingInfo(methodName);
+		} catch (Exception t) {
+			t.printStackTrace();
+
+		}
+	}
+
+	@Test
+	public void testToVerifyTheTelevisionAddToCart()
+			throws InterruptedException, IOException, Exception {
+		try {
+
+			System.out
+					.println("---------testToVerifyTheTelevisionAddToCart()-------------");
+			welcomeScreen.Television(methodName);
+			welcomeScreen.billingInfo(methodName);
+		} catch (Exception t) {
+			t.printStackTrace();
+
+		}
+	}
+
+	@Test
+	public void testToVerifyTheTabletsAddToCart() throws InterruptedException,
+			IOException, Exception {
+		try {
+
+			System.out
+					.println("---------testToVerifyTheTabletsAddToCart()-------------");
+			welcomeScreen.Tablets(methodName);
+			welcomeScreen.billingInfo(methodName);
+		} catch (Exception t) {
+			t.printStackTrace();
+
+		}
+	}
+
+	@Test
+	public void testToVerifyTheMP3PlayersAddToCart()
+			throws InterruptedException, IOException, Exception {
+		try {
+
+			System.out
+					.println("---------testToVerifyTheMP3PlayersAddToCart()-------------");
+			welcomeScreen.MP3Players(methodName);
+			welcomeScreen.billingInfo(methodName);
+		} catch (Exception t) {
+			t.printStackTrace();
+
+		}
+	}
+
+	@Test
+	public void testToVerifyTheMoviesAndMusicAddToCart()
+			throws InterruptedException, IOException, Exception {
+		try {
+
+			System.out
+					.println("---------testToVerifyTheMoviesAndMusicAddToCart()-------------");
+			welcomeScreen.MoviesnMusic(methodName);
+			welcomeScreen.billingInfo(methodName);
+		} catch (Exception t) {
+			t.printStackTrace();
+
+		}
+	}
+
+	@Test
+	public void testToVerifyTheMobilePhonesAddToCart()
+			throws InterruptedException, IOException, Exception {
+		try {
+
+			System.out
+					.println("---------testToVerifyTheMobilePhonesAddToCart()-------------");
+			welcomeScreen.MobilePhones(methodName);
+			welcomeScreen.billingInfo(methodName);
+		} catch (Exception t) {
+			t.printStackTrace();
+
+		}
+	}
+
+	@Test
+	public void testToVerifyTheAccessoriesAddToCart()
+			throws InterruptedException, IOException, Exception {
+		try {
+			System.out
+					.println("---------testToVerifyTheAccessoriesAddToCart()-------------");
+			welcomeScreen.Accessories(methodName);
+			welcomeScreen.billingInfo(methodName);
+		} catch (Exception t) {
+			t.printStackTrace();
+
+		}
+	}
+
+	@Test
+	public void testToVerifyTheComputersAddToCart()
+			throws InterruptedException, IOException, Exception {
+		try {
+			System.out
+					.println("---------testToVerifyTheComputersAddToCart()-------------");
+			welcomeScreen.Computers(methodName);
+			welcomeScreen.billingInfo(methodName);
+		} catch (Exception t) {
+			t.printStackTrace();
+
+		}
+	}
+
+	@AfterClass
+	public static void tearDown() {
+		welcomeScreen.closeBrowser();
+	}
+
+	
+	
 }

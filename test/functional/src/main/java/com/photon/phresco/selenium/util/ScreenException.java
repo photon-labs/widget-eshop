@@ -1,6 +1,5 @@
 package com.photon.phresco.selenium.util;
 
-import com.thoughtworks.selenium.Selenium;
 
 
 
