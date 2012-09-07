@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<environment>
+<phresco>
+<yuiwidget>
+     <tabs>
+	           <hometab>//a[contains(text(),'Products')]</hometab>
+	           <televisiontab>//a[contains(text(),'Television')]</televisiontab>
+	           <computerstab>//a[contains(text(),'Computers')]</computerstab>
+	           <mobiletab>//a[contains(text(),'Mobile Phones')]</mobiletab>
+	           <audioDevicestab>//a[contains(text(),'Audio Devices')]</audioDevicestab>
+	           <camerastab>//a[contains(text(),'Cameras')]</camerastab>
+	           <tabletstab>//a[contains(text(),'Tablets')]</tabletstab>
+	           <moviesNmusictab>//a[contains(text(),'Movies and Music')]</moviesNmusictab>
+	           <videoGamestab>//a[contains(text(),'Video Games')]</videoGamestab>
+	           <mp3Playerstab>//a[contains(text(),'MP3 Players')]</mp3Playerstab>
+	           <accessoriestab>//a[contains(text(),'Accessories')]</accessoriestab>
+	           <moretab>//a[contains(text(),'More')]</moretab>
+	       </tabs>
+	       <productPage>
+	           <prod1Details>//div[@id='left']/ul/li/div[2]</prod1Details>
+	           <prod1Accessories>//a[contains(text(),'Details')]</prod1Accessories>
+	           <updateCart>//a[contains(text(),'Update Cart')]</updateCart>
+	           <addToCart>//div[@id='scroller']/div[2]/ul/li/div/div[2]/div[2]/a[2]/img</addToCart>
+	           <prod1DetailAddToCart>//div[@id='left']/div/div[3]/div[3]/div[3]/a/img</prod1DetailAddToCart>
+	           <prod1AudioDevices>//div[@id='left']/ul/li/div[2]/a</prod1AudioDevices>
+	           <checkout>//input[@value='Check Out']</checkout>
+	           <reviewOrder>//input[@value='Review Order']</reviewOrder>
+	           <submitOrder>//input[@value='Submit Order']</submitOrder>
+	       </productPage>
+	       <billingInfoPage>
+	           <billInfoEmail>//input[@id='email']</billInfoEmail>
+	           <billInfoFirstName>firstName</billInfoFirstName>
+	           <billInfoLastName>lastName</billInfoLastName>
+	           <billInfoCompany>company</billInfoCompany>
+	           <billInfoAddress1>address1</billInfoAddress1>
+	           <billInfoAddress2>address2</billInfoAddress2>
+	           <billInfoCity>city</billInfoCity>
+	           <billInfoState>state</billInfoState>
+	           <billInfoPostCode>postCode</billInfoPostCode>
+	           <billInfoPhoneNumber>phoneNumber</billInfoPhoneNumber>
+	           <billInfoComments>//textarea[@name='comments']</billInfoComments>
+	       </billingInfoPage>
+	       <cardInfoPage>
+	           <cardInfoCardType>//form[@id='contact']/div[4]/fieldset/div/div/label[2]/input</cardInfoCardType>
+	           <cardInfoCardNumber>cardNumber</cardInfoCardNumber>
+	           <cardInfoSecurityNumber>securityNumber</cardInfoSecurityNumber>
+	           <cardInfoNameOnCard>nameOnCard</cardInfoNameOnCard>
+	       </cardInfoPage>
+</yuiwidget>
+</phresco>
+</environment>
