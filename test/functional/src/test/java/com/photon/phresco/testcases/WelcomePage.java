@@ -10,7 +10,7 @@ import org.junit.Test;
 import com.photon.phresco.Screens.WelcomeScreen;
 import com.photon.phresco.uiconstants.PhrescoUiConstants;
 import com.photon.phresco.uiconstants.UIConstants;
-import com.photon.phresco.uiconstants.YUIWidgetData;
+import com.photon.phresco.uiconstants.WidgetData;
 
 public class WelcomePage {
 
@@ -19,7 +19,7 @@ public class WelcomePage {
 	private static WelcomeScreen welcomeScreen;
 	private static String methodName;
 	private static String selectedBrowser;
-	private static YUIWidgetData yuiWidgetConstants;
+	private static WidgetData WidgetConstants;
 
 	// private Log log = LogFactory.getLog(getClass());
 
@@ -29,7 +29,7 @@ public class WelcomePage {
 			phrescoUIConstants = new PhrescoUiConstants();
 			uiConstants = new UIConstants();
 			// assertNotNull(uiConstants);
-			yuiWidgetConstants = new YUIWidgetData();
+			WidgetConstants = new WidgetData();
 			launchingBrowser();
 			// menuScreen = welcomeScreen.menuScreen(uiConstants);
 			methodName = Thread.currentThread().getStackTrace()[1]
@@ -46,7 +46,7 @@ public class WelcomePage {
 					+ "/";
 			selectedBrowser = phrescoUIConstants.BROWSER;
 			welcomeScreen = new WelcomeScreen(selectedBrowser, applicationURL,
-					phrescoUIConstants.CONTEXT, yuiWidgetConstants, uiConstants);
+					phrescoUIConstants.CONTEXT, WidgetConstants, uiConstants);
 		} catch (Exception exception) {
 			exception.printStackTrace();
 
@@ -59,7 +59,7 @@ public class WelcomePage {
 			IOException, Exception {
 		try {
 			Assert.assertNotNull(welcomeScreen);
-	//		welcomeScreen.isElementPresent(this.uiConstants.COMPUTERS);
+			// Thread.sleep(10000);
 		} catch (Exception t) {
 			t.printStackTrace();
 

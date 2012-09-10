@@ -3,7 +3,7 @@ package com.photon.phresco.Screens;
 import java.io.IOException;
 
 import com.photon.phresco.uiconstants.UIConstants;
-import com.photon.phresco.uiconstants.YUIWidgetData;
+import com.photon.phresco.uiconstants.WidgetData;
 
 public class PhotonAbstractScreen extends BaseScreen {
 
@@ -14,14 +14,11 @@ public class PhotonAbstractScreen extends BaseScreen {
 	
 
 
-	protected PhotonAbstractScreen(String selectedBrowser,String applicationURL,String applicationContext,YUIWidgetData yuiWidgetConstants,UIConstants uiConstants) throws IOException,
+	protected PhotonAbstractScreen(String selectedBrowser,String applicationURL,String applicationContext,WidgetData WidgetConstants,UIConstants uiConstants) throws IOException,
 			Exception {
-		super(selectedBrowser, applicationURL,applicationContext,yuiWidgetConstants,uiConstants);
+		super(selectedBrowser, applicationURL,applicationContext,WidgetConstants,uiConstants);
 
-	protected PhotonAbstractScreen(String host, int port, String browser,
-			String url, String speed, String context) throws IOException,Exception {
-		super(host, port, browser, url, speed, context);
+	
 
-	}
-
+}
 }
