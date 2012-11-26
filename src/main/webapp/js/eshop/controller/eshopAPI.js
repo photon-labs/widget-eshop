@@ -383,7 +383,7 @@ YUI.add("eshopAPI", function(Y) {
             });          
        },
        
-        doLogin : function (listeners,data,reviewData) {
+        /* doLogin : function (listeners,data,reviewData) {
             var responseHandler = this.populateResponseToWidgets;
             var eshopAPI = this;
             console.info('reached login method');
@@ -405,7 +405,40 @@ YUI.add("eshopAPI", function(Y) {
                     
             }, 'json');
             
-        },
+        }, */
+		
+		doLogin : function (uiWidgetsToPopulate,data,listeners, callback) {
+			var responseHandler = this.populateResponseToWidgets;
+			var eshopAPI = this;
+			
+			var jsonString = Y.QueryString.stringify(data);
+			var cfg = {
+				method: 'POST',
+				xdr: { use: 'native', dataType: 'json'}, 
+				data: jsonString,
+			};
+			var GlobalEventHandler = {
+				success: function(id, o) {
+					var res = o.responseText;
+					var responseresult = Y.JSON.parse(res);
+					
+					var args = {};
+					args.complete = uiWidgetsToPopulate;
+					data.response = responseresult;
+					callback(responseresult.message);
+					if(responseresult.message == 'success'){
+						eshopAPI.set("userId", responseresult.userId);
+						eshopAPI.set("userData", data);
+					}
+					listeners.onUpdateListener(data);
+				},
+			};
+
+			var url = 'http://172.16.17.180:2020/eshop/rest/api/post/login',
+			request = Y.io(url, cfg);
+			Y.on('io:success', GlobalEventHandler.success, Y); 
+
+		},
 		
 		logoutUser : function (listeners,data) {
             var responseHandler = this.populateResponseToWidgets;
@@ -424,21 +457,24 @@ YUI.add("eshopAPI", function(Y) {
                 // Do something with the request
             }, 'json');
         },
-        doRegister : function (uiWidgetsToPopulate,data,reviewData) {
+		doRegister : function (uiWidgetsToPopulate,data,reviewData) {
             var responseHandler = this.populateResponseToWidgets;
             var eshopAPI = this;
             var args = {};
             args.complete = uiWidgetsToPopulate;
+			$.support.cors = true;
             $.post(eshopAPI.wsURL + '/rest/api/post/register', data, function(response) {
                 // Do something with the request
                 data.response = response;
                 if(response.userId > 0){
+				eshopAPI.set("res", response.successMessage);
                     eshopAPI.set("userData", data);
                 }
                 responseHandler(data, args);
                 
             }, 'json');
         },
+		
         postOrder : function (orderDetail, customerEmail, comments, productDetails, cartTotal, totalItem, userId) {
             var responseHandler = this.populateResponseToWidgets;
             var eshopAPI = this;

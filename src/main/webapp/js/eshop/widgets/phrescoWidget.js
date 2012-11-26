@@ -823,7 +823,9 @@ YUI.add("phrescoWidget", function(Y) {
             reviewData.review = review;
             
             var listeners = widgetObj.get("onSelectedListeners");
-                apiRef.doLogin(listeners, data, reviewData);
+                apiRef.doLogin(listeners, data, reviewData, function(callback){
+				
+				});
          }
         },
         userRegister: function () {
