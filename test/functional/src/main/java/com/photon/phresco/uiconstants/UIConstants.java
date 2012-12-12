@@ -8,6 +8,15 @@ public class UIConstants {
 
 	private ReadXMLFile readXml;
 	
+	//registration
+	public String REG_LINK="reg_link";
+	public String REG_FIRSTNAME ="regfirstname";
+	public String REG_LASTNAME="reglastname";
+	public String REG_EMAIL="regemail";
+	public String REG_PASSWORD="regpassword";
+	public String REG_PHONENUMBER="regphonenumber";
+	public String REG_SUBMIT_BUTTON="regsubmitbutton";
+	
 	public String TELEVISION = "televisiontab";
 	public String COMPUTERS = "computerstab";
 	public String MOBILE = "mobiletab";

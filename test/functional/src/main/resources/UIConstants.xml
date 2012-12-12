@@ -2,7 +2,16 @@
 <environment>
 <phresco>
 <yuiwidget>
-     <tabs>
+           <registration>
+               <reg_link>//a[contains(text(),'Sign up')]</reg_link>
+	           <regfirstname>//input[@id='regfirstname']</regfirstname>   
+	           <reglastname>//input[@id='reglastname']</reglastname> 
+	           <regemail>//input[@id='regemail']</regemail> 
+	           <regpassword>//input[@id='regpassword']</regpassword>
+	           <regphonenumber>//input[@id='regphonenumber']</regphonenumber>
+	           <regsubmitbutton>//div/input</regsubmitbutton>  
+           </registration>
+           <tabs>
 	           <hometab>//a[contains(text(),'Products')]</hometab>
 	           <televisiontab>//a[contains(text(),'Television')]</televisiontab>
 	           <computerstab>//a[contains(text(),'Computers')]</computerstab>

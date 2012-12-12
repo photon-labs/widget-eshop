@@ -6,6 +6,13 @@ public class WidgetData {
 
 	private ReadXMLFile readXml;
 
+	//REGISTRATION
+	public String REG_FIRSTNAME_VALUE="firstname";
+	public String REG_LASTNAME_VALUE="lastname";
+	public String REG_EMAIL_VALUE="email";
+	public String REG_PASSWORD_VALUE="password";
+	public String REG_PHONENUMBER="phonenumber";
+	public String REG_SUCCESS_MSG="reg_text-msg";
 	
 	public String COMMENTS_VALUE="billInfoCommentsValue";
 	public String EMAIL_VALUE="billInfoEmailValue";

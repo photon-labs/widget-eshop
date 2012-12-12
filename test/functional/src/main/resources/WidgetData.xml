@@ -2,6 +2,14 @@
 <environment>
 <phresco>
 <mobilewidget>
+     <registration>
+              <firstname>Phresco</firstname>
+               <lastname>Tester</lastname>
+               <email>PhrescoTester@photoninfotech.com</email>
+               <password>Phresco</password>
+               <phonenumber>5555555555</phonenumber>
+               <reg_text-msg>Success</reg_text-msg>
+      </registration>
      <billingInfoPage>
 	           <billInfoCommentsValue>First order</billInfoCommentsValue>
 	           <billInfoPhoneNumberValue>+1 212-398-2449</billInfoPhoneNumberValue>

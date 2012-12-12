@@ -5,6 +5,8 @@ import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
@@ -14,6 +16,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,11 +24,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.google.common.base.Function;
 import com.photon.phresco.selenium.util.Constants;
 import com.photon.phresco.selenium.util.GetCurrentDir;
+import com.photon.phresco.selenium.util.ScreenActionFailedException;
 import com.photon.phresco.selenium.util.ScreenException;
 import com.photon.phresco.uiconstants.UIConstants;
 import com.photon.phresco.uiconstants.WidgetData;
@@ -35,13 +42,14 @@ import com.photon.phresco.uiconstants.PhrescoUiConstants;
 
 public class BaseScreen {
 
-	private static WebDriver driver;
+	private  WebDriver driver;
 	private ChromeDriverService chromeService;
-	private static Log log = LogFactory.getLog("BaseScreen");
+	private  Log log = LogFactory.getLog("BaseScreen");
 	private WebElement element;
 	private WidgetData yuiWidgetConstants;
 	private UIConstants uiConstants;
-	private static PhrescoUiConstants phrsc;
+	private  PhrescoUiConstants phrsc;
+	DesiredCapabilities capabilities;
 
 	// private Log log = LogFactory.getLog(getClass());
 
@@ -49,33 +57,44 @@ public class BaseScreen {
 
 	}
 
-	public BaseScreen(String selectedBrowser, String applicationURL,
+	public BaseScreen(String selectedBrowser,String selectedPlatform, String applicationURL,
 			String applicationContext, WidgetData yuiWidgetConstants,
-			UIConstants uiConstants) throws ScreenException {
+			UIConstants uiConstants) throws AWTException, IOException, ScreenActionFailedException {
 
 		this.yuiWidgetConstants = yuiWidgetConstants;
 		this.uiConstants = uiConstants;
-		instantiateBrowser(selectedBrowser, applicationURL, applicationContext);
+		try {
+			instantiateBrowser(selectedBrowser, selectedPlatform, applicationURL, applicationContext);
+		} catch (ScreenException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	public void instantiateBrowser(String selectedBrowser,
+	public void instantiateBrowser(String selectedBrowser,String selectedPlatform,
 			String applicationURL, String applicationContext)
-			throws ScreenException {
+					 throws ScreenException,
+						MalformedURLException  {
 
+		URL server = new URL("http://localhost:4444/wd/hub/");
 		if (selectedBrowser.equalsIgnoreCase(Constants.BROWSER_CHROME)) {
-
+			log.info("-------------***LAUNCHING GOOGLECHROME***--------------");
 			try {
-				// "D:/Selenium-jar/chromedriver_win_19.0.1068.0/chromedriver.exe"
-				chromeService = new ChromeDriverService.Builder()
-						.usingDriverExecutable(new File(getChromeLocation()))
 
-						.usingAnyFreePort().build();
-				log.info("-------------***LAUNCHING GOOGLECHROME***--------------");
-				driver = new ChromeDriver(chromeService);
-				//driver.manage().window().maximize();
-				windowResize();
-				driver.navigate().to(applicationURL + applicationContext);
-
+				/*
+				 * chromeService = new ChromeDriverService.Builder()
+				 * .usingChromeDriverExecutable( new File(getChromeLocation()))
+				 * .usingAnyFreePort().build(); log.info(
+				 * "-------------***LAUNCHING GOOGLECHROME***--------------");
+				 * chromeService.start();
+				 */
+				capabilities = new DesiredCapabilities();
+				capabilities.setBrowserName("chrome");
+				/*
+				 * break; capabilities.setPlatform(Platform)
+				 * capabilities.setPlatform(selectedPlatform); driver = new
+				 * RemoteWebDriver(server, capabilities);
+				 */
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -83,45 +102,49 @@ public class BaseScreen {
 		} else if (selectedBrowser.equalsIgnoreCase(Constants.BROWSER_IE)) {
 			log.info("---------------***LAUNCHING INTERNET EXPLORE***-----------");
 			driver = new InternetExplorerDriver();
-			windowResize();
-			driver.navigate().to(applicationURL + applicationContext);
+			capabilities = new DesiredCapabilities();
+			capabilities.setBrowserName("iexplore");
+			// break;
+			// capabilities.setPlatform(selectedPlatform);
 
 		} else if (selectedBrowser.equalsIgnoreCase(Constants.BROWSER_FIREFOX)) {
 			log.info("-------------***LAUNCHING FIREFOX***--------------");
-			driver = new FirefoxDriver();
-			//driver.manage().window().maximize();
-			windowResize();
-			driver.navigate().to(applicationURL + applicationContext);
-
-		}
-
-		else if (selectedBrowser.equalsIgnoreCase(Constants.BROWSER_OPERA)) {
-			log.info("-------------***LAUNCHING OPERA***--------------");
-			// WebDriver driver = new OperaDriver();
-
-			System.out.println("******entering window maximize********");
-			Robot robot;
-			try {
-				robot = new Robot();
-				robot.keyPress(KeyEvent.VK_ALT);
-				robot.keyPress(KeyEvent.VK_SPACE);
-				robot.keyRelease(KeyEvent.VK_ALT);
-				robot.keyRelease(KeyEvent.VK_SPACE);
-				robot.keyPress(KeyEvent.VK_X);
-				robot.keyRelease(KeyEvent.VK_X);
-			} catch (AWTException e) {
-				e.printStackTrace();
-			}
-			driver.navigate().to(applicationURL + applicationContext);
+			capabilities = new DesiredCapabilities();
+			capabilities.setBrowserName("firefox");
+			System.out.println("-----------checking the firefox-------");
+			// break;
+			// driver = new RemoteWebDriver(server, capabilities);
 
 		} else {
 			throw new ScreenException(
-					"------Only FireFox,InternetExplore,Chrome and Opera  works-----------");
+					"------Only FireFox,InternetExplore and Chrome works-----------");
 		}
-	}
 
+		/**
+		 * These 3 steps common for all the browsers
+		 */
+
+		/* for(int i=0;i<platform.length;i++) */
+
+		if (selectedPlatform.equalsIgnoreCase("WINDOWS")) {
+			capabilities.setCapability(CapabilityType.PLATFORM,
+					Platform.WINDOWS);
+			// break;
+		} else if (selectedPlatform.equalsIgnoreCase("LINUX")) {
+			capabilities.setCapability(CapabilityType.PLATFORM, Platform.LINUX);
+			// break;
+		} else if (selectedPlatform.equalsIgnoreCase("MAC")) {
+			capabilities.setCapability(CapabilityType.PLATFORM, Platform.MAC);
+			// break;
+		}
+		driver = new RemoteWebDriver(server, capabilities);
+		driver.get(applicationURL + applicationContext);
+		// driver.manage().window().maximize();
+		// driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+
+	}
 	
-	public static void windowResize()
+	public  void windowResize()
 	{
 		phrsc = new PhrescoUiConstants();
 		String resolution = phrsc.RESOLUTION;		
@@ -158,7 +181,7 @@ public class BaseScreen {
 		}
 	}
 
-	public static String getChromeLocation() {
+	public  String getChromeLocation() {
 
 		log.info("getChromeLocation:*****CHROME TARGET LOCATION FOUND***");
 		String directory = System.getProperty("user.dir");
@@ -167,7 +190,7 @@ public class BaseScreen {
 		return location;
 	}
 
-	public static String getChromeFile() {
+	public  String getChromeFile() {
 		if (System.getProperty("os.name").startsWith(Constants.WINDOWS_OS)) {
 			log.info("*******WINDOWS MACHINE FOUND*************");
 
@@ -236,13 +259,14 @@ public class BaseScreen {
 		}
 
 		catch (Exception e) {
-			File scrFile = ((TakesScreenshot) driver)
+			/*File scrFile = ((TakesScreenshot) driver)
 					.getScreenshotAs(OutputType.FILE);
 			FileUtils.copyFile(scrFile,
 					new File(GetCurrentDir.getCurrentDirectory() + "\\"
 							+ methodName + ".png"));
 			throw new RuntimeException("waitForElementPresent"
-					+ super.getClass().getSimpleName() + " failed", e);
+					+ super.getClass().getSimpleName() + " failed", e);*/
+			Assert.assertNull(e);
 
 		}
 	}
@@ -260,6 +284,45 @@ public class BaseScreen {
 
 	}
 
+	public void Registration(String methodName)throws Exception {
+    	if (StringUtils.isEmpty(methodName)) {
+			methodName = Thread.currentThread().getStackTrace()[1].getMethodName();;
+		}
+    	
+    	waitForElementPresent(uiConstants.REG_LINK,methodName);
+    	getXpathWebElement(uiConstants.REG_LINK);
+    	element.click();
+  
+    	waitForElementPresent(uiConstants.REG_FIRSTNAME,methodName);
+    	getXpathWebElement(uiConstants.REG_FIRSTNAME);
+    	element.sendKeys(this.yuiWidgetConstants.REG_FIRSTNAME_VALUE);
+    	
+    	waitForElementPresent(uiConstants.REG_LASTNAME,methodName);
+    	getXpathWebElement(uiConstants.REG_LASTNAME);
+    	element.sendKeys(this.yuiWidgetConstants.REG_LASTNAME_VALUE);
+    
+    	waitForElementPresent(uiConstants.REG_EMAIL,methodName);
+    	getXpathWebElement(uiConstants.REG_EMAIL);
+    	element.sendKeys(this.yuiWidgetConstants.REG_EMAIL_VALUE);
+    	
+    	waitForElementPresent(uiConstants.REG_PASSWORD,methodName);
+    	getXpathWebElement(uiConstants.REG_PASSWORD);
+    	element.sendKeys(this.yuiWidgetConstants.REG_PASSWORD_VALUE);
+    	
+    	
+    	waitForElementPresent(uiConstants.REG_PHONENUMBER,methodName);
+    	getXpathWebElement(uiConstants.REG_PHONENUMBER);
+    	element.sendKeys(this.yuiWidgetConstants.REG_PHONENUMBER);
+    
+    	
+    	waitForElementPresent(uiConstants.REG_SUBMIT_BUTTON,methodName);
+    	getXpathWebElement(uiConstants.REG_SUBMIT_BUTTON);
+    	element.click();
+    	Thread.sleep(2000);
+    	isTextPresent(yuiWidgetConstants.REG_SUCCESS_MSG);
+    	
+}
+    
 	public void billingInfo(String methodName) throws Exception {
 
 		if (StringUtils.isEmpty(methodName)) {
@@ -572,16 +635,20 @@ public class BaseScreen {
 
 	}
 
-	public void isTextPresent(String textValue) {
-		if (textValue != null) {
-			Boolean textCheck = driver.getPageSource().contains(textValue);
-			Assert.assertTrue("Text present", textCheck);
-		} else {
-
-			throw new RuntimeException("----HelloWorld Text is not existed----");
-
+	public void isTextPresent(String text) {
+		if (text!= null){
+		boolean value=driver.findElement(By.tagName("body")).getText().contains(text);	
+		Assert.assertTrue(value);   
+	    
+	    }
+		else
+		{
+			throw new RuntimeException("---- Text not existed----");
 		}
-	}
+	    
+	    
+	    
+	}	
 
 	public void isElementPresent(String element) throws Exception {
 
