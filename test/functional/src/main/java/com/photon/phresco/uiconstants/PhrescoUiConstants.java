@@ -14,7 +14,7 @@ public class PhrescoUiConstants {
 	public String PROTOCOL = "protocol";
 	public String PORT= "port";
 //	public String SPEED = "speed";
-	public String RESOLUTION="resolution";
+	public String RESOLUTION="Resolution";
 	
 
     public PhrescoUiConstants() {
