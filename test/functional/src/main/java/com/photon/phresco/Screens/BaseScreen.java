@@ -101,9 +101,9 @@ public class BaseScreen {
 
 		} else if (selectedBrowser.equalsIgnoreCase(Constants.BROWSER_IE)) {
 			log.info("---------------***LAUNCHING INTERNET EXPLORE***-----------");
-			driver = new InternetExplorerDriver();
 			capabilities = new DesiredCapabilities();
-			capabilities.setBrowserName("iexplore");
+			capabilities.setJavascriptEnabled(true);
+			capabilities.setBrowserName("iexplorer");
 			// break;
 			// capabilities.setPlatform(selectedPlatform);
 
@@ -112,6 +112,28 @@ public class BaseScreen {
 			capabilities = new DesiredCapabilities();
 			capabilities.setBrowserName("firefox");
 			System.out.println("-----------checking the firefox-------");
+		}
+			
+			else if (selectedBrowser.equalsIgnoreCase(Constants.BROWSER_OPERA)) {
+				log.info("-------------***LAUNCHING OPERA***--------------");
+				capabilities = new DesiredCapabilities();
+				capabilities.setBrowserName("opera");
+				capabilities.setCapability("opera.autostart ",true);
+
+			
+				System.out.println("-----------checking the OPERA-------");
+			
+
+			} 
+			else if (selectedBrowser.equalsIgnoreCase(Constants.BROWSER_SAFARI)) {
+				log.info("-------------***LAUNCHING SAFARI***--------------");
+				capabilities = new DesiredCapabilities();
+				capabilities.setBrowserName("safari");
+				capabilities.setCapability("safari.autostart ", true);
+
+				System.out.println("-----------checking the SAFARI-------");
+
+
 			// break;
 			// driver = new RemoteWebDriver(server, capabilities);
 
