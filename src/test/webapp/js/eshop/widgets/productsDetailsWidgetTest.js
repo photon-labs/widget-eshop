@@ -4,26 +4,33 @@ YUI.add('productsDetailsWidgetTest', function(Y) {
 		var suite = new Y.Test.Suite("ProductsDetailsWidgetTest");
 
 		//add test cases
+		var wsConfig = new Y.Phresco.WSConfig();
+		var configuration = undefined;
 		var testCase = new Y.Test.Case({
 
 			name: "ProductsDetailsWidgetTest",
 			"ProductsDetailsWidgetTest with same data": function () {
 				var output1, output2, jsonData;
-			
-				var productDetailsNode = Y.Node.create('<div></div>');
-				var eshopAPI = new Y.Phresco.EShopAPI({"context":"eshop", "host":"172.16.17.180" ,"port":"2020", "protocol":"http"});
-				var productDetailsWidget = new Y.Phresco.ProductDetailsWidget({
-					targetNode : productDetailsNode,
-					apiReference : eshopAPI
+				wsConfig.getWsConfig(function(response){
+						configuration = response;
 				});
-				var phresco = new Y.Phresco.PhrescoWidget();
-				var productId =1;
-				var config = {web:{web:"images/web/"}};
-				eshopAPI.set("config", config);
-				eshopAPI.set("userId", 0);
-				eshopAPI.getProductDetails(productDetailsWidget, productId, productDetailsWidget);
+				
 				this.wait(function(){
-					jsonData = eshopAPI.get("resultData");
+					var productDetailsNode = Y.Node.create('<div></div>');
+					var eshopAPI = new Y.Phresco.EShopAPI(configuration);
+					var productDetailsWidget = new Y.Phresco.ProductDetailsWidget({
+						targetNode : productDetailsNode,
+						apiReference : eshopAPI
+					});
+					var phresco = new Y.Phresco.PhrescoWidget();
+					var productId =1;
+					var config = {web:{web:"images/web/"}};
+					eshopAPI.set("config", config);
+					eshopAPI.set("userId", 0);
+				eshopAPI.getProductDetails(productDetailsWidget, productId, productDetailsWidget, function(data){
+				eshopAPI.getProductReviews(data,productDetailsWidget, productId, productDetailsWidget, function(jsonData){
+				
+					//jsonData = eshopAPI.get("resultData");
 					productDetailsWidget.createContent(productDetailsNode, jsonData)
 					output1 = productDetailsWidget.getTargetNode().get('innerHTML');	
 					if (jsonData !== null) {
@@ -205,27 +212,35 @@ YUI.add('productsDetailsWidgetTest', function(Y) {
 					output2 = targetNode.get('innerHTML');
 					
 					Y.Assert.areEqual(output1, output2, "ProductDetailsWidget success case");
+					
+					});
+				});	
+					
 				}, 1000);
 				
-			},
+			} ,
 			
 			"ProductsDetailsWidgetTest different same data": function () {
 				var output1, output2, jsonData;
 			
 				var productDetailsNode = Y.Node.create('<div></div>');
-				var eshopAPI = new Y.Phresco.EShopAPI({"context":"eshop", "host":"172.16.17.180" ,"port":"2020", "protocol":"http"});
-				var productDetailsWidget = new Y.Phresco.ProductDetailsWidget({
-					targetNode : productDetailsNode,
-					apiReference : eshopAPI
+				wsConfig.getWsConfig(function(response){
+						configuration = response;
 				});
-				var phresco = new Y.Phresco.PhrescoWidget();
-				var productId =1;
-				var config = {web:{web:"images/web/"}};
-				eshopAPI.set("config", config);
-				eshopAPI.set("userId", 0);
-				eshopAPI.getProductDetails(productDetailsWidget, productId, productDetailsWidget);
+				
 				this.wait(function(){
-					jsonData = eshopAPI.get("resultData");
+					var eshopAPI = new Y.Phresco.EShopAPI(configuration);
+					var productDetailsWidget = new Y.Phresco.ProductDetailsWidget({
+						targetNode : productDetailsNode,
+						apiReference : eshopAPI
+					});
+					var phresco = new Y.Phresco.PhrescoWidget();
+					var productId =1;
+					var config = {web:{web:"images/web/"}};
+					eshopAPI.set("config", config);
+					eshopAPI.set("userId", 0);
+				eshopAPI.getProductDetails(productDetailsWidget, productId, productDetailsWidget, function(data){
+				eshopAPI.getProductReviews(data,productDetailsWidget, productId, productDetailsWidget, function(jsonData){
 					productDetailsWidget.createContent(productDetailsNode, jsonData)
 					output1 = productDetailsWidget.getTargetNode().get('innerHTML');	
 					if (jsonData !== null) {
@@ -407,25 +422,32 @@ YUI.add('productsDetailsWidgetTest', function(Y) {
 					output2 = targetNode.get('innerHTML');
 					
 					Y.Assert.areNotEqual(output1, output2, "ProductDetailsWidget success case");
-				}, 1000);
+					});
+				});	
+			}, 1000);
 				
 			},
 			"ProductsDetailsWidgetTest different userid same data": function () {
 				var output1, output2, jsonData;
 			
 				var productDetailsNode = Y.Node.create('<div></div>');
-				var eshopAPI = new Y.Phresco.EShopAPI({"context":"eshop", "host":"172.16.17.180" ,"port":"2020", "protocol":"http"});
-				var productDetailsWidget = new Y.Phresco.ProductDetailsWidget({
-					targetNode : productDetailsNode,
-					apiReference : eshopAPI
+				wsConfig.getWsConfig(function(response){
+						configuration = response;
 				});
-				var phresco = new Y.Phresco.PhrescoWidget();
-				var productId =1;
-				var config = {web:{web:"images/web/"}};
-				eshopAPI.set("config", config);
-				eshopAPI.set("userId", 1);
-				eshopAPI.getProductDetails(productDetailsWidget, productId, productDetailsWidget);
+				
 				this.wait(function(){
+					var eshopAPI = new Y.Phresco.EShopAPI(configuration);
+					var productDetailsWidget = new Y.Phresco.ProductDetailsWidget({
+						targetNode : productDetailsNode,
+						apiReference : eshopAPI
+					});
+					var phresco = new Y.Phresco.PhrescoWidget();
+					var productId =1;
+					var config = {web:{web:"images/web/"}};
+					eshopAPI.set("config", config);
+					eshopAPI.set("userId", 1);
+				eshopAPI.getProductDetails(productDetailsWidget, productId, productDetailsWidget, function(data){
+				eshopAPI.getProductReviews(data,productDetailsWidget, productId, productDetailsWidget, function(jsonData){
 					jsonData = eshopAPI.get("resultData");
 					productDetailsWidget.createContent(productDetailsNode, jsonData)
 					output1 = productDetailsWidget.getTargetNode().get('innerHTML');	
@@ -608,9 +630,11 @@ YUI.add('productsDetailsWidgetTest', function(Y) {
 					output2 = targetNode.get('innerHTML');
 					
 					Y.Assert.areNotEqual(output1, output2, "ProductDetailsWidget success case");
+					});
+					});
 				}, 1000);
 				
-			}
+			} 
 			
 		});
 		

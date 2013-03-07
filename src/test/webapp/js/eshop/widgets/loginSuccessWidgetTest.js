@@ -4,6 +4,7 @@ YUI.add('loginSuccessWidgetTest', function(Y) {
 		var suite = new Y.Test.Suite("LoginSuccessWidgetTest");
 
 		//add test cases
+		var wsConfig = new Y.Phresco.WSConfig();
 		var testCase = new Y.Test.Case({
 
 			name: "LoginSuccessWidgetTest",
@@ -11,7 +12,8 @@ YUI.add('loginSuccessWidgetTest', function(Y) {
 				var output1, output2;
 			
 				var loginSuccessNode = Y.Node.create('<div></div>');
-				var eshopAPI = new Y.Phresco.EShopAPI({"context":"eshop", "host":"172.16.17.180" ,"port":"2020", "protocol":"http"});
+				wsConfig.getWsConfig(function(response){
+				var eshopAPI = new Y.Phresco.EShopAPI(response);
 				var phresco = new Y.Phresco.PhrescoWidget();
 				
 				var jsonData = {};
@@ -69,13 +71,15 @@ YUI.add('loginSuccessWidgetTest', function(Y) {
 				targetNode.appendChild(contactus);  
 				output2 = targetNode.get('innerHTML');
 				Y.Assert.areEqual(output1, output2, "LoginSuccessWidget Success case");
+			});
 			},
 			
 			"LoginSuccessWidgetTest with success message with different data": function () {
 				var output1, output2;
 			
 				var loginSuccessNode = Y.Node.create('<div></div>');
-				var eshopAPI = new Y.Phresco.EShopAPI({"context":"eshop", "host":"172.16.17.180" ,"port":"2020", "protocol":"http"});
+				wsConfig.getWsConfig(function(response){
+				var eshopAPI = new Y.Phresco.EShopAPI(response);
 				var phresco = new Y.Phresco.PhrescoWidget();
 				
 				var jsonData = {};
@@ -134,13 +138,15 @@ YUI.add('loginSuccessWidgetTest', function(Y) {
 				output2 = targetNode.get('innerHTML');
 			
 				Y.Assert.areNotEqual(output1, output2, "LoginSuccessWidget Failure case");
+				});
 			},
 			
 			"LoginSuccessWidgetTest with failure message with same data": function () {
 				var output1, output2;
 			
 				var loginSuccessNode = Y.Node.create('<div></div>');
-				var eshopAPI = new Y.Phresco.EShopAPI({"context":"eshop", "host":"172.16.17.180" ,"port":"2020", "protocol":"http"});
+				wsConfig.getWsConfig(function(response){
+				var eshopAPI = new Y.Phresco.EShopAPI(response);
 				var phresco = new Y.Phresco.PhrescoWidget();
 				
 				var jsonData = {};
@@ -199,13 +205,15 @@ YUI.add('loginSuccessWidgetTest', function(Y) {
 				output2 = targetNode.get('innerHTML');
 				
 				Y.Assert.areEqual(output1, output2, "LoginSuccessWidget success case");
+				});
 			},
 			
 			"LoginSuccessWidgetTest with failure message with different data": function () {
 				var output1, output2;
 			
 				var loginSuccessNode = Y.Node.create('<div></div>');
-				var eshopAPI = new Y.Phresco.EShopAPI({"context":"eshop", "host":"172.16.17.180" ,"port":"2020", "protocol":"http"});
+				wsConfig.getWsConfig(function(response){
+				var eshopAPI = new Y.Phresco.EShopAPI(response);
 				var phresco = new Y.Phresco.PhrescoWidget();
 				
 				var jsonData = {};
@@ -264,6 +272,7 @@ YUI.add('loginSuccessWidgetTest', function(Y) {
 				output2 = targetNode.get('innerHTML');
 				
 				Y.Assert.areNotEqual(output1, output2, "LoginSuccessWidget failure case");
+				});	
 			}
 			
 		});
