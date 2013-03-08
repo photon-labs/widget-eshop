@@ -146,8 +146,7 @@ public class BaseScreen {
 		 * These 3 steps common for all the browsers
 		 */
 
-		/* for(int i=0;i<platform.length;i++) */
-
+		
 		if (selectedPlatform.equalsIgnoreCase("WINDOWS")) {
 			capabilities.setCapability(CapabilityType.PLATFORM,
 					Platform.WINDOWS);

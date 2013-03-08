@@ -25,7 +25,7 @@ public class ReadXMLFile {
 	
 	
 	public ReadXMLFile() throws ScreenException {
-		log.info("@ReadXMLFile Constructor::loading *****PhrescoUIConstants*****");
+		log.info("@ReadXMLFile Constructor::loading *****PhrescoUIConstants****");
 		loadPhrescoConstansts(phrsc);
 	}
 
