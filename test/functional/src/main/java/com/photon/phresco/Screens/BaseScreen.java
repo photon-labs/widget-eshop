@@ -160,7 +160,7 @@ public class BaseScreen {
 			// break;
 		}
 		driver = new RemoteWebDriver(server, capabilities);
-		windowResize();
+		//windowResize();
 		driver.get(applicationURL + applicationContext);
 		// driver.manage().window().maximize();
 		// driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
