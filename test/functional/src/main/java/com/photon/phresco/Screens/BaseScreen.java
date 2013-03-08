@@ -139,7 +139,7 @@ public class BaseScreen {
 
 		} else {
 			throw new ScreenException(
-					"------Only FireFox,InternetExplore and Chrome works-----------");
+					"------Only FireFox,InternetExplore and Chrome works----------");
 		}
 
 		/**
