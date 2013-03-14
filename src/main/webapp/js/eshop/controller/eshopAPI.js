@@ -73,7 +73,6 @@ YUI.add("eshopAPI", function(Y) {
         getConfig : function (uiWidgetsToPopulate) {
             var responseHandler = this.populateResponseToWidgets;
             var eshopAPI = this;
-            ('wsURL = ', eshopAPI.wsURL);
             $.ajax({
                 type: 'GET',
                 dataType: 'jsonp',
@@ -122,7 +121,6 @@ YUI.add("eshopAPI", function(Y) {
 				args.complete = uiWidgetsToPopulate;
 				var html = "";
 				responseHandler(data, args);
-				callback(data)
 			});
         },
 		
@@ -292,9 +290,7 @@ YUI.add("eshopAPI", function(Y) {
 				var args = {};
 				args.complete = uiWidgetsToPopulate;
 				eshopAPI.set("productDetails", data);
-				("DATAin productdetails", data);
 				eshopAPI.getProductReviews(data, uiWidgetsToPopulate, productId, listeners);
-				callback(data);
 			});
        },
 		getOrderHistory : function (uiWidgetsToPopulate, userid, listeners) {

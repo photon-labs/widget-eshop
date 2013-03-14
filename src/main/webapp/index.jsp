@@ -114,7 +114,7 @@
         </script>
 
         <script type="text/javascript">
-            YUI({gallery: 'gallery-2012.06.20-20-07'}).use('node', 'widget', 'io-base', 'json-parse', 'io-xdr', 'querystring', "event-custom-base", "querystring-stringify-simple",'eshopAPI', 'phrescoWidget', 'phrescoEvent', 'navigationWidget', 'headerWidget', 'categoryWidget', 'sliderWidget', 'productsWidget','productDetailsWidget', 'topSellsWidget', 'footerWidget', 'myCartWidget', 'shoppingCartWidget', 'orderFormWidget', 'orderSuccess', 'productOrderFormWidget','aboutusWidget', 'contactusWidget', 'inputex-yui3', 'loginWidget', 'registerWidget', 'registerSuccessWidget', 'loginSuccessWidget', 'orderHistoryWidget','wsConfig','ConfigReader', function(Y) {
+            YUI({gallery: 'gallery-2012.06.20-20-07'}).use('node', 'widget', 'io-base', 'json-parse', 'io-xdr', 'querystring', "event-custom-base", "querystring-stringify-simple",'eshopAPI', 'phrescoWidget', 'phrescoEvent', 'navigationWidget', 'headerWidget', 'categoryWidget', 'sliderWidget', 'productsWidget','productDetailsWidget', 'topSellsWidget', 'footerWidget', 'myCartWidget', 'shoppingCartWidget', 'orderFormWidget', 'orderSuccess', 'productOrderFormWidget','aboutusWidget', 'contactusWidget', 'inputex-yui3', 'loginWidget', 'registerWidget', 'registerSuccessWidget', 'loginSuccessWidget', 'orderHistoryWidget','WSConfig','ConfigReader', function(Y) {
 
                 Y.on("domready", function () {
 					var configJson = '<%= configJson %>';
