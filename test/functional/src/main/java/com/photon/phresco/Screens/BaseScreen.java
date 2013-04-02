@@ -107,11 +107,7 @@ public class BaseScreen {
 				 */
 				capabilities = new DesiredCapabilities();
 				capabilities.setBrowserName("chrome");
-				/*
-				 * break; capabilities.setPlatform(Platform)
-				 * capabilities.setPlatform(selectedPlatform); driver = new
-				 * RemoteWebDriver(server, capabilities);
-				 */
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -121,9 +117,7 @@ public class BaseScreen {
 			capabilities = new DesiredCapabilities();
 			capabilities.setJavascriptEnabled(true);
 			capabilities.setBrowserName("iexplorer");
-			// break;
-			// capabilities.setPlatform(selectedPlatform);
-
+			
 		} else if (selectedBrowser.equalsIgnoreCase(Constants.BROWSER_FIREFOX)) {
 			log.info("-------------***LAUNCHING FIREFOX***--------------");
 			capabilities = new DesiredCapabilities();
@@ -154,9 +148,23 @@ public class BaseScreen {
 			// break;
 			// driver = new RemoteWebDriver(server, capabilities);
 
-		} else {
+		}else if (selectedBrowser.equalsIgnoreCase(Constants.IPHONE_WEBDRIVER)) {
+			try{
+			log.info("-------------***LAUNCHING iPhoneWebDriver***--------------");
+			capabilities = new DesiredCapabilities();
+			capabilities.setBrowserName("iPhone");
+			capabilities.setJavascriptEnabled(true);
+			System.out.println("-----------Checking in iPhoneWebDriver-------");
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+		}
+    }
+
+			else {
 			throw new ScreenException(
-					"------Only FireFox,InternetExplore and Chrome works----------");
+					"------Only FireFox,InternetExplore ,Chrome and IphoneWebdriver works----------");
 		}
 
 		/**
