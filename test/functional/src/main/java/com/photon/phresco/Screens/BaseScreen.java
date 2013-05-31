@@ -18,8 +18,7 @@
 package com.photon.phresco.Screens;
 
 import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -37,14 +36,17 @@ import org.openqa.selenium.Platform;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.photon.phresco.model.YuiWidgetsData.YuiWidget;
+import com.photon.phresco.model.YuiWidgetsData.YuiWidget.BillingInfoPage;
+import com.photon.phresco.model.YuiWidgetsData.YuiWidget.CardInfoPage;
+import com.photon.phresco.model.YuiWidgetsData.YuiWidget.Registration;
 
 import com.google.common.base.Function;
 import com.photon.phresco.selenium.util.Constants;
@@ -63,7 +65,6 @@ public class BaseScreen {
 	private ChromeDriverService chromeService;
 	private  Log log = LogFactory.getLog("BaseScreen");
 	private WebElement element;
-	private WidgetData yuiWidgetConstants;
 	private UIConstants uiConstants;
 	private  PhrescoUiConstants phrsc;
 	DesiredCapabilities capabilities;
@@ -78,7 +79,7 @@ public class BaseScreen {
 			String applicationContext, WidgetData yuiWidgetConstants,
 			UIConstants uiConstants) throws AWTException, IOException, ScreenActionFailedException {
 
-		this.yuiWidgetConstants = yuiWidgetConstants;
+		
 		this.uiConstants = uiConstants;
 		try {
 			instantiateBrowser(selectedBrowser, selectedPlatform, applicationURL, applicationContext);
@@ -193,7 +194,7 @@ public class BaseScreen {
 	public  void windowResize()
 	{
 		phrsc = new PhrescoUiConstants();
-		String resolution = phrsc.RESOLUTION;		
+		String resolution = phrsc.getResolution();		
 		if(resolution!=null)
 		{
 		String[] tokens = resolution.split("x");
@@ -305,13 +306,20 @@ public class BaseScreen {
 		}
 
 		catch (Exception e) {
-			/*File scrFile = ((TakesScreenshot) driver)
+			log.info("presenceOfElementLocated" + e.getMessage());
+
+			WebDriver augmentedDriver = new Augmenter().augment(driver);
+			File screenshot = ((TakesScreenshot) augmentedDriver)
 					.getScreenshotAs(OutputType.FILE);
-			FileUtils.copyFile(scrFile,
-					new File(GetCurrentDir.getCurrentDirectory() + "\\"
-							+ methodName + ".png"));
-			throw new RuntimeException("waitForElementPresent"
-					+ super.getClass().getSimpleName() + " failed", e);*/
+
+			try {
+
+				FileUtils.copyFile(screenshot,
+						new File(GetCurrentDir.getCurrentDirectory() + "\\"
+								+ methodName + ".png"));
+			} catch (Exception e1) {
+				log.info("presenceOfElementLocated" + e1.getMessage());
+			}
 			Assert.assertNull(e);
 
 		}
@@ -330,87 +338,92 @@ public class BaseScreen {
 
 	}
 
-	public void Registration(String methodName)throws Exception {
+	public void Registration(String methodName,YuiWidget yuiWidget)throws Exception {
+		
+		Registration reg = yuiWidget.getRegistration();
+		
     	if (StringUtils.isEmpty(methodName)) {
 			methodName = Thread.currentThread().getStackTrace()[1].getMethodName();;
 		}
     	
-    	waitForElementPresent(uiConstants.REG_LINK,methodName);
-    	getXpathWebElement(uiConstants.REG_LINK);
+    	waitForElementPresent(uiConstants.getSignupLink(),methodName);
+    	getXpathWebElement(uiConstants.getSignupLink());
     	element.click();
   
-    	waitForElementPresent(uiConstants.REG_FIRSTNAME,methodName);
-    	getXpathWebElement(uiConstants.REG_FIRSTNAME);
-    	element.sendKeys(this.yuiWidgetConstants.REG_FIRSTNAME_VALUE);
+    	waitForElementPresent(uiConstants.getRegFirstName(),methodName);
+    	getXpathWebElement(uiConstants.getRegFirstName());
+    	element.sendKeys(reg.getFirstname());
     	
-    	waitForElementPresent(uiConstants.REG_LASTNAME,methodName);
-    	getXpathWebElement(uiConstants.REG_LASTNAME);
-    	element.sendKeys(this.yuiWidgetConstants.REG_LASTNAME_VALUE);
+    	waitForElementPresent(uiConstants.getRegLastName(),methodName);
+    	getXpathWebElement(uiConstants.getRegLastName());
+    	element.sendKeys(reg.getLastname());
     
-    	waitForElementPresent(uiConstants.REG_EMAIL,methodName);
-    	getXpathWebElement(uiConstants.REG_EMAIL);
-    	element.sendKeys(this.yuiWidgetConstants.REG_EMAIL_VALUE);
+    	waitForElementPresent(uiConstants.getRegEmail(),methodName);
+    	getXpathWebElement(uiConstants.getRegEmail());
+    	element.sendKeys(reg.getEmail());
     	
-    	waitForElementPresent(uiConstants.REG_PASSWORD,methodName);
-    	getXpathWebElement(uiConstants.REG_PASSWORD);
-    	element.sendKeys(this.yuiWidgetConstants.REG_PASSWORD_VALUE);
+    	waitForElementPresent(uiConstants.getRegPassword(),methodName);
+    	getXpathWebElement(uiConstants.getRegPassword());
+    	element.sendKeys(reg.getPassword());
     	
     	
-    	waitForElementPresent(uiConstants.REG_PHONENUMBER,methodName);
-    	getXpathWebElement(uiConstants.REG_PHONENUMBER);
-    	element.sendKeys(this.yuiWidgetConstants.REG_PHONENUMBER);
+    	waitForElementPresent(uiConstants.getRegPhoneNumber(),methodName);
+    	getXpathWebElement(uiConstants.getRegPhoneNumber());
+    	element.sendKeys(reg.getPhonenumber());
     
     	
-    	waitForElementPresent(uiConstants.REG_SUBMIT_BUTTON,methodName);
-    	getXpathWebElement(uiConstants.REG_SUBMIT_BUTTON);
+    	waitForElementPresent(uiConstants.getRegSubmitButton(),methodName);
+    	getXpathWebElement(uiConstants.getRegSubmitButton());
     	element.click();
     	Thread.sleep(2000);
-    	isTextPresent(yuiWidgetConstants.REG_SUCCESS_MSG);
+    	isTextPresent(reg.getRegTextMsg());
     	
 }
     
-	public void billingInfo(String methodName) throws Exception {
+	public void billingInfo(String methodName,YuiWidget yuiWidget) throws Exception {
+		
+		BillingInfoPage billInfo = yuiWidget.getBillingInfoPage();
+		CardInfoPage cardInfo = yuiWidget.getCardInfoPage();
 
 		if (StringUtils.isEmpty(methodName)) {
 			methodName = Thread.currentThread().getStackTrace()[1]
 					.getMethodName();
 			;
 		}
-		waitForElementPresent(this.uiConstants.EMAIL, methodName);
-		getXpathWebElement(this.uiConstants.EMAIL);
-		System.out.println("----element ---------->1" + element);
-
-		element.sendKeys(yuiWidgetConstants.EMAIL_VALUE);
-		getIdWebElement(this.uiConstants.FIRSTNAME);
-		System.out.println("----element-------------> 2" + element);
-		element.sendKeys(yuiWidgetConstants.FIRSTNAME_VALUE);
-		getIdWebElement(this.uiConstants.LASTNAME);
-		element.sendKeys(yuiWidgetConstants.LASTNAME_VALUE);
-		getIdWebElement(this.uiConstants.COMPANY);
-		element.sendKeys(this.uiConstants.COMPANY);
-		getIdWebElement(this.uiConstants.ADDRESS1);
-		element.sendKeys(yuiWidgetConstants.ADDRESS1_VALUE);
-		getIdWebElement(this.uiConstants.ADDRESS2);
-		element.sendKeys(yuiWidgetConstants.ADDRESS2_VALUE);
-		getIdWebElement(this.uiConstants.CITY);
-		element.sendKeys(yuiWidgetConstants.CITY_VALUE);
-		getIdWebElement(this.uiConstants.STATE);
-		element.sendKeys(yuiWidgetConstants.STATE_VALUE);
-		getIdWebElement(this.uiConstants.POSTALCODE);
-		element.sendKeys(yuiWidgetConstants.POSTALCODE_VALUE);
-		getIdWebElement(this.uiConstants.PHONENUMBER);
-		element.sendKeys(yuiWidgetConstants.PHONENUMBER_VALUE);
-		getIdWebElement(this.uiConstants.CARDNUMBER);
-		element.sendKeys(yuiWidgetConstants.CARDNUMBER_VALUE);
-		getIdWebElement(this.uiConstants.SECURITYNUMBER);
-		element.sendKeys(yuiWidgetConstants.SECURITYNUMBER_VALUE);
-		getIdWebElement(this.uiConstants.NAMEONCARD);
-		element.sendKeys(yuiWidgetConstants.NAMEONCARD_VALUE);
-		waitForElementPresent(this.uiConstants.REVIEWORDER, methodName);
-		getXpathWebElement(this.uiConstants.REVIEWORDER);
+		waitForElementPresent(this.uiConstants.getEmail(), methodName);
+		getXpathWebElement(this.uiConstants.getEmail());		
+		element.sendKeys(billInfo.getBillInfoEmailValue());
+		
+		getIdWebElement(this.uiConstants.getFirstName());
+		
+		element.sendKeys(billInfo.getBillInfoFirstNameValue());
+		getIdWebElement(this.uiConstants.getLastName());
+		element.sendKeys(billInfo.getBillInfoLastNameValue());
+		getIdWebElement(this.uiConstants.getCompany());
+		element.sendKeys(billInfo.getBillInfoCompanyValue());
+		getIdWebElement(this.uiConstants.getAddress1());
+		element.sendKeys(billInfo.getBillInfoAddress1Value());
+		getIdWebElement(this.uiConstants.getAddress2());
+		element.sendKeys(billInfo.getBillInfoAddress2Value());
+		getIdWebElement(this.uiConstants.getCity());
+		element.sendKeys(billInfo.getBillInfoCityValue());
+		getIdWebElement(this.uiConstants.getState());
+		element.sendKeys(billInfo.getBillInfoStateValue());
+		getIdWebElement(this.uiConstants.getPostalCode());
+		element.sendKeys(billInfo.getBillInfoPostCodeValue());
+		getIdWebElement(this.uiConstants.getPhoneNumber());
+		element.sendKeys(billInfo.getBillInfoPhoneNumberValue());
+		getIdWebElement(this.uiConstants.getCardNumber());
+		element.sendKeys(cardInfo.getCardInfoCardNumberValue());
+		getIdWebElement(this.uiConstants.getSecurityNumber());
+		element.sendKeys(cardInfo.getCardInfoSecurityNumberValue());
+		getIdWebElement(this.uiConstants.getNameCard());
+		element.sendKeys(cardInfo.getCardInfoNameOnCardValue());
+		waitForElementPresent(this.uiConstants.getReviewOrder(), methodName);
+		getXpathWebElement(this.uiConstants.getReviewOrder());
 		element.click();
-		waitForElementPresent(this.uiConstants.SUBMITORDER, methodName);
-		getXpathWebElement(this.uiConstants.SUBMITORDER);
+		waitForElementPresent(this.uiConstants.getSubmitOrder(), methodName);
+		getXpathWebElement(this.uiConstants.getSubmitOrder());
 		element.click();
 
 	}
@@ -423,17 +436,18 @@ public class BaseScreen {
 			;
 		}
 		log.info("Entering :***************Television()***********Start:");
-		waitForElementPresent(this.uiConstants.TELEVISION, methodName);
-		getXpathWebElement(this.uiConstants.TELEVISION);
+		Thread.sleep(2000);
+		waitForElementPresent(this.uiConstants.getTelevision(), methodName);
+		getXpathWebElement(this.uiConstants.getTelevision());
 		element.click();
-		waitForElementPresent(this.uiConstants.PROD1_DETAILS, methodName);
-		getXpathWebElement(this.uiConstants.PROD1_DETAILS);
+		waitForElementPresent(this.uiConstants.getProd1Details(), methodName);
+		getXpathWebElement(this.uiConstants.getProd1Details());
 		element.click();
-		waitForElementPresent(this.uiConstants.DET_ADDTOCART, methodName);
-		getXpathWebElement(this.uiConstants.DET_ADDTOCART);
+		waitForElementPresent(this.uiConstants.getDetAddToCart(), methodName);
+		getXpathWebElement(this.uiConstants.getDetAddToCart());
 		element.click();
-		waitForElementPresent(this.uiConstants.CHECKOUT, methodName);
-		getXpathWebElement(this.uiConstants.CHECKOUT);
+		waitForElementPresent(this.uiConstants.getCheckOut(), methodName);
+		getXpathWebElement(this.uiConstants.getCheckOut());
 		element.click();
 	}
 
@@ -444,17 +458,19 @@ public class BaseScreen {
 					.getMethodName();
 			;
 		}
-		waitForElementPresent(this.uiConstants.COMPUTERS, methodName);
-		getXpathWebElement(this.uiConstants.COMPUTERS);
+		log.info("Entering :***************Computers()***********Start:");
+		Thread.sleep(2000);
+		waitForElementPresent(this.uiConstants.getComputer(), methodName);
+		getXpathWebElement(this.uiConstants.getComputer());
 		element.click();
-		waitForElementPresent(this.uiConstants.PROD1_DETAILS, methodName);
-		getXpathWebElement(this.uiConstants.PROD1_DETAILS);
+		waitForElementPresent(this.uiConstants.getProd1Details(), methodName);
+		getXpathWebElement(this.uiConstants.getProd1Details());
 		element.click();
-		waitForElementPresent(this.uiConstants.DET_ADDTOCART, methodName);
-		getXpathWebElement(this.uiConstants.DET_ADDTOCART);
+		waitForElementPresent(this.uiConstants.getDetAddToCart(), methodName);
+		getXpathWebElement(this.uiConstants.getDetAddToCart());
 		element.click();
-		waitForElementPresent(this.uiConstants.CHECKOUT, methodName);
-		getXpathWebElement(this.uiConstants.CHECKOUT);
+		waitForElementPresent(this.uiConstants.getCheckOut(), methodName);
+		getXpathWebElement(this.uiConstants.getCheckOut());
 		element.click();
 
 	}
@@ -466,17 +482,19 @@ public class BaseScreen {
 					.getMethodName();
 			;
 		}
-		waitForElementPresent(this.uiConstants.MOBILE, methodName);
-		getXpathWebElement(this.uiConstants.MOBILE);
+		log.info("Entering :***************MobilePhones()***********Start:");
+		Thread.sleep(2000);
+		waitForElementPresent(this.uiConstants.getMobile(), methodName);
+		getXpathWebElement(this.uiConstants.getMobile());
 		element.click();
-		waitForElementPresent(this.uiConstants.PROD1_DETAILS, methodName);
-		getXpathWebElement(this.uiConstants.PROD1_DETAILS);
+		waitForElementPresent(this.uiConstants.getProd1Details(), methodName);
+		getXpathWebElement(this.uiConstants.getProd1Details());
 		element.click();
-		waitForElementPresent(this.uiConstants.DET_ADDTOCART, methodName);
-		getXpathWebElement(this.uiConstants.DET_ADDTOCART);
+		waitForElementPresent(this.uiConstants.getDetAddToCart(), methodName);
+		getXpathWebElement(this.uiConstants.getDetAddToCart());
 		element.click();
-		waitForElementPresent(this.uiConstants.CHECKOUT, methodName);
-		getXpathWebElement(this.uiConstants.CHECKOUT);
+		waitForElementPresent(this.uiConstants.getCheckOut(), methodName);
+		getXpathWebElement(this.uiConstants.getCheckOut());
 		element.click();
 
 	}
@@ -488,17 +506,19 @@ public class BaseScreen {
 					.getMethodName();
 			;
 		}
-		waitForElementPresent(this.uiConstants.AUDIO_DEVICES, methodName);
-		getXpathWebElement(this.uiConstants.AUDIO_DEVICES);
+		log.info("Entering :***************AudioDevices()***********Start:");
+		Thread.sleep(2000);
+		waitForElementPresent(this.uiConstants.getAudioDevices(), methodName);
+		getXpathWebElement(this.uiConstants.getAudioDevices());
 		element.click();
-		waitForElementPresent(this.uiConstants.PROD1_DETAILS, methodName);
-		getXpathWebElement(this.uiConstants.PROD1_DETAILS);
+		waitForElementPresent(this.uiConstants.getProd1Details(), methodName);
+		getXpathWebElement(this.uiConstants.getProd1Details());
 		element.click();
-		waitForElementPresent(this.uiConstants.DET_ADDTOCART, methodName);
-		getXpathWebElement(this.uiConstants.DET_ADDTOCART);
+		waitForElementPresent(this.uiConstants.getDetAddToCart(), methodName);
+		getXpathWebElement(this.uiConstants.getDetAddToCart());
 		element.click();
-		waitForElementPresent(this.uiConstants.CHECKOUT, methodName);
-		getXpathWebElement(this.uiConstants.CHECKOUT);
+		waitForElementPresent(this.uiConstants.getCheckOut(), methodName);
+		getXpathWebElement(this.uiConstants.getCheckOut());
 		element.click();
 
 	}
@@ -510,17 +530,19 @@ public class BaseScreen {
 					.getMethodName();
 			;
 		}
-		waitForElementPresent(this.uiConstants.CAMERAS, methodName);
-		getXpathWebElement(this.uiConstants.CAMERAS);
+		log.info("Entering :***************Cameras()***********Start:");
+		Thread.sleep(2000);
+		waitForElementPresent(this.uiConstants.getCamera(), methodName);
+		getXpathWebElement(this.uiConstants.getCamera());
 		element.click();
-		waitForElementPresent(this.uiConstants.PROD1_DETAILS, methodName);
-		getXpathWebElement(this.uiConstants.PROD1_DETAILS);
+		waitForElementPresent(this.uiConstants.getProd1Details(), methodName);
+		getXpathWebElement(this.uiConstants.getProd1Details());
 		element.click();
-		waitForElementPresent(this.uiConstants.DET_ADDTOCART, methodName);
-		getXpathWebElement(this.uiConstants.DET_ADDTOCART);
+		waitForElementPresent(this.uiConstants.getDetAddToCart(), methodName);
+		getXpathWebElement(this.uiConstants.getDetAddToCart());
 		element.click();
-		waitForElementPresent(this.uiConstants.CHECKOUT, methodName);
-		getXpathWebElement(this.uiConstants.CHECKOUT);
+		waitForElementPresent(this.uiConstants.getCheckOut(), methodName);
+		getXpathWebElement(this.uiConstants.getCheckOut());
 		element.click();
 
 	}
@@ -532,17 +554,19 @@ public class BaseScreen {
 					.getMethodName();
 			;
 		}
-		waitForElementPresent(this.uiConstants.TABLETS, methodName);
-		getXpathWebElement(this.uiConstants.TABLETS);
+		log.info("Entering :***************Tablets()***********Start:");
+		Thread.sleep(2000);
+		waitForElementPresent(this.uiConstants.getTablets(), methodName);
+		getXpathWebElement(this.uiConstants.getTablets());
 		element.click();
-		waitForElementPresent(this.uiConstants.PROD1_DETAILS, methodName);
-		getXpathWebElement(this.uiConstants.PROD1_DETAILS);
+		waitForElementPresent(this.uiConstants.getProd1Details(), methodName);
+		getXpathWebElement(this.uiConstants.getProd1Details());
 		element.click();
-		waitForElementPresent(this.uiConstants.DET_ADDTOCART, methodName);
-		getXpathWebElement(this.uiConstants.DET_ADDTOCART);
+		waitForElementPresent(this.uiConstants.getDetAddToCart(), methodName);
+		getXpathWebElement(this.uiConstants.getDetAddToCart());
 		element.click();
-		waitForElementPresent(this.uiConstants.CHECKOUT, methodName);
-		getXpathWebElement(this.uiConstants.CHECKOUT);
+		waitForElementPresent(this.uiConstants.getCheckOut(), methodName);
+		getXpathWebElement(this.uiConstants.getCheckOut());
 		element.click();
 
 	}
@@ -554,17 +578,19 @@ public class BaseScreen {
 					.getMethodName();
 			;
 		}
-		waitForElementPresent(this.uiConstants.MOVIESnMUSIC, methodName);
-		getXpathWebElement(this.uiConstants.MOVIESnMUSIC);
+		log.info("Entering :***************MoviesAndMusic()***********Start:");
+		Thread.sleep(2000);
+		waitForElementPresent(this.uiConstants.getMovieNmusic(), methodName);
+		getXpathWebElement(this.uiConstants.getMovieNmusic());
 		element.click();
-		waitForElementPresent(this.uiConstants.PROD1_DETAILS, methodName);
-		getXpathWebElement(this.uiConstants.PROD1_DETAILS);
+		waitForElementPresent(this.uiConstants.getProd1Details(), methodName);
+		getXpathWebElement(this.uiConstants.getProd1Details());
 		element.click();
-		waitForElementPresent(this.uiConstants.DET_ADDTOCART, methodName);
-		getXpathWebElement(this.uiConstants.DET_ADDTOCART);
+		waitForElementPresent(this.uiConstants.getDetAddToCart(), methodName);
+		getXpathWebElement(this.uiConstants.getDetAddToCart());
 		element.click();
-		waitForElementPresent(this.uiConstants.CHECKOUT, methodName);
-		getXpathWebElement(this.uiConstants.CHECKOUT);
+		waitForElementPresent(this.uiConstants.getCheckOut(), methodName);
+		getXpathWebElement(this.uiConstants.getCheckOut());
 		element.click();
 
 	}
@@ -576,17 +602,19 @@ public class BaseScreen {
 					.getMethodName();
 			;
 		}
-		waitForElementPresent(this.uiConstants.VIDEOGAMES, methodName);
-		getXpathWebElement(this.uiConstants.VIDEOGAMES);
+		log.info("Entering :***************VideoGames()***********Start:");
+		Thread.sleep(2000);
+		waitForElementPresent(this.uiConstants.getVideoGame(), methodName);
+		getXpathWebElement(this.uiConstants.getVideoGame());
 		element.click();
-		waitForElementPresent(this.uiConstants.PROD1_DETAILS, methodName);
-		getXpathWebElement(this.uiConstants.PROD1_DETAILS);
+		waitForElementPresent(this.uiConstants.getProd1Details(), methodName);
+		getXpathWebElement(this.uiConstants.getProd1Details());
 		element.click();
-		waitForElementPresent(this.uiConstants.DET_ADDTOCART, methodName);
-		getXpathWebElement(this.uiConstants.DET_ADDTOCART);
+		waitForElementPresent(this.uiConstants.getDetAddToCart(), methodName);
+		getXpathWebElement(this.uiConstants.getDetAddToCart());
 		element.click();
-		waitForElementPresent(this.uiConstants.CHECKOUT, methodName);
-		getXpathWebElement(this.uiConstants.CHECKOUT);
+		waitForElementPresent(this.uiConstants.getCheckOut(), methodName);
+		getXpathWebElement(this.uiConstants.getCheckOut());
 		element.click();
 	}
 
@@ -597,17 +625,19 @@ public class BaseScreen {
 					.getMethodName();
 			;
 		}
-		waitForElementPresent(this.uiConstants.MP3PLAYERS, methodName);
-		getXpathWebElement(this.uiConstants.MP3PLAYERS);
+		log.info("Entering :***************MP3Players()***********Start:");
+		Thread.sleep(2000);
+		waitForElementPresent(this.uiConstants.getMp3Players(), methodName);
+		getXpathWebElement(this.uiConstants.getMp3Players());
 		element.click();
-		waitForElementPresent(this.uiConstants.PROD1_DETAILS, methodName);
-		getXpathWebElement(this.uiConstants.PROD1_DETAILS);
+		waitForElementPresent(this.uiConstants.getProd1Details(), methodName);
+		getXpathWebElement(this.uiConstants.getProd1Details());
 		element.click();
-		waitForElementPresent(this.uiConstants.DET_ADDTOCART, methodName);
-		getXpathWebElement(this.uiConstants.DET_ADDTOCART);
+		waitForElementPresent(this.uiConstants.getDetAddToCart(), methodName);
+		getXpathWebElement(this.uiConstants.getDetAddToCart());
 		element.click();
-		waitForElementPresent(this.uiConstants.CHECKOUT, methodName);
-		getXpathWebElement(this.uiConstants.CHECKOUT);
+		waitForElementPresent(this.uiConstants.getCheckOut(), methodName);
+		getXpathWebElement(this.uiConstants.getCheckOut());
 		element.click();
 	}
 
@@ -618,20 +648,38 @@ public class BaseScreen {
 					.getMethodName();
 			;
 		}
-		waitForElementPresent(this.uiConstants.MORE, methodName);
-		getXpathWebElement(this.uiConstants.MORE);
+		log.info("Entering :***************Accessories()***********Start:");
+		Thread.sleep(2000);
+		waitForElementPresent(this.uiConstants.getMore(), methodName);
+		getXpathWebElement(this.uiConstants.getMore());
 		element.click();
-		waitForElementPresent(this.uiConstants.ACCESSORIES, methodName);
-		getXpathWebElement(this.uiConstants.ACCESSORIES);
+		waitForElementPresent(this.uiConstants.getAccessories(), methodName);
+		getXpathWebElement(this.uiConstants.getAccessories());
 		element.click();
-		waitForElementPresent(this.uiConstants.PROD1_DETAILS, methodName);
-		getXpathWebElement(this.uiConstants.PROD1_DETAILS);
+		waitForElementPresent(this.uiConstants.getProd1Details(), methodName);
+		getXpathWebElement(this.uiConstants.getProd1Details());
 		element.click();
-		waitForElementPresent(this.uiConstants.DET_ADDTOCART, methodName);
-		getXpathWebElement(this.uiConstants.DET_ADDTOCART);
+		waitForElementPresent(this.uiConstants.getDetAddToCart(), methodName);
+		getXpathWebElement(this.uiConstants.getDetAddToCart());
 		element.click();
-		waitForElementPresent(this.uiConstants.CHECKOUT, methodName);
-		getXpathWebElement(this.uiConstants.CHECKOUT);
+		waitForElementPresent(this.uiConstants.getCheckOut(), methodName);
+		getXpathWebElement(this.uiConstants.getCheckOut());
+		element.click();
+
+	}
+	
+	public void Failure(String methodName) throws Exception {
+
+		if (StringUtils.isEmpty(methodName)) {
+			methodName = Thread.currentThread().getStackTrace()[1]
+					.getMethodName();
+			;
+		}
+		log.info("Entering :***************Failure()***********Start:");
+		Thread.sleep(2000);	
+	
+		waitForElementPresent(this.uiConstants.getCheckOut(), methodName);
+		getXpathWebElement(this.uiConstants.getCheckOut());
 		element.click();
 
 	}
