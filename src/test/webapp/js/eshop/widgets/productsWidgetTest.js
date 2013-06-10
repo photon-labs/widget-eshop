@@ -125,7 +125,7 @@ YUI.add('productsWidgetTest', function(Y) {
 				});
 			
 				this.wait(function(){
-						var eshopAPI = new Y.Phresco.EShopAPI({"context":"eshop", "host":"172.16.17.180" ,"port":"2020", "protocol":"http"});
+						var eshopAPI = new Y.Phresco.EShopAPI(configuration);
 					var productsWidget = new Y.Phresco.ProductsWidget({
 						targetNode : productsNode,
 						apiReference : eshopAPI
