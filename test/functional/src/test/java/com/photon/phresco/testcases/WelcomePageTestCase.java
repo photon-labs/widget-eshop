@@ -93,6 +93,9 @@ public class WelcomePageTestCase {
 		System.out
 					.println("---------testWelcomePageScreen-------------");
 			Assert.assertNotNull(welcomeScreen);
+
+			methodName = Thread.currentThread().getStackTrace()[1]
+					.getMethodName();
 			 Thread.sleep(1000);
 		} catch (Exception t) {
 			t.printStackTrace();
@@ -107,8 +110,12 @@ public class WelcomePageTestCase {
 
 			System.out
 					.println("---------testToVerifyTheAudioDevicesAddToCart()-------------");
+			methodName = Thread.currentThread().getStackTrace()[1]
+					.getMethodName();
 			welcomeScreen.AudioDevices(methodName);
 			welcomeScreen.billingInfo(methodName,yuiWidget);
+
+			
 		} catch (Exception t) {
 			t.printStackTrace();
 
@@ -122,8 +129,12 @@ public class WelcomePageTestCase {
 
 			System.out
 					.println("---------testToVerifyTheCamerasAddToCart()-------------");
+
+			methodName = Thread.currentThread().getStackTrace()[1]
+					.getMethodName();
 			welcomeScreen.Cameras(methodName);
 			welcomeScreen.billingInfo(methodName,yuiWidget);
+
 		} catch (Exception t) {
 			t.printStackTrace();
 
@@ -137,8 +148,12 @@ public class WelcomePageTestCase {
 
 			System.out
 					.println("---------testToVerifyTheVideoGamesAddToCart()-------------");
+			methodName = Thread.currentThread().getStackTrace()[1]
+					.getMethodName();
 			welcomeScreen.VideoGames(methodName);
 			welcomeScreen.billingInfo(methodName,yuiWidget);
+
+		
 		} catch (Exception t) {
 			t.printStackTrace();
 
@@ -152,6 +167,9 @@ public class WelcomePageTestCase {
 
 			System.out
 					.println("---------testToVerifyTheTelevisionAddToCart()-------------");
+
+			methodName = Thread.currentThread().getStackTrace()[1]
+					.getMethodName();
 			welcomeScreen.Television(methodName);
 			welcomeScreen.billingInfo(methodName,yuiWidget);
 		} catch (Exception t) {
@@ -167,6 +185,8 @@ public class WelcomePageTestCase {
 
 			System.out
 					.println("---------testToVerifyTheTabletsAddToCart()-------------");
+			methodName = Thread.currentThread().getStackTrace()[1]
+					.getMethodName();
 			welcomeScreen.Tablets(methodName);
 			welcomeScreen.billingInfo(methodName,yuiWidget);
 		} catch (Exception t) {
@@ -182,6 +202,8 @@ public class WelcomePageTestCase {
 
 			System.out
 					.println("---------testToVerifyTheMP3PlayersAddToCart()-------------");
+			methodName = Thread.currentThread().getStackTrace()[1]
+					.getMethodName();
 			welcomeScreen.MP3Players(methodName);
 			welcomeScreen.billingInfo(methodName,yuiWidget);
 		} catch (Exception t) {
@@ -197,6 +219,8 @@ public class WelcomePageTestCase {
 
 			System.out
 					.println("---------testToVerifyTheMoviesAndMusicAddToCart()-------------");
+			methodName = Thread.currentThread().getStackTrace()[1]
+					.getMethodName();
 			welcomeScreen.MoviesnMusic(methodName);
 			welcomeScreen.billingInfo(methodName,yuiWidget);
 		} catch (Exception t) {
@@ -212,6 +236,8 @@ public class WelcomePageTestCase {
 
 			System.out
 					.println("---------testToVerifyTheMobilePhonesAddToCart()-------------");
+			methodName = Thread.currentThread().getStackTrace()[1]
+					.getMethodName();
 			welcomeScreen.MobilePhones(methodName);
 			welcomeScreen.billingInfo(methodName,yuiWidget);
 		} catch (Exception t) {
@@ -226,6 +252,8 @@ public class WelcomePageTestCase {
 		try {
 			System.out
 					.println("---------testToVerifyTheAccessoriesAddToCart()-------------");
+			methodName = Thread.currentThread().getStackTrace()[1]
+					.getMethodName();
 			welcomeScreen.Accessories(methodName);
 			welcomeScreen.billingInfo(methodName,yuiWidget);
 		} catch (Exception t) {
@@ -240,6 +268,8 @@ public class WelcomePageTestCase {
 		try {
 			System.out
 					.println("---------testToVerifyTheComputersAddToCart()-------------");
+			methodName = Thread.currentThread().getStackTrace()[1]
+					.getMethodName();
 			welcomeScreen.Computers(methodName);
 			welcomeScreen.billingInfo(methodName,yuiWidget);
 		} catch (Exception t) {
@@ -254,6 +284,8 @@ public class WelcomePageTestCase {
 		try {
 			System.out
 					.println("---------testToVerifyTheComputersAddToCart()-------------");
+			methodName = Thread.currentThread().getStackTrace()[1]
+					.getMethodName();
 			welcomeScreen.Computers(methodName);
 			welcomeScreen.billingInfo(methodName,yuiWidget);
 			welcomeScreen.Registration(methodName,yuiWidget);
@@ -264,19 +296,21 @@ public class WelcomePageTestCase {
 	} 
 	
 	
-	@Test
+/*	@Test
 	public void testFailureScripts(YuiWidget yuiWidget)
 			throws InterruptedException, IOException, Exception {
 		try {
 			System.out
 					.println("---------testFailureScripts()-------------");
+			methodName = Thread.currentThread().getStackTrace()[1]
+					.getMethodName();
 			welcomeScreen.Failure(methodName);
 			
 		} catch (Exception t) {
 			t.printStackTrace();
 
 		}
-	} 
+	} */
 
 	@AfterTest
 	public  void tearDown() {

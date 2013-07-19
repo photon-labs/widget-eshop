@@ -137,6 +137,9 @@ public class BaseScreen {
 			
 
 			} 
+		
+		
+		
 			else if (selectedBrowser.equalsIgnoreCase(Constants.BROWSER_SAFARI)) {
 				log.info("-------------***LAUNCHING SAFARI***--------------");
 				capabilities = new DesiredCapabilities();
@@ -315,7 +318,7 @@ public class BaseScreen {
 			try {
 
 				FileUtils.copyFile(screenshot,
-						new File(GetCurrentDir.getCurrentDirectory() + "\\"
+						new File(GetCurrentDir.getCurrentDirectory() + File.separator
 								+ methodName + ".png"));
 			} catch (Exception e1) {
 				log.info("presenceOfElementLocated" + e1.getMessage());
