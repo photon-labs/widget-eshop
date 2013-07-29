@@ -18,9 +18,8 @@
     limitations under the License.
 
 -->
-<environment>
-<phresco>
-<jquerywidget>
+
+<uiConstants>
             <registrartion>
              <signup_link>//a[contains(text(),'Sign up')]</signup_link>
 	           <regfirstname>//input[@id='regfirstname']</regfirstname>   
@@ -45,7 +44,7 @@
 	           <moretab>//a[contains(text(),'More')]</moretab>
 	       </tabs>
 	       <productPage>
-	           <prod1Details>//div[@class='img']//img</prod1Details>
+	           <prod1Details>//a[contains(text(),'Add to cart')]</prod1Details>
 	           <updateCart>//input[@value='Update Cart']</updateCart>
 	           <addToCart>//img[@alt='add to cart']</addToCart>
 	           <prod1DetailAddToCart>//img[@alt='add to cart']</prod1DetailAddToCart>
@@ -54,25 +53,24 @@
 	           <reviewOrder>//input[@value='Review Order']</reviewOrder>
 	           <submitOrder>//input[@value='Submit Order']</submitOrder>
 	       </productPage>
-	       <billingInfoPage>
+	        <billingInfoPage>
 	           <billInfoEmail>//input[@id='email']</billInfoEmail>
-	           <billInfoFirstName>firstName</billInfoFirstName>
-	           <billInfoLastName>lastName</billInfoLastName>
-	           <billInfoCompany>company</billInfoCompany>
-	           <billInfoAddress1>address1</billInfoAddress1>
-	           <billInfoAddress2>address2</billInfoAddress2>
-	           <billInfoCity>city</billInfoCity>
-	           <billInfoState>state</billInfoState>
-	           <billInfoPostCode>postCode</billInfoPostCode>
-	           <billInfoPhoneNumber>phoneNumber</billInfoPhoneNumber>
+	           <billInfoFirstName>//input[@id='firstName']</billInfoFirstName>
+	           <billInfoLastName>//input[@id='lastName']</billInfoLastName>
+	           <billInfoCompany>//input[@id='company']</billInfoCompany>
+	           <billInfoAddress1>//input[@id='address1']</billInfoAddress1>
+	           <billInfoAddress2>//input[@id='address2']</billInfoAddress2>
+	           <billInfoCity>//input[@id='city']</billInfoCity>
+	           <billInfoState>//input[@id='state']</billInfoState>
+	           <billInfoPostCode>//input[@id='postCode']</billInfoPostCode>
+	           <billInfoPhoneNumber>//input[@id='phoneNumber']</billInfoPhoneNumber>
 	           <billInfoComments>//textarea[@name='comments']</billInfoComments>
 	       </billingInfoPage>
 	       <cardInfoPage>
 	           <cardInfoCardType>//form[@id='contact']/div[4]/fieldset/div/div/label[2]/input</cardInfoCardType>
-	           <cardInfoCardNumber>cardNumber</cardInfoCardNumber>
-	           <cardInfoSecurityNumber>securityNumber</cardInfoSecurityNumber>
-	           <cardInfoNameOnCard>nameOnCard</cardInfoNameOnCard>
+	           <cardInfoCardNumber>//input[@id='cardNumber']</cardInfoCardNumber>
+	           <cardInfoSecurityNumber>//input[@id='securityNumber']</cardInfoSecurityNumber>
+	           <cardInfoNameOnCard>//input[@id='nameOnCard']</cardInfoNameOnCard>
 	       </cardInfoPage>
-</jquerywidget>
-</phresco>
-</environment>
+</uiConstants>
+

@@ -53,6 +53,8 @@ public class Constants {
 
 	public static final String  IPHONE_WEBDRIVER = "iPhone";
 
+	public static final String BROWSER_HEADLESS = "htmlunit";
+
 
 	public static String DEFAULT_TIMEOUT = "180000";
 
