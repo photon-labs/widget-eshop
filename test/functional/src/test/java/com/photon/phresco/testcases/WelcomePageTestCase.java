@@ -18,8 +18,8 @@
 package com.photon.phresco.testcases;
 
 import java.io.IOException;
+
 import org.testng.Assert;
-import org.testng.Reporter;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -29,7 +29,6 @@ import com.photon.phresco.Screens.WelcomeScreen;
 import com.photon.phresco.model.YuiWidgetsData.YuiWidget;
 import com.photon.phresco.uiconstants.PhrescoUiConstants;
 import com.photon.phresco.uiconstants.UIConstants;
-import com.photon.phresco.uiconstants.WidgetData;
 
 public class WelcomePageTestCase {
 
@@ -38,11 +37,9 @@ public class WelcomePageTestCase {
 	private  WelcomeScreen welcomeScreen;
 	private  String methodName;
 	private  String selectedBrowser;
-	private  WidgetData WidgetConstants;
 	
 	
 
-	// private Log log = LogFactory.getLog(getClass());
 	@Parameters(value = { "browser", "platform" })
 	@BeforeTest
 	public  void setUp(String browser, String platform) throws Exception {
@@ -50,41 +47,21 @@ public class WelcomePageTestCase {
 			phrescoUIConstants = new PhrescoUiConstants();
 			uiConstants = new UIConstants();
 		
-			WidgetConstants = new WidgetData();
 			String selectedBrowser = browser;
 			String selectedPlatform = platform;
 			
 			methodName = Thread.currentThread().getStackTrace()[1]
 					.getMethodName();
-			
-			
-			Reporter.log("Selected Browser to execute testcases--->>"
-					+ selectedBrowser);
 			String applicationURL = phrescoUIConstants.getProtocol() + "://"
 					+ phrescoUIConstants.getHost() + ":" + phrescoUIConstants.getPort()
 					+ "/";
 			welcomeScreen = new WelcomeScreen(selectedBrowser, selectedPlatform, applicationURL,
-					phrescoUIConstants.getContext(), WidgetConstants, uiConstants);
+					phrescoUIConstants.getContext(),  uiConstants);
 			Thread.sleep(5000);
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
 	}
-
-	/*public static void launchingBrowser() throws Exception {
-		try {
-			String applicationURL = phrescoUIConstants.PROTOCOL + "://"
-					+ phrescoUIConstants.HOST + ":" + phrescoUIConstants.PORT
-					+ "/";
-			selectedBrowser = phrescoUIConstants.BROWSER;
-			welcomeScreen = new WelcomeScreen(selectedBrowser, selectedPlatform, applicationURL,
-					phrescoUIConstants.CONTEXT, WidgetConstants, uiConstants);
-		} catch (Exception exception) {
-			exception.printStackTrace();
-
-		}
-
-	}*/
 
 	@Test
 	public void testWelcomePageScreen() throws InterruptedException,
@@ -221,17 +198,17 @@ public class WelcomePageTestCase {
 	}
 
 	@Test(dataProvider = "widgetData", dataProviderClass=com.photon.phresco.uiconstants.TestDataProvider.class)
-	public void testToVerifyTheAccessoriesAddToCart(YuiWidget yuiWidget)
-			throws InterruptedException, IOException, Exception {
-		try {
-			System.out
-					.println("---------testToVerifyTheAccessoriesAddToCart()-------------");
-			welcomeScreen.Accessories(methodName);
-			welcomeScreen.billingInfo(methodName,yuiWidget);
-		} catch (Exception t) {
+     public void testToVerifyTheAccessoriesAddToCart(YuiWidget yuiWidget)
+		throws InterruptedException, IOException, Exception {
+	try {
+		System.out
+				.println("---------testToVerifyTheAccessoriesAddToCart()-------------");
+		welcomeScreen.Accessories(methodName);
+		welcomeScreen.billingInfo(methodName,yuiWidget);
+	} catch (Exception t) {
 			t.printStackTrace();
 
-		}
+	}
 	}
 
 	@Test(dataProvider = "widgetData", dataProviderClass=com.photon.phresco.uiconstants.TestDataProvider.class)
@@ -248,35 +225,7 @@ public class WelcomePageTestCase {
 		}
 	} 
 	
-	@Test(dataProvider = "widgetData", dataProviderClass=com.photon.phresco.uiconstants.TestDataProvider.class)
-	public void testToVerifyTheZFailure(YuiWidget yuiWidget)
-			throws InterruptedException, IOException, Exception {
-		try {
-			System.out
-					.println("---------testToVerifyTheComputersAddToCart()-------------");
-			welcomeScreen.Computers(methodName);
-			welcomeScreen.billingInfo(methodName,yuiWidget);
-			welcomeScreen.Registration(methodName,yuiWidget);
-		} catch (Exception t) {
-			t.printStackTrace();
-
-		}
-	} 
 	
-	
-	@Test
-	public void testFailureScripts(YuiWidget yuiWidget)
-			throws InterruptedException, IOException, Exception {
-		try {
-			System.out
-					.println("---------testFailureScripts()-------------");
-			welcomeScreen.Failure(methodName);
-			
-		} catch (Exception t) {
-			t.printStackTrace();
-
-		}
-	} 
 
 	@AfterTest
 	public  void tearDown() {

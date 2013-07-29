@@ -20,14 +20,13 @@ package com.photon.phresco.Screens;
 import java.io.IOException;
 
 import com.photon.phresco.uiconstants.UIConstants;
-import com.photon.phresco.uiconstants.WidgetData;
 
 public class WelcomeScreen extends PhotonAbstractScreen {
 	public WelcomeScreen(String selectedBrowser,String selectedPlatform, String applicationURL,
-			String applicationContext,WidgetData WidgetConstants, UIConstants uiConstants)
+			String applicationContext, UIConstants uiConstants)
 			throws InterruptedException, IOException, Exception {
 		super(selectedBrowser,selectedPlatform, applicationURL, applicationContext,
-				WidgetConstants, uiConstants);
+				 uiConstants);
 
 	}
 

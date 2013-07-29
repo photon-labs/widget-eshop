@@ -21,7 +21,17 @@
 <suite name="WelcomePageTestSuite" parallel="tests"
 	thread-count="5" verbose="3">
 
-	<test name="VerifyWelcomePageOnFirefox" junit="false"
+	<!-- <test name="VerifyWelcomePageOnFirefox" junit="false"
+		preserve-order="true">
+		<parameter name="widgetDataXml" value="/WidgetData.xml" />
+		<parameter name="browser" value="firefox" />
+		<parameter name="platform" value="MAC" />
+		<classes>
+			<class name="com.photon.phresco.testcases.WelcomePageTestCase" />
+		</classes>
+	</test> -->
+
+	 <test name="VerifyWelcomePageOnChrome" junit="false"
 		preserve-order="true">
 		<parameter name="widgetDataXml" value="/WidgetData.xml" />
 		<parameter name="browser" value="firefox" />
@@ -29,19 +39,9 @@
 		<classes>
 			<class name="com.photon.phresco.testcases.WelcomePageTestCase" />
 		</classes>
-	</test>
-
-	 <test name="VerifyWelcomePageOnChrome" junit="false"
-		preserve-order="true">
-		<parameter name="widgetDataXml" value="/WidgetData.xml" />
-		<parameter name="browser" value="googlechrome" />
-		<parameter name="platform" value="WINDOWS" />
-		<classes>
-			<class name="com.photon.phresco.testcases.WelcomePageTestCase" />
-		</classes>
 	</test> 
 	
-	<test name="VerifyWelcomePageOniPhoneWebdriver" junit="false"
+	<!-- <test name="VerifyWelcomePageOniPhoneWebdriver" junit="false"
 		preserve-order="true">
 		<parameter name="widgetDataXml" value="/WidgetData.xml" />
 		<parameter name="browser" value="iPhone" />
@@ -49,7 +49,7 @@
 		<classes>
 			<class name="com.photon.phresco.testcases.WelcomePageTestCase" />
 		</classes>                                                                                  
-	</test>
+	</test> -->
 </suite>
  
 

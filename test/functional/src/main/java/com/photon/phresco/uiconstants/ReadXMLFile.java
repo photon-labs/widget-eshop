@@ -38,14 +38,16 @@ public class ReadXMLFile {
 	private  final String phrsc = "src/main/resources/phresco-env-config.xml";	
 	private  final String constants = "src/main/resources/UIConstants.xml";
 	private  final String UsrInfConst="src/main/resources/UserInfo.xml";
-	
+	private  final String ENVIRONMENT ="environment";
+	private  final String UICONSTANTSDATA ="uiConstants";
+	private  final String USERIFO ="userInfo";
 	
 	public ReadXMLFile() throws ScreenException {
 		log.info("@ReadXMLFile Constructor::loading *****PhrescoUIConstants***");
-		loadPhrescoConstansts(phrsc);
+		loadPhrescoConstansts(phrsc,ENVIRONMENT);
 	}
 
-	public void loadPhrescoConstansts(String properties) throws ScreenException {
+	public void loadPhrescoConstansts(String properties,String rootTag) throws ScreenException {
 		
 		try {
 			File fXmlFile = new File(properties);
@@ -53,10 +55,7 @@ public class ReadXMLFile {
 					.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
-
-			/*System.out.println("Root element :"
-					+ doc.getDocumentElement().getNodeName());*/
-			NodeList nList = doc.getElementsByTagName("environment");
+			NodeList nList = doc.getElementsByTagName(rootTag);
 			
 
 			for (int temp = 0; temp < nList.getLength(); temp++) {
@@ -75,11 +74,11 @@ public class ReadXMLFile {
 	
 	
 	public void loadUIConstants() throws ScreenException {
-    	loadPhrescoConstansts(constants);
+    	loadPhrescoConstansts(constants,UICONSTANTSDATA);
 	}
 
 	public void loadUserInfoConstants() throws ScreenException {
-		loadPhrescoConstansts(UsrInfConst);
+		loadPhrescoConstansts(UsrInfConst,USERIFO);
 		
 	}
 	
