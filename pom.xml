@@ -5,7 +5,7 @@
     <artifactId>PHR_HTML5YUIWidget</artifactId>
     <packaging>war</packaging>
     <name>PHR_HTML5YUIWidget</name>
-    <version>3.2.0.4002-SNAPSHOT</version>
+    <version>3.2.0.4003-SNAPSHOT</version>
 	<inceptionYear>1999</inceptionYear>
     <organization>
         <name>Photon Infotech Inc.</name>
@@ -19,13 +19,13 @@
             <!-- <plugin>
                 <groupId>com.photon.phresco.plugins</groupId>
                 <artifactId>java-maven-plugin</artifactId>
-                <version>3.2.0.4002-SNAPSHOT</version>
+                <version>3.2.0.4003-SNAPSHOT</version>
                 <extensions>true</extensions>
             </plugin> -->
 			<plugin>
 				<groupId>net.awired.jstest</groupId>
 				<artifactId>jstest-maven-plugin</artifactId>
-				<version>3.2.0.4002-SNAPSHOT</version>
+				<version>3.2.0.4003-SNAPSHOT</version>
 				<executions>
 					<execution>
 						<goals>
